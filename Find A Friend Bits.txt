@@ -1,0 +1,16 @@
+Ai = BIT_ON( 0 + 0x0400 + 468 ); // 1492
+Ayane = BIT_ON( 0 + 0x0400 + 475 ); // 1499
+Kou = BIT_ON( 0 + 0x0400 + 463 ); // 1487
+Marie = BIT_ON( 0 + 0x0400 + 712 ); // 1736
+Kanji = BIT_ON( 0 + 0x0400 + 457 ); // 1481
+Rise = BIT_ON( 0 + 0x0400 + 436 ); // 1460
+Hisano = BIT_ON( 0 + 0x0400 + 466 ); // 1490
+Yukiko = BIT_ON( 0 + 0x0400 + 452 ); // 1476
+Naoki = BIT_ON( 0 + 0x0400 + 465 ); // 1489
+Adachi = BIT_ON( 0 + 0x0400 + 692 ); // 1716
+Shu = BIT_CHK( 0 + 0x0400 + 470 ) == 1 && BIT_CHK( 0 + 0x0400 + 1638 ) == 1 && GET_SL_LEVEL( 23 ) < 10 && GET_TIME_OF_DAY == 5
+Sayoko = BIT_CHK( 0 + 0x0400 + 456 ) == 1 && BIT_CHK( 0 + 0x0400 + 1640 ) == 1 && GET_SL_LEVEL(??) < 10 && GET_TIME_OF_DAY == 5
+Eri = BIT_CHK( 0 + 0x0400 + 1641 ) == 1 && BIT_CHK( 0 + 0x0400 + 476 ) == 1
+Chie = BIT_ON( 0 + 0x0400 + 459 ); // 1483
+Yosuke = BIT_ON( 0 + 0x0400 + 454 ); // 1478
+Naoto = BIT_ON( 0 + 0x0400 + 462 ); // 1486

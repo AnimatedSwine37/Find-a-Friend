@@ -1,522 +1,690 @@
-// 
+//
 // Imports
-// 
+//
 
-import( "field.bf" );
-import( "fieldhook.msg");
+import("field.bf");
+import("fieldhook.msg");
 
-// 
+//
 // Script-level variable definitions
-// 
+//
 
-// My variables 
-int variable20; 
+int variable136;
+// My variables
+int variable20;
 int variable21;
+int variable22;
+int pageOneMask;
+int pageTwoMask;
+int numSelectionsRemoved;
+int isHoliday;
 
-// 
+//
 // Procedure declarations
-// 
+//
 
+void generate_hangout_menu()
+{
+    // Variables that store the location of the messages and whatnot
+    int localVariable54 = HANGOUT_MSG;
+    int localVariable55 = HANGOUT_SEL;
+
+    // Get the day from 0-6, Sunday-Saturday
+    int dayOfWeek;
+    dayOfWeek = GET_DAY_OF_WEEK();
+    // Get the time of day from 0-5, early morning to evening
+    int timeOfDay;
+    timeOfDay = GET_TIME_OF_DAY();
+    //Check if it is a holiday
+    check_if_holiday();
+
+    // Variable to keep track of the page we're on
+    int localVariable120 = 0;
+
+    SET_SEL_CHOICE_KEYBIND(14, 17);
+    int localVariable56 = ADV_SEL(localVariable54, localVariable55, pageOneMask);
+
+    // Only display the menu if everyone isn't available
+    if (numSelectionsRemoved < 16)
+    {
+    _choiceLoop:
+        // Cancel or see more wasn't chosen
+        if (localVariable56 < 16)
+        {
+            FADE(1, 5);
+            FADE_SYNC();
+
+            // Teleport the player to the desired location depending on who they chose
+            switch (localVariable56)
+            {
+            // Adachi
+            case 0:
+                // South Shopping District in the night
+                if (timeOfDay == 5)
+                {
+                    CALL_FIELD(8, 2, 0, 0);
+                    // Junes in the day
+                }
+                else
+                {
+                    CALL_FIELD(9, 4, 0, 0);
+                }
+                break;
+            // Ai - Learning Building 1F
+            case 1:
+                CALL_FIELD(6, 1, 1, 0);
+                break;
+            // Chie
+            case 2:
+                // South Shopping District on Sundays
+                if (isHoliday == 1)
+                {
+                    CALL_FIELD(8, 2, 0, 0);
+                    // Roof on Weekdays
+                }
+                else
+                {
+                    CALL_FIELD(6, 14, 0, 0);
+                }
+                break;
+            // Ayane/Yumi - Learning Building 2F
+            case 3:
+                CALL_FIELD(6, 2, 0, 0);
+                break;
+            // Eri - South Shopping District
+            case 4:
+                CALL_FIELD(8, 2, 0, 0);
+                break;
+            // Hisano - Samegawa Riverbank
+            case 5:
+                CALL_FIELD(10, 2, 0, 0);
+                break;
+            // Kanji
+            case 6:
+                // North Shopping District on Sundays
+                if (isHoliday == 1)
+                {
+                    CALL_FIELD(8, 1, 0, 0);
+                    // Practice Building 1F on Weekdays
+                }
+                else
+                {
+                    CALL_FIELD(6, 4, 0, 0);
+                }
+                break;
+            // Marie - South Shopping District
+            case 7:
+                CALL_FIELD(8, 2, 0, 0);
+                break;
+            // Naoki
+            case 8:
+                // North Shopping District on Sundays
+                if (isHoliday == 1)
+                {
+                    CALL_FIELD(8, 1, 0, 0);
+                    // Learning Building 1F on Weekdays
+                }
+                else
+                {
+                    CALL_FIELD(6, 1, 1, 0);
+                }
+                break;
+            // Naoto
+            case 9:
+                // Samegawa Flood Plain on Sundays
+                if (isHoliday == 1)
+                {
+                    CALL_FIELD(10, 1, 0, 0);
+                    // Learning Building 1F on Weekdays
+                }
+                else
+                {
+                    CALL_FIELD(6, 1, 1, 0);
+                }
+                break;
+            // Rise
+            case 10:
+                // South Shopping District on Sundays
+                if (isHoliday == 1)
+                {
+                    CALL_FIELD(8, 2, 0, 0);
+                    // Learning Building 1F on Weekdays
+                }
+                else
+                {
+                    CALL_FIELD(6, 1, 1, 0);
+                }
+                break;
+            // Sayoko - South Shopping District
+            case 11:
+                CALL_FIELD(8, 2, 0, 0);
+                break;
+            // Shu - South Shopping District
+            case 12:
+                CALL_FIELD(8, 2, 0, 0);
+                break;
+            // Kou/Daisuke - Learning Building 2F
+            case 13:
+                CALL_FIELD(6, 2, 0, 0);
+                break;
+            // Yoskue
+            case 14:
+                // Junes on Sundays
+                if (isHoliday == 1)
+                {
+                    CALL_FIELD(9, 4, 0, 0);
+                    // Learning Building 2F on Weekdays
+                }
+                else
+                {
+                    CALL_FIELD(6, 2, 0, 0);
+                }
+                break;
+            // Yukiko
+            case 15:
+                // South Shopping District on Sundays
+                if (isHoliday == 1)
+                {
+                    CALL_FIELD(8, 2, 0, 0);
+                    // Learning Building 1F on Weekdays
+                }
+                else
+                {
+                    CALL_FIELD(6, 1, 1, 0);
+                }
+                break;
+            }
+            // See more was chosen
+        }
+        else if (localVariable56 == 16)
+        {
+            // Generate another menu
+            SET_SEL_CHOICE_KEYBIND(14, 17);
+            // If you're on page one go to two and vice versa
+            if (localVariable120 == 0)
+            {
+                localVariable120 = 1;
+                localVariable56 = ADV_SEL(localVariable54, localVariable55, pageTwoMask);
+            }
+            else
+            {
+                localVariable120 = 0;
+                localVariable56 = ADV_SEL(localVariable54, localVariable55, pageOneMask);
+            }
+            // Go back to the choices for round rwo (or more)
+            goto _choiceLoop;
+        }
+    }
+}
+
+void generate_selection_mask()
+{
+    pageOneMask = 0; // First list
+    // All characters removed (subtracting from this adds them back to the second list)
+    pageTwoMask = 65535; // Second list
+
+    // Count how many people were removed from the list so I can decide whether to make a second page
+    numSelectionsRemoved = 0;
+
+    // A local variable for each slink to track whether they've been removed or not (I'm sure this could be done better but idk how)
+    // 1 means available (not removed) 0 means not available (removed)
+    int adachiState = 1;
+    int aiState = 1;
+    int chieState = 1;
+    int culturalState = 1;
+    int eriState = 1;
+    int hisanoState = 1;
+    int kanjiState = 1;
+    int marieState = 1;
+    int naokiState = 1;
+    int naotoState = 1;
+    int riseState = 1;
+    int sayokoState = 1;
+    int shuState = 1;
+    int kouState = 1;
+    int yosukeState = 1;
+    int yukikoState = 1;
+    int localVariable116 = 1;
+
+    int timeOfDay;
+    timeOfDay = GET_TIME_OF_DAY();
+
+    // Choose which people to exclude based on the day
+    // Check Adachi
+	if (BIT_CHK( 0 + 0x0400 + 692 ) == 0 || GET_SL_LEVEL(31) >= 6) {
+		pageOneMask = pageOneMask + 1;
+        numSelectionsRemoved = numSelectionsRemoved + 1;
+        adachiState = 0;
+	}
+
+    // Ai isn't available Monday, Tuesday, Saturday, Sunday and Holidays
+    if (BIT_CHK( 0 + 0x0400 + 468 ) == 0 || GET_SL_LEVEL(21) >= 10 || GET_SL_LEVEL(22) >= 10 || timeOfDay == 5)
+    {
+        pageOneMask = pageOneMask + 2;
+        numSelectionsRemoved = numSelectionsRemoved + 1;
+        aiState = 0;
+    }
+    // Chie isn't available Friday and Sunday
+    if (BIT_CHK( 0 + 0x0400 + 459 ) == 0 || GET_SL_LEVEL(11) >= 10 || GET_SL_LEVEL(12) >= 10 || timeOfDay == 5)
+    {
+        pageOneMask = pageOneMask + 4;
+        numSelectionsRemoved = numSelectionsRemoved + 1;
+        chieState = 0;
+    }
+    // Ayane/Yumi isn't available Wednesday, Friday, Saturday, Sunday and Holiday
+    if (BIT_CHK(0 + 0x0400 + 475) == 0 || GET_SL_LEVEL(27) >= 10 || GET_SL_LEVEL(28) >= 10 || timeOfDay == 5)
+    {
+        pageOneMask = pageOneMask + 8;
+        numSelectionsRemoved = numSelectionsRemoved + 1;
+        culturalState = 0;
+    }
+    // Eri isn't available Tuesday, Wednesday, Thursday, Sunday and Holidays
+    if (BIT_CHK( 0 + 0x0400 + 1641 ) == 0 || BIT_CHK( 0 + 0x0400 + 476 ) == 0 || GET_SL_LEVEL(29) >= 10 || timeOfDay == 5)
+    {
+        pageOneMask = pageOneMask + 16;
+        numSelectionsRemoved = numSelectionsRemoved + 1;
+        eriState = 0;
+    }
+    // Hisano is only available on Sundays and Holidays
+    if (BIT_CHK( 0 + 0x0400 + 466 ) == 0 || GET_SL_LEVEL(19) >= 10 || timeOfDay == 5)
+    {
+        pageOneMask = pageOneMask + 32;
+        numSelectionsRemoved = numSelectionsRemoved + 1;
+        hisanoState = 0;
+    }
+    // Kanji isn't available Monday, Tuesday and Friday
+    if (BIT_CHK( 0 + 0x0400 + 457 ) == 0  || GET_SL_LEVEL(10) >= 10 || timeOfDay == 5)
+    {
+        pageOneMask = pageOneMask + 64;
+        numSelectionsRemoved = numSelectionsRemoved + 1;
+        kanjiState = 0;
+    }
+    // Marie isn't available Monday, Tuesday, Thursday and Friday
+    if (BIT_CHK( 0 + 0x0400 + 712 ) == 0 || GET_SL_LEVEL(33) >= 10 || GET_SL_LEVEL(34) >= 10 || timeOfDay == 5)
+    {
+        pageOneMask = pageOneMask + 128;
+        numSelectionsRemoved = numSelectionsRemoved + 1;
+        marieState = 0;
+    }
+    // Naoki isn't available Friday, Saturday and Sunday
+    if (BIT_CHK( 0 + 0x0400 + 465 ) == 0 || GET_SL_LEVEL(18) >= 10 || timeOfDay == 5)
+    {
+        pageOneMask = pageOneMask + 256;
+        numSelectionsRemoved = numSelectionsRemoved + 1;
+        naokiState = 0;
+    }
+    // Naoto isn't available Thursday and Friday
+    if (BIT_CHK( 0 + 0x0400 + 462 ) == 0 ||  GET_SL_LEVEL(14) >= 10 || GET_SL_LEVEL(15) >= 10 || timeOfDay == 5)
+    {
+        pageOneMask = pageOneMask + 512;
+        numSelectionsRemoved = numSelectionsRemoved + 1;
+        naotoState = 0;
+    }
+    // Rise isn't available Monday, Tuesday, Wednesday and Thursday
+    if (BIT_CHK( 0 + 0x0400 + 436 ) == 0 || GET_SL_LEVEL(3) >= 10 || GET_SL_LEVEL(4) >= 10 || timeOfDay == 5)
+    {
+        pageOneMask = pageOneMask + 1024;
+        numSelectionsRemoved = numSelectionsRemoved + 1;
+        riseState = 0;
+    }
+    // Sayoko isn't available Monday, Tuesday, Saturday, Sunday, Holidays, and in the day
+    if (BIT_CHK( 0 + 0x0400 + 456 ) == 0 || BIT_CHK( 0 + 0x0400 + 1640 ) == 0 || timeOfDay != 5 || GET_SL_LEVEL(9) >= 10)
+    {
+        pageOneMask = pageOneMask + 2048;
+        numSelectionsRemoved = numSelectionsRemoved + 1;
+        sayokoState = 0;
+    }
+    // Shu isn't available Monday, Wednesday, Friday, Sunday, Holidays and in the day
+    if (BIT_CHK( 0 + 0x0400 + 470 ) == 0 || BIT_CHK( 0 + 0x0400 + 1638 ) == 0 || GET_SL_LEVEL( 23 ) >= 10 || timeOfDay != 5)
+    {
+        pageOneMask = pageOneMask + 4096;
+        numSelectionsRemoved = numSelectionsRemoved + 1;
+        shuState = 0;
+    }
+    // Kou/Daisuke isn't available Monday, Wednesday, Friday, Sunday and Holidays
+    if (BIT_CHK( 0 + 0x0400 + 463 ) == 0 || GET_SL_LEVEL(0x10) >= 10 || timeOfDay == 5)
+    {
+        pageOneMask = pageOneMask + 8192;
+        numSelectionsRemoved = numSelectionsRemoved + 1;
+        kouState = 0;
+    }
+    // Yoskue isn't available Tuesday and Wednesday
+    if (BIT_CHK( 0 + 0x0400 + 454 ) == 0 || GET_SL_LEVEL(7) >= 10 || timeOfDay == 5)
+    {
+        pageOneMask = pageOneMask + 16384;
+        numSelectionsRemoved = numSelectionsRemoved + 1;
+        yosukeState = 0;
+    }
+    // Yukiko isn't available Friday, Saturday and Sunday
+    if (BIT_CHK( 0 + 0x0400 + 452 ) == 0 || GET_SL_LEVEL(5) >= 10 || GET_SL_LEVEL(6) >= 10 || timeOfDay == 5)
+    {
+        pageOneMask = pageOneMask + 32768;
+        numSelectionsRemoved = numSelectionsRemoved + 1;
+        yukikoState = 0;
+    }
+
+    // Decide whether a second page is needed THIS WOULD BE SO MUCH EASIER WITH AN ARRAY AND A LOOP AHHHHH
+    if (numSelectionsRemoved < 9)
+    {
+        // local58 is all characters removed (subtracting from this adds them back to the second list)
+        // Yukiko
+        if (yukikoState == 1)
+        {
+            // Remove from list 1
+            pageOneMask = pageOneMask + 32768;
+            // Add to list 2
+            pageTwoMask = pageTwoMask - 32768;
+            // Increment the count
+            numSelectionsRemoved = numSelectionsRemoved + 1;
+        }
+        // Yosuke
+        if (numSelectionsRemoved < 10)
+        {
+            if (yosukeState == 1)
+            {
+                // Remove from list 1
+                pageOneMask = pageOneMask + 16384;
+                // Add to list 2
+                pageTwoMask = pageTwoMask - 16384;
+                // Increment the count
+                numSelectionsRemoved = numSelectionsRemoved + 1;
+            }
+        }
+        // Kou/Daisuke
+        if (numSelectionsRemoved < 10)
+        {
+            if (kouState == 1)
+            {
+                // Remove from list 1
+                pageOneMask = pageOneMask + 8192;
+                // Add to list 2
+                pageTwoMask = pageTwoMask - 8192;
+                // Increment the count
+                numSelectionsRemoved = numSelectionsRemoved + 1;
+            }
+        }
+        // Shu
+        if (numSelectionsRemoved < 10)
+        {
+            if (shuState == 1)
+            {
+                // Remove from list 1
+                pageOneMask = pageOneMask + 4096;
+                // Add to list 2
+                pageTwoMask = pageTwoMask - 4096;
+                // Increment the count
+                numSelectionsRemoved = numSelectionsRemoved + 1;
+            }
+        }
+        // Sayoko
+        if (numSelectionsRemoved < 10)
+        {
+            if (sayokoState == 1)
+            {
+                // Remove from list 1
+                pageOneMask = pageOneMask + 2048;
+                // Add to list 2
+                pageTwoMask = pageTwoMask - 2048;
+                // Increment the count
+                numSelectionsRemoved = numSelectionsRemoved + 1;
+            }
+        }
+        // Rise
+        if (numSelectionsRemoved < 10)
+        {
+            if (riseState == 1)
+            {
+                // Remove from list 1
+                pageOneMask = pageOneMask + 1024;
+                // Add to list 2
+                pageTwoMask = pageTwoMask - 1024;
+                // Increment the count
+                numSelectionsRemoved = numSelectionsRemoved + 1;
+            }
+        }
+        // Naoto
+        if (numSelectionsRemoved < 10)
+        {
+            if (naotoState == 1)
+            {
+                // Remove from list 1
+                pageOneMask = pageOneMask + 512;
+                // Add to list 2
+                pageTwoMask = pageTwoMask - 512;
+                // Increment the count
+                numSelectionsRemoved = numSelectionsRemoved + 1;
+            }
+        }
+        // Naoki
+        if (numSelectionsRemoved < 10)
+        {
+            if (naokiState == 1)
+            {
+                // Remove from list 1
+                pageOneMask = pageOneMask + 256;
+                // Add to list 2
+                pageTwoMask = pageTwoMask - 256;
+                // Increment the count
+                numSelectionsRemoved = numSelectionsRemoved + 1;
+            }
+        }
+        // Marie
+        if (numSelectionsRemoved < 10)
+        {
+            if (marieState == 1)
+            {
+                // Remove from list 1
+                pageOneMask = pageOneMask + 128;
+                // Add to list 2
+                pageTwoMask = pageTwoMask - 128;
+                // Increment the count
+                numSelectionsRemoved = numSelectionsRemoved + 1;
+            }
+        }
+        // We don't need the see more option
+    }
+    else
+    {
+        pageOneMask = pageOneMask + 65536;
+    }
+}
 
 void school_order_hook()
 {
-    int localVariable54 = FLD_ORDER;
-    int localVariable55 = SCHOOL_SEL;
+    int localVariable54 = 327;
+    int localVariable55 = SCHOOL_SEL_HOOK;
     int localVariable57 = 0;
-    
-    if ( FLD_FUNCTION_0023() == 1 )
+
+    if (GET_FIELD_MINOR() == 1)
     {
         localVariable57 = localVariable57 + 1;
     }
-    else if ( FLD_FUNCTION_0023() == 2 || FLD_FUNCTION_0023() == 6 )
+    else if (GET_FIELD_MINOR() == 2 || GET_FIELD_MINOR() == 6)
     {
         localVariable57 = localVariable57 + 2;
     }
-    else if ( FLD_FUNCTION_0023() == 4 || FLD_FUNCTION_0023() == 5 )
+    else if (GET_FIELD_MINOR() == 4 || GET_FIELD_MINOR() == 5)
     {
         localVariable57 = localVariable57 + 8;
     }
-    else if ( FLD_FUNCTION_0023() == 3 || FLD_FUNCTION_0023() == 14 )
+    else if (GET_FIELD_MINOR() == 3 || GET_FIELD_MINOR() == 14)
     {
         localVariable57 = localVariable57 + 4;
     }
 
-    
-    if ( FUNCTION_000A( 0 + 0x0400 + 0x0800 + 0 ) == 0 )
+    // Decide if hangout should not be displayed
+    generate_selection_mask();
+    if (numSelectionsRemoved == 16)
+    {
+        localVariable57 = localVariable57 + 32;
+    }
+
+    if (BIT_CHK(0 + 0x0400 + 0x0800 + 0) == 0)
     {
         localVariable57 = localVariable57 + 128;
     }
 
-    FUNCTION_0007( 14, 6 );
-    int localVariable56 = FUNCTION_0025( localVariable54, localVariable55, localVariable57 );
-    
-	
-	//Check if my custom menu was chosen
-	
-	if ( localVariable56 == 5 )
-	{
-		generate_hangout_menu();
-	}
-    else if ( localVariable56 != 6 )
+    SET_SEL_CHOICE_KEYBIND(14, 6);
+    int localVariable56 = ADV_SEL(localVariable54, localVariable55, localVariable57);
+
+    //Check if my custom menu was chosen
+
+    if (localVariable56 == 5)
     {
-        FUNCTION_0016( 1, 5 );
-        FUNCTION_0017();
-        
-        if ( localVariable56 == 0 )
-        {
-            FUNCTION_0030( 6, 1, 1, 0 );
-        }
-        else if ( localVariable56 == 1 )
-        {
-            FUNCTION_0030( 6, 2, 0, 0 );
-        }
-        else if ( localVariable56 == 2 )
-        {
-            FUNCTION_0030( 6, 14, 0, 0 );
-        }
-        else if ( localVariable56 == 3 )
-        {
-            FUNCTION_0030( 6, 4, 0, 0 );
-        }
-        else if ( localVariable56 == 4 )
-        {
-            FUNCTION_003B( 0 );
-        }
-        else if ( localVariable56 == 7 )
-        {
-            FUNCTION_003C();
-        } 
-		
+        generate_hangout_menu();
     }
+    else if (localVariable56 != 6)
+    {
+        FADE(1, 5);
+        FADE_SYNC();
 
-}
-
-// Custom function to check if it's raining (based off of Nanako's dialogue so hopefully accurate)
-void check_if_raining()
-{	
-	// Check if it is any of the days
-	if(FUNCTION_0037( 8, 5) || FUNCTION_0037( 8, 6) || FUNCTION_0037( 8, 10) || FUNCTION_0037( 8, 11) || FUNCTION_0037( 9, 25) || FUNCTION_0037( 11, 3) || 
-	FUNCTION_0037( 4, 25) || FUNCTION_0037( 4, 26) || FUNCTION_0037( 4, 27) || FUNCTION_0037( 4, 28) || FUNCTION_0037( 5, 13) || FUNCTION_0037( 6, 1) || 
-	FUNCTION_0037( 6, 2) || FUNCTION_0037( 6, 3) || FUNCTION_0037( 6, 4) || FUNCTION_0037( 6, 20) || FUNCTION_0037( 6, 24) || FUNCTION_0037( 6, 25) || 
-	FUNCTION_0037( 6, 30) || FUNCTION_0037( 7, 1) || FUNCTION_0037( 7, 8) || FUNCTION_0037( 7, 25) || FUNCTION_0037( 9, 13) ||
-	FUNCTION_0037( 9, 26) || FUNCTION_0037( 9, 30) || FUNCTION_0037( 10, 1) || FUNCTION_0037( 10, 4) || FUNCTION_0037( 10, 5) || FUNCTION_0037( 10, 12) || 
-	FUNCTION_0037( 10, 22)  || FUNCTION_0037( 10, 25) || FUNCTION_0037( 11, 3) || FUNCTION_0037( 11, 4)) 
-	{	
-		// Variable that will store whether it is raining or not (1 is yes 0 is no)
-		variable20 = 1;
-	} else {
-		variable20 = 0;
-	}
+        if (localVariable56 == 0)
+        {
+            CALL_FIELD(6, 1, 1, 0);
+        }
+        else if (localVariable56 == 1)
+        {
+            CALL_FIELD(6, 2, 0, 0);
+        }
+        else if (localVariable56 == 2)
+        {
+            CALL_FIELD(6, 14, 0, 0);
+        }
+        else if (localVariable56 == 3)
+        {
+            CALL_FIELD(6, 4, 0, 0);
+        }
+        else if (localVariable56 == 4)
+        {
+            TOWN_MAP(0);
+        }
+        else if (localVariable56 == 7)
+        {
+            TV_STUDIO();
+        }
+    }
 }
 
 void check_if_holiday()
 {
-	// Get the month
-	int localVariable1;
-	localVariable1 = FUNCTION_0033(); 
-	// Get the day (1-31)
-	int localVariable2;
-	localVariable2 = FUNCTION_0034();
-	
-	// Check if it is any of the single day/small holidays
-	if(FUNCTION_0037(4, 29) || FUNCTION_0037(5, 4) || FUNCTION_0037(5, 4) || FUNCTION_0037(5, 5) || FUNCTION_0037(7, 18) || FUNCTION_0037(9, 19) || FUNCTION_0037(9, 23) ||
-	FUNCTION_0037(10, 10) || FUNCTION_0037(10, 30) || FUNCTION_0037(10, 31) || FUNCTION_0037(11, 3) || FUNCTION_0037(11, 23) || FUNCTION_0037(12, 5) || FUNCTION_0037(12, 23) ||
-	FUNCTION_0037(2, 11))
-	{
-		// Variable that stores whether it is a holiday
-		variable21 = 1;
-		return;
-	}
-	// Check if it is a long holiday like school breaks
-	else
-	{
-		if(localVariable1 == 7 && localVariable2 >= 27) {	
-			variable21 = 1;
-			return;
-		} else if(localVariable1 == 8) {
-			variable21 = 1;
-			return;
-		} else if(localVariable1 == 12 && localVariable2 >= 26) {
-			variable21 = 1;
-			return;
-		} else if(localVariable1 == 1 && localVariable2 <= 9) {
-			variable21 = 1;
-			return;
-		} else if(localVariable1 == 3 && localVariable2 >= 18) {
-			variable21 = 1;
-			return;
-		}
-	}
-	
-	// It is not a holiday	
-	variable21 = 0;
-}	
-
-void generate_hangout_menu()
-{	
-	// Variables that store the location of the messages and whatnot
-	int localVariable54 = HANGOUT_MSG;
-    int localVariable55 = HANGOUT_SEL;
-    int localVariable57 = 0;
-	
-	// Get the day from 0-6, Sunday-Saturday
-	int localVariable10;
-	localVariable10 = FUNCTION_0035(); 
-	// Get the time of day from 0-5, early morning to evening
-	int localVariable11;
-	localVariable11 = FUNCTION_0036();
-	// Check if it is raining
-	int localVariable12;
-	check_if_raining();
-	localVariable12 = variable20;
-	//Check if it is a holiday
-	int localVariable13;
-	check_if_holiday();
-	localVariable13 = variable21;
-	
-	// Choose which people to exclude based on the day
-	// Adachi is only available on some specific dates
-	if (!(FUNCTION_0037(5, 13) || FUNCTION_0037(5, 20) || FUNCTION_0037(5, 23) || FUNCTION_0037(5, 25) || FUNCTION_0037(5, 27) || FUNCTION_0037(5, 30) || FUNCTION_0037(6, 5) ||
-		FUNCTION_0037(6, 10) || FUNCTION_0037(6, 11) || FUNCTION_0037(6, 26) || FUNCTION_0037(6, 28) || FUNCTION_0037(7, 2) || FUNCTION_0037(7, 4) || FUNCTION_0037(7, 5) ||
-		FUNCTION_0037(7, 12) || FUNCTION_0037(7, 14) || FUNCTION_0037(7, 24) || FUNCTION_0037(7, 25) || FUNCTION_0037(8, 23) || FUNCTION_0037(8, 25) || FUNCTION_0037(9, 1) ||
-		FUNCTION_0037(9, 19) || FUNCTION_0037(9, 20) || FUNCTION_0037(9, 21) || FUNCTION_0037(9, 23) || FUNCTION_0037(9, 24) || FUNCTION_0037(9, 27) || FUNCTION_0037(9, 30) ||
-		FUNCTION_0037(10, 6) || FUNCTION_0037(10, 12) || FUNCTION_0037(10, 21) || FUNCTION_0037(10, 24) || FUNCTION_0037(10, 26) || FUNCTION_0037(11, 1) || FUNCTION_0037(6, 15)))
-	{
-		localVariable57 = localVariable57 + 1;
-	// For whatever reason on this one day he's only available at night
-	} else if(FUNCTION_0037(6, 15) && localVariable11 != 5)  {
-		localVariable57 = localVariable57 + 1;
-	}
-	// Adachi is available at day or night depending on what level you are with him
-	// Levelling up from 2 to 3, 3 to 4 and 4 to 5 is at night
-	else if (EVT_FUNCTION_0003( 31 ) >= 2 && EVT_FUNCTION_0003( 31 ) <= 4 && EVT_FUNCTION_000E( 31 ) == 1) {
-		if(localVariable11 != 5 ) {
-			localVariable57 = localVariable57 + 1;
-		}
-	// Levelling up from 5 to 6 is in the day
-	//} else if(!(EVT_FUNCTION_0003( 31 ) == 5 && localVariable11 != 5 && EVT_FUNCTION_000E( 31 ) == 1)) {
-		//localVariable57 = localVariable57 + 1;
-	//}
-	// All the other times you hangout in the day and don't hangout past rank 6
-	}else if(localVariable11 == 5 || EVT_FUNCTION_0003( 31 ) >= 6) {
-		localVariable57 = localVariable57 + 1;
-	} 
-	
-/* 	// Check Adachi
-	if (FUNCTION_000A( 0 + 0x0400 + 692 ) == 0) {
-		localVariable57 = localVariable57 + 1;
-	} */
-	
-	// Possibly Shu or Kou/Daisuke
-	/* if(FUNCTION_000B( 0 + 0x0400 + 470 ) == 0) {
-		localVariable57 = localVariable57 + 
-	} */
-	
-	// Ai isn't available Monday, Tuesday, Saturday, Sunday and Holidays
-	if (localVariable10 == 1 || localVariable10 == 2 || localVariable10 == 6 || localVariable10 == 0 || localVariable11 == 5 || localVariable12 == 1 || localVariable13 == 1 || EVT_FUNCTION_0003( 21 ) == 10 || EVT_FUNCTION_0003( 22 ) == 10)
-	{
-		localVariable57 = localVariable57 + 2;
-	}
-	// Chie isn't available Friday and Sunday
-	if (localVariable10 == 0 || localVariable10 == 5 || localVariable11 == 5 || localVariable12 == 1 || EVT_FUNCTION_0003( 11 ) == 10 || EVT_FUNCTION_0003( 12 ) == 10)
-	{
-		localVariable57 = localVariable57 + 4;
-	}
-	// Ayane/Yumi isn't available Wednesday, Friday, Saturday, Sunday and Holiday
-	if (localVariable10 == 3 || localVariable10 == 5 || localVariable10 == 6 || localVariable10 == 0 || localVariable11 == 5 || localVariable13 == 1 || EVT_FUNCTION_0003( 27 ) == 10 || EVT_FUNCTION_0003( 28 ) == 10)
-	{
-		localVariable57 = localVariable57 + 8;
-	}
-	// Eri isn't available Tuesday, Wednesday, Thursday, Sunday and Holidays
-	if (localVariable10 == 2 || localVariable10 == 3 || localVariable10 == 4 || localVariable10 == 0 || localVariable11 == 5 || localVariable12 == 1 || localVariable13 == 1 || EVT_FUNCTION_0003( 29 ) == 10)
-	{
-		localVariable57 = localVariable57 + 16;
-	}
-	// Hisano is only available on Sundays and Holidays
-	if (localVariable10 != 0 || localVariable12 == 1 && localVariable13 == 0 || EVT_FUNCTION_0003( 19 ) == 10 || localVariable11 == 5)
-	{
-		localVariable57 = localVariable57 + 32;
-	}
-	// Kanji isn't available Monday, Tuesday and Friday
-	if (localVariable10 == 1 || localVariable10 == 2 || localVariable10 == 5 || localVariable11 == 5 || localVariable12 == 1 || EVT_FUNCTION_0003( 10 ) == 10)
-	{
-		localVariable57 = localVariable57 + 64;
-	}
-	// Marie isn't available Monday, Tuesday, Thursday and Friday
-	if (localVariable10 == 1 || localVariable10 == 2 || localVariable10 == 4 || localVariable10 == 5 || localVariable11 == 5 || localVariable12 == 1 || EVT_FUNCTION_0003( 33 ) == 10 || EVT_FUNCTION_0003( 34 ) == 10)
-	{
-		localVariable57 = localVariable57 + 128;
-	}
-	// Naoki isn't available Friday, Saturday and Sunday
-	if (localVariable10 == 5 || localVariable10 == 6 || localVariable10 == 0 || localVariable11 == 5 || localVariable12 == 1 || EVT_FUNCTION_0003( 18 ) == 10)
-	{
-		localVariable57 = localVariable57 + 256;
-	}
-	// Naoto isn't available Thursday and Friday
-	if (localVariable10 == 4 || localVariable10 == 5 || localVariable11 == 5 || localVariable12 == 1 || EVT_FUNCTION_0003( 14 ) == 10 || EVT_FUNCTION_0003( 15 ) == 10)
-	{
-		localVariable57 = localVariable57 + 512;
-	}
-	// Rise isn't available Monday, Tuesday, Wednesday and Thursday
-	if (localVariable10 == 1 || localVariable10 == 2 || localVariable10 == 3 || localVariable10 == 4 || localVariable11 == 5 || localVariable12 == 1 || EVT_FUNCTION_0003( 3 ) == 10 || EVT_FUNCTION_0003( 4 ) == 10)
-	{
-		localVariable57 = localVariable57 + 1024;
-	}
-	// Sayoko isn't available Monday, Tuesday, Saturday, Sunday, Holidays, and in the day 
-	if (localVariable10 == 1 || localVariable10 == 2 || localVariable10 == 6 || localVariable10 == 0 || localVariable11 != 5 || localVariable13 == 1 || EVT_FUNCTION_0003( 9 ) == 10)
-	{
-		localVariable57 = localVariable57 + 2048;
-	}
-	// Shu isn't available Monday, Wednesday, Friday, Sunday, Holidays and in the day
-	if (localVariable10 == 1 || localVariable10 == 3 || localVariable10 == 5 || localVariable10 == 0 || localVariable11 != 5 || localVariable12 == 1 || localVariable13 == 1 || EVT_FUNCTION_0003( 17 ) == 10)
-	{
-		localVariable57 = localVariable57 + 4096;
-	}
-	// Kou/Daisuke isn't available Monday, Wednesday, Friday, Sunday and Holidays
-	if (localVariable10 == 1 || localVariable10 == 3 || localVariable10 == 5 || localVariable10 == 0 || localVariable11 == 5 || localVariable12 == 1 || localVariable13 == 1 || EVT_FUNCTION_0003( 0x10 ) == 10)
-	{
-		localVariable57 = localVariable57 + 8192;
-	}
-	// Yoskue isn't available Tuesday and Wednesday
-	if (localVariable10 == 2 || localVariable10 == 3 || localVariable11 == 5 || localVariable12 == 1 || EVT_FUNCTION_0003( 7 ) == 10)
-	{
-		localVariable57 = localVariable57 + 16384;
-	}
-	// Yukiko isn't available Friday, Saturday and Sunday
-	if (localVariable10 == 0 || localVariable10 == 5 || localVariable10 == 6 || localVariable11 == 5 || localVariable12 == 1 || EVT_FUNCTION_0003( 5 ) == 10 || EVT_FUNCTION_0003( 6 ) == 10)
-	{
-		localVariable57 = localVariable57 + 32768;
-	}
-	
-	
-    FUNCTION_0007( 14, 16 );
-    int localVariable56 = FUNCTION_0025( localVariable54, localVariable55, localVariable57 );
-    
-	
-	// Cancel wasn't chosen
-    if ( localVariable56 != 16 )
+    // This is the logic lmap uses so it should be right
+    if(DATE_CHK(4, 12) == 1 || GET_TIME_OF_DAY() == 3) 
     {
-        FUNCTION_0016( 1, 5 );
-        FUNCTION_0017();
-		
-		// Teleport the player to the desired location depending on who they chose
-		switch(localVariable56) {
-			// Adachi
-			case 0:
-				// South Shopping District in the night
-				if( localVariable11 == 5 ) { 
-					FUNCTION_0030( 8, 2, 0, 0 );
-				// Junes in the day
-				} else {
-					FUNCTION_0030( 9, 4, 0, 0 );
-				}									
-				break;
-			// Ai - Learning Building 1F
-			case 1:
-				FUNCTION_0030( 6, 1, 1, 0 );
-				break;
-			// Chie
-			case 2:
-				// South Shopping District on Sundays
-				if( localVariable10 == 0 || localVariable13 == 1) { 
-					FUNCTION_0030( 8, 2, 0, 0 );
-				// Roof on Weekdays
-				} else {
-					FUNCTION_0030( 6, 14, 0, 0 );
-				}									
-				break;
-			// Ayane - Learning Building 2F, Yumi - Practice Building 1F (I'll default to practice building unless I can find a way to check which link you have)
-			case 3:
-				FUNCTION_0030( 6, 2, 0, 0 );
-				break;
-			// Eri - South Shopping District
-			case 4:
-				FUNCTION_0030( 8, 2, 0, 0 );
-				break;
-			// Hisano - Samegawa Riverbank
-			case 5:
-				FUNCTION_0030( 10, 2, 0, 0 );
-				break;
-			// Kanji 
-			case 6:
-				// North Shopping District on Sundays
-				if( localVariable10 == 0 || localVariable13 == 1) { 
-					FUNCTION_0030( 8, 1, 0, 0 );
-				// Practice Building 1F on Weekdays
-				} else {
-					FUNCTION_0030( 6, 4, 0, 0 );
-				}									
-				break;
-			// Marie - South Shopping District
-			case 7:
-				FUNCTION_0030( 8, 2, 0, 0 );
-				break;
-			// Naoki
-			case 8:
-				// North Shopping District on Sundays
-				if( localVariable10 == 0 || localVariable13 == 1) { 
-					FUNCTION_0030( 8, 1, 0, 0 );
-				// Learning Building 1F on Weekdays
-				} else {
-					FUNCTION_0030( 6, 1, 1, 0 );
-				}									
-				break;
-			// Naoto
-			case 9:
-				// Samegawa Flood Plain on Sundays
-				if( localVariable10 == 0 || localVariable13 == 1) { 
-					FUNCTION_0030( 10, 1, 0, 0 );
-				// Learning Building 1F on Weekdays
-				} else {
-					FUNCTION_0030( 6, 1, 1, 0 );
-				}									
-				break;
-			// Rise
-			case 10:
-				// South Shopping District on Sundays
-				if( localVariable10 == 0 || localVariable13 == 1) { 
-					FUNCTION_0030( 8, 2, 0, 0 );
-				// Learning Building 1F on Weekdays
-				} else {
-					FUNCTION_0030( 6, 1, 1, 0 );
-				}									
-				break;
-			// Sayoko - South Shopping District
-			case 11:
-				FUNCTION_0030( 8, 2, 0, 0 );
-				break;
-			// Shu - South Shopping District
-			case 12:
-				FUNCTION_0030( 8, 2, 0, 0 );
-				break;
-			// Kou/Daisuke - Learning Building 2F
-			case 13:
-				FUNCTION_0030( 6, 2, 0, 0 );
-				break;
-			// Yoskue
-			case 14:
-				// Junes on Sundays
-				if( localVariable10 == 0 || localVariable13 == 1) { 
-					FUNCTION_0030( 9, 4, 0, 0 );
-				// Learning Building 2F on Weekdays
-				} else {
-					FUNCTION_0030( 6, 2, 0, 0 );
-				}									
-				break;
-			// Yukiko
-			case 15:
-				// South Shopping District on Sundays
-				if( localVariable10 == 0 || localVariable13 == 1) { 
-					FUNCTION_0030( 8, 2, 0, 0 );
-				// Learning Building 1F on Weekdays
-				} else {
-					FUNCTION_0030( 6, 1, 1, 0 );
-				}									
-				break;
-        }
+        isHoliday = 1;
+    } else {
+        isHoliday = 0;
     }
 }
 
 void myhouse_order_hook()
 {
-    int localVariable58 = FLD_ORDER;
-    int localVariable59 = MYHOME_SEL;
+    int localVariable58 = 327;
+    int localVariable59 = MYHOME_SEL_HOOK;
     int localVariable61 = 0;
-    
-    if ( FLD_FUNCTION_0023() == 1 )
+
+    // At night check if it is a cutscene night (using logic from getout_myhome)
+    if(GET_TIME_OF_DAY() == 5 && (CHECK_TIME_SPAN( 4, 11, 4, 16 ) == 1 || (DATE_CHK( 4, 17 ) == 1 && BIT_CHK( 0 + 0x0400 + 0x0800 + 327 ) == 1 ) || BIT_CHK( 0 + 0x0400 + 1726 ) == 1 || BIT_CHK( 0 + 0x0400 + 0x0800 + 2 ) == 1))
     {
-        
-        if ( FUNCTION_0036() == 5 )
+        localVariable61 = localVariable61 + 256;
+    }
+
+    if (GET_FIELD_MINOR() == 1)
+    {
+
+        if (GET_TIME_OF_DAY() == 5)
         {
             localVariable61 = localVariable61 + 1 + 2 + 4 + 8;
         }
-        else 
+        else
         {
             localVariable61 = localVariable61 + 1 + 2 + 8 + 0x10 + 0x20 + 0x40;
         }
-
     }
-    else if ( FLD_FUNCTION_0023() == 2 )
+    else if (GET_FIELD_MINOR() == 2)
     {
         localVariable61 = localVariable61 + 1 + 4 + 0x10 + 0x20 + 0x40 + 0x80;
     }
-    else if ( FLD_FUNCTION_0023() == 3 )
+    else if (GET_FIELD_MINOR() == 3)
     {
         localVariable61 = localVariable61 + 2 + 4 + 0x10 + 0x20 + 0x40 + 0x80;
     }
 
-    
-    if ( FUNCTION_000A( 0 + 0x0400 + 0x0800 + 0 ) == 0 )
+    if (BIT_CHK(0 + 0x0400 + 0x0800 + 0) == 0)
     {
         localVariable61 = localVariable61 + 1024;
     }
 
-    FUNCTION_0007( 14, 9 );
-    int localVariable60 = FUNCTION_0025( localVariable58, localVariable59, localVariable61 );
-    
-    if ( localVariable60 == 0 )
+    // Decide if hangout should not be displayed
+    generate_selection_mask();
+    if (numSelectionsRemoved == 16)
     {
-        FUNCTION_0071( 173 );
-        FUNCTION_0016( 1, 5 );
-        FUNCTION_0017();
-        FUNCTION_0030( 7, 2, 1, 0 );
+        localVariable61 = localVariable61 + 256;
+    }
+
+    SET_SEL_CHOICE_KEYBIND(14, 9);
+    int localVariable60 = ADV_SEL(localVariable58, localVariable59, localVariable61);
+
+    if (localVariable60 == 0)
+    {
+        PLAY_SOUNDEFFECT(173);
+        FADE(1, 5);
+        FADE_SYNC();
+        CALL_FIELD(7, 2, 1, 0);
         return;
     }
-    else if ( localVariable60 == 1 )
+    else if (localVariable60 == 1)
     {
         into_myroom();
         return;
     }
-    else if ( localVariable60 == 2 )
+    else if (localVariable60 == 2)
     {
-        FUNCTION_0016( 1, 5 );
-        FUNCTION_0017();
-        FUNCTION_003B( 5 );
+        FADE(1, 5);
+        FADE_SYNC();
+        TOWN_MAP(5);
         return;
     }
-    else if ( localVariable60 == 3 )
+    else if (localVariable60 == 3)
     {
         getout_myhome();
         return;
     }
-    else if ( localVariable60 == 4 )
+    else if (localVariable60 == 4)
     {
-        FUNCTION_0016( 1, 5 );
-        FUNCTION_0017();
-        FUNCTION_0030( 8, 2, 0, 0 );
+        FADE(1, 5);
+        FADE_SYNC();
+        CALL_FIELD(8, 2, 0, 0);
         return;
     }
-    else if ( localVariable60 == 5 )
+    else if (localVariable60 == 5)
     {
         call_go2shrine();
         return;
     }
-    else if ( localVariable60 == 6 )
+    else if (localVariable60 == 6)
     {
         call_go2beach();
         return;
     }
-    else if ( localVariable60 == 7 )
+    else if (localVariable60 == 7)
     {
         entrance_into_myhome();
         return;
     }
-    else if ( localVariable60 == 10 )
+    else if (localVariable60 == 10)
     {
-        FUNCTION_0016( 1, 5 );
-        FUNCTION_0017();
-        FUNCTION_003C();
+        FADE(1, 5);
+        FADE_SYNC();
+        TV_STUDIO();
         return;
     }
-	// My custom option was chosen
-	else if ( localVariable60 == 8 )
-	{
-		generate_hangout_menu();
-		return;
-	}
-
+    // My custom option was chosen
+    else if (localVariable60 == 8)
+    {
+        generate_hangout_menu();
+        return;
+    }
 }
-
 
 void street_order_hook()
 {
@@ -524,193 +692,210 @@ void street_order_hook()
     int localVariable63 = 0;
     int localVariable65 = 0;
     int localVariable64 = 0;
-    
-    if ( FUNCTION_0036() == 5 )
+
+    if (GET_TIME_OF_DAY() == 5)
     {
-        localVariable62 = FLD_ORDER;
-        localVariable63 = SEL_NIGHT_PLACE;
+        localVariable62 = 327;
+        localVariable63 = SEL_NIGHT_PLACE_HOOK;
         localVariable65 = 0;
         sel_mask_night_play();
         localVariable65 = variable136;
-        FUNCTION_0007( 14, 7 );
-        localVariable64 = FUNCTION_0025( localVariable62, localVariable63, localVariable65 );
-        
-        if ( localVariable64 == 0 )
+
+        // Decide if hangout should not be displayed
+        generate_selection_mask();
+        if (numSelectionsRemoved == 16)
+        {
+            localVariable65 = localVariable65 + 64;
+        }
+
+        SET_SEL_CHOICE_KEYBIND(14, 7);
+        localVariable64 = ADV_SEL(localVariable62, localVariable63, localVariable65);
+
+        if (localVariable64 == 0)
         {
             call_go2street();
         }
-        else if ( localVariable64 == 1 )
+        else if (localVariable64 == 1)
         {
-            
-            if ( FLD_FUNCTION_0023() == 2 || FLD_FUNCTION_0023() == 13 )
+
+            if (GET_FIELD_MINOR() == 2 || GET_FIELD_MINOR() == 13)
             {
                 call_street_02();
             }
-            else if ( FLD_FUNCTION_0023() == 9 || FLD_FUNCTION_0023() == 14 )
+            else if (GET_FIELD_MINOR() == 9 || GET_FIELD_MINOR() == 14)
             {
                 call_shrine2street();
             }
-
         }
-        else if ( localVariable64 == 2 )
+        else if (localVariable64 == 2)
         {
             call_street_01();
         }
-        else if ( localVariable64 == 3 )
+        else if (localVariable64 == 3)
         {
             call_street2shrine();
         }
-        else if ( localVariable64 == 4 )
+        else if (localVariable64 == 4)
         {
             call_go2beach();
         }
-        else if ( localVariable64 == 5 )
+        else if (localVariable64 == 5)
         {
             call_go2home();
         }
-		// My custom option was chosen
-		else if ( localVariable64 == 6 )
-		{
-			generate_hangout_menu();
-		}
+        // My custom option was chosen
+        else if (localVariable64 == 6)
+        {
+            generate_hangout_menu();
+        }
         return;
     }
-    else 
+    else
     {
-        localVariable62 = FLD_ORDER;
-        localVariable63 = STREET_SEL;
+        localVariable62 = 327;
+        localVariable63 = STREET_SEL_HOOK;
         localVariable65 = 0;
-        
-        if ( FLD_FUNCTION_0023() == 1 || FLD_FUNCTION_0023() == 12 )
+
+        if (GET_FIELD_MINOR() == 1 || GET_FIELD_MINOR() == 12)
         {
             localVariable65 = localVariable65 + 1;
         }
-        else if ( FLD_FUNCTION_0023() == 2 || FLD_FUNCTION_0023() == 13 )
+        else if (GET_FIELD_MINOR() == 2 || GET_FIELD_MINOR() == 13)
         {
             localVariable65 = localVariable65 + 2;
-            
-            if ( FUNCTION_0037( 4, 11 ) )
+
+            if (DATE_CHK(4, 11))
             {
                 localVariable65 = localVariable65 + 1 + 4;
             }
-
         }
-        else if ( FLD_FUNCTION_0023() == 9 || FLD_FUNCTION_0023() == 14 )
+        else if (GET_FIELD_MINOR() == 9 || GET_FIELD_MINOR() == 14)
         {
             localVariable65 = localVariable65 + 4;
         }
 
-        FUNCTION_0007( 14, 5 );
-        localVariable64 = FUNCTION_0025( localVariable62, localVariable63, localVariable65 );
-        
-        if ( localVariable64 != 5 )
+        // Decide if hangout should not be displayed
+        generate_selection_mask();
+        if (numSelectionsRemoved == 16)
         {
-            
-            if ( localVariable64 == 0 )
+            localVariable65 = localVariable65 + 16;
+        }
+
+        SET_SEL_CHOICE_KEYBIND(14, 5);
+        localVariable64 = ADV_SEL(localVariable62, localVariable63, localVariable65);
+
+        if (localVariable64 != 5)
+        {
+
+            if (localVariable64 == 0)
             {
-                
-                if ( FLD_FUNCTION_0023() == 2 || FLD_FUNCTION_0023() == 13 )
+
+                if (GET_FIELD_MINOR() == 2 || GET_FIELD_MINOR() == 13)
                 {
                     call_street_02();
                 }
-                else if ( FLD_FUNCTION_0023() == 9 || FLD_FUNCTION_0023() == 14 )
+                else if (GET_FIELD_MINOR() == 9 || GET_FIELD_MINOR() == 14)
                 {
                     call_shrine2street();
                 }
 
                 return;
             }
-            else if ( localVariable64 == 1 )
+            else if (localVariable64 == 1)
             {
                 call_street_01();
                 return;
             }
-            else if ( localVariable64 == 2 )
+            else if (localVariable64 == 2)
             {
                 call_street2shrine();
                 return;
             }
-            else if ( localVariable64 == 3 )
+            else if (localVariable64 == 3)
             {
-                
-                if ( FUNCTION_0037( 4, 11 ) == 1 )
+
+                if (DATE_CHK(4, 11) == 1)
                 {
-                    FUNCTION_0001();
-                    FUNCTION_0000( 343 );
-                    FUNCTION_0002();
+                    OPEN_MSG_WIN();
+                    MSG(343);
+                    CLOSE_MSG_WIN();
                 }
-                else if ( FUNCTION_0033() == 4 && FUNCTION_0034() == 17 )
+                else if (GET_MONTH() == 4 && GET_DAY_OF_MONTH() == 17)
                 {
-                    FUNCTION_0001();
-                    FUNCTION_0000( 341 );
-                    FUNCTION_0007( 14, 1 );
-                    localVariable64 = FUNCTION_0003( 1 );
-                    FUNCTION_0002();
-                    
-                    if ( localVariable64 == 0 )
+                    OPEN_MSG_WIN();
+                    MSG(341);
+                    SET_SEL_CHOICE_KEYBIND(14, 1);
+                    localVariable64 = SEL(1);
+                    CLOSE_MSG_WIN();
+
+                    if (localVariable64 == 0)
                     {
-                        FUNCTION_0016( 1, 10 );
-                        FUNCTION_0017();
+                        FADE(1, 10);
+                        FADE_SYNC();
                         eve_0417_afterschool();
                     }
-
                 }
-                else 
+                else
                 {
-                    FUNCTION_0016( 1, 5 );
-                    FUNCTION_0017();
-                    FUNCTION_003B( 1 );
+                    FADE(1, 5);
+                    FADE_SYNC();
+                    TOWN_MAP(1);
                 }
 
                 return;
             }
-			// My custom optino was chosen
-			else if (localVariable64 == 4 ) 
-			{
-				generate_hangout_menu();
-				return;
-			}	
+            // My custom optino was chosen
+            else if (localVariable64 == 4)
+            {
+                generate_hangout_menu();
+                return;
+            }
         }
 
         return;
     }
-
 }
-
 
 void gms_order_hook()
 {
-    int localVariable66 = FLD_ORDER;
-    int localVariable67 = GMS_SEL;
+    int localVariable66 = 327;
+    int localVariable67 = GMS_SEL_HOOK;
     int localVariable69 = 0;
-    FUNCTION_0007( 14, 3 );
-    int localVariable68 = FUNCTION_0025( localVariable66, localVariable67, localVariable69 );
-    
-    if ( localVariable68 != 3 )
+
+    // Decide if hangout should not be displayed
+    generate_selection_mask();
+    if (numSelectionsRemoved == 16)
     {
-        
-        if ( localVariable68 == 0 )
+        localVariable69 = localVariable69 + 4;
+    }
+
+    SET_SEL_CHOICE_KEYBIND(14, 3);
+    int localVariable68 = ADV_SEL(localVariable66, localVariable67, localVariable69);
+
+    if (localVariable68 != 3)
+    {
+
+        if (localVariable68 == 0)
         {
-            FUNCTION_000C( 0 + 0x0400 + 0x0800 + 185 );
+            BIT_OFF(0 + 0x0400 + 0x0800 + 185);
             elevator_to_foodcourt();
             return;
         }
-        else  if ( localVariable68 == 1 )
+        else if (localVariable68 == 1)
         {
-            FUNCTION_0016( 1, 5 );
-            FUNCTION_0017();
-            FUNCTION_003B( 2 );
+            FADE(1, 5);
+            FADE_SYNC();
+            TOWN_MAP(2);
             return;
         }
-		// My custom option was chosen
-		else {
-			generate_hangout_menu();
-			return;
-		}
+        // My custom option was chosen
+        else
+        {
+            generate_hangout_menu();
+            return;
+        }
     }
-
 }
-
 
 void embank_order_hook()
 {
@@ -718,173 +903,194 @@ void embank_order_hook()
     int localVariable71 = 0;
     int localVariable73 = 0;
     int localVariable72 = 0;
-    
-    if ( FUNCTION_0036() == 5 )
+
+    if (GET_TIME_OF_DAY() == 5)
     {
-        localVariable70 = FLD_ORDER;
-        localVariable71 = SEL_EMBANK_NIGHT;
+        localVariable70 = 327;
+        localVariable71 = SEL_EMBANK_NIGHT_HOOK;
         localVariable73 = 0;
-        FUNCTION_0007( 14, 4 );
-        localVariable72 = FUNCTION_0025( localVariable70, localVariable71, localVariable73 );
-        
-        if ( localVariable72 == 0 )
+
+        // Decide if hangout should not be displayed
+        generate_selection_mask();
+        if (numSelectionsRemoved == 16)
+        {
+            localVariable73 = localVariable73 + 8;
+        }
+
+        SET_SEL_CHOICE_KEYBIND(14, 4);
+        localVariable72 = ADV_SEL(localVariable70, localVariable71, localVariable73);
+
+        if (localVariable72 == 0)
         {
             call_go2street();
         }
-        else if ( localVariable72 == 1 )
+        else if (localVariable72 == 1)
         {
             call_go2shrine();
         }
-        else if ( localVariable72 == 2 )
+        else if (localVariable72 == 2)
         {
             call_go2home();
         }
-		// My custom optiion was chosen
-		else if ( localVariable72 == 3 )
-		{
-			generate_hangout_menu();
-		}
+        // My custom option was chosen
+        else if (localVariable72 == 3)
+        {
+            generate_hangout_menu();
+        }
         return;
     }
-    else 
+    else
     {
-        localVariable70 = FLD_ORDER;
-        localVariable71 = SEL_EMBANK;
+        localVariable70 = 327;
+        localVariable71 = SEL_EMBANK_HOOK;
         localVariable73 = 0;
-        
-        if ( FLD_FUNCTION_0023() == 1 )
+
+        if (GET_FIELD_MINOR() == 1)
         {
             localVariable73 = localVariable73 + 1;
         }
-        else if ( FLD_FUNCTION_0023() == 2 )
+        else if (GET_FIELD_MINOR() == 2)
         {
             localVariable73 = localVariable73 + 2;
         }
 
-        FUNCTION_0007( 14, 4 );
-        localVariable72 = FUNCTION_0025( localVariable70, localVariable71, localVariable73 );
-        
-        if ( localVariable72 != 4 )
+        // Decide if hangout should not be displayed
+        generate_selection_mask();
+        if (numSelectionsRemoved == 16)
         {
-            
-            if ( localVariable72 == 0 )
-            {
-                FUNCTION_0016( 1, 5 );
-                FUNCTION_0017();
-                FUNCTION_0030( 10, 1, 1, 0 );
-                return;
-            }
-            else if ( localVariable72 == 1 )
-            {
-                FUNCTION_0016( 1, 5 );
-                FUNCTION_0017();
-                FUNCTION_0030( 10, 2, 0, 0 );
-                return;
-            }
-            else if ( localVariable72 == 2 )
-            {
-                FUNCTION_0016( 1, 5 );
-                FUNCTION_0017();
-                FUNCTION_003B( 3 );
-                return;
-            } 
-			// My custom option was chosen
-			else 
-			{
-				generate_hangout_menu();
-				return;
-			}
+            localVariable73 = localVariable73 + 8;
         }
 
+        SET_SEL_CHOICE_KEYBIND(14, 4);
+        localVariable72 = ADV_SEL(localVariable70, localVariable71, localVariable73);
+
+        if (localVariable72 != 4)
+        {
+
+            if (localVariable72 == 0)
+            {
+                FADE(1, 5);
+                FADE_SYNC();
+                CALL_FIELD(10, 1, 1, 0);
+                return;
+            }
+            else if (localVariable72 == 1)
+            {
+                FADE(1, 5);
+                FADE_SYNC();
+                CALL_FIELD(10, 2, 0, 0);
+                return;
+            }
+            else if (localVariable72 == 2)
+            {
+                FADE(1, 5);
+                FADE_SYNC();
+                TOWN_MAP(3);
+                return;
+            }
+            // My custom option was chosen
+            else
+            {
+                generate_hangout_menu();
+                return;
+            }
+        }
     }
-
 }
-
 
 void station_order_hook()
 {
-    int localVariable74 = FLD_ORDER;
-    int localVariable75 = STATION_SEL;
+    int localVariable74 = 327;
+    int localVariable75 = STATION_SEL_HOOK;
     int localVariable77 = 0;
     int localVariable76 = 0;
-    
-    if ( FUNCTION_000A( 0 + 0x0400 + 0x0800 + 336 ) == 1 )
+
+    if (BIT_CHK(0 + 0x0400 + 0x0800 + 336) == 1)
     {
-        FUNCTION_0001();
-        FUNCTION_0000( 342 );
-        FUNCTION_0002();
+        OPEN_MSG_WIN();
+        MSG(342);
+        CLOSE_MSG_WIN();
     }
-    else 
+    else
     {
-        FUNCTION_0007( 14, 2 );
-        localVariable76 = FUNCTION_0025( localVariable74, localVariable75, localVariable77 );
-        
-        if ( localVariable76 == 0 )
+        // Decide if hangout should not be displayed
+        generate_selection_mask();
+        if (numSelectionsRemoved == 16)
         {
-            FUNCTION_000B( 0 + 0x0400 + 0x0800 + 172 );
-            FUNCTION_000C( 0 + 0x0400 + 0x0800 + 171 );
-            FUNCTION_0016( 1, 5 );
-            FUNCTION_0017();
-            
-            if ( FUNCTION_0021( 169 ) != 0 )
-            {
-                
-                if ( FUNCTION_0037( 3, 20 ) == 1 )
-                {
-                    FUNCTION_0022( 169, 0 );
-                    FUNCTION_006B( -1 );
-                    FUNCTION_006B( 1 );
-                }
-                else 
-                {
-                    FUNCTION_0022( 169, 0 );
-                    FUNCTION_006B( -1 );
-                }
-
-            }
-
-            
-            if ( FUNCTION_000A( 0 + 0x0400 + 0x0800 + 176 ) == 1 )
-            {
-                FUNCTION_0030( 7, 1, 5, 0 );
-            }
-            else 
-            {
-                FUNCTION_000C( 0 + 0x0400 + 0x0800 + 172 );
-                FUNCTION_003B( 6 );
-            }
-
+            localVariable77 = localVariable77 + 2;
         }
-		// My custom option was chosen
-		else  if ( localVariable76 == 1 )
-		{
-			generate_hangout_menu();
-		}
+
+        SET_SEL_CHOICE_KEYBIND(14, 2);
+        localVariable76 = ADV_SEL(localVariable74, localVariable75, localVariable77);
+
+        if (localVariable76 == 0)
+        {
+            BIT_ON(0 + 0x0400 + 0x0800 + 172);
+            BIT_OFF(0 + 0x0400 + 0x0800 + 171);
+            FADE(1, 5);
+            FADE_SYNC();
+
+            if (GET_CNT(169) != 0)
+            {
+
+                if (DATE_CHK(3, 20) == 1)
+                {
+                    SET_CNT(169, 0);
+                    FUNCTION_006B(-1);
+                    FUNCTION_006B(1);
+                }
+                else
+                {
+                    SET_CNT(169, 0);
+                    FUNCTION_006B(-1);
+                }
+            }
+
+            if (BIT_CHK(0 + 0x0400 + 0x0800 + 176) == 1)
+            {
+                CALL_FIELD(7, 1, 5, 0);
+            }
+            else
+            {
+                BIT_OFF(0 + 0x0400 + 0x0800 + 172);
+                TOWN_MAP(6);
+            }
+        }
+        // My custom option was chosen
+        else if (localVariable76 == 1)
+        {
+            generate_hangout_menu();
+        }
     }
-
 }
-
 
 void schoolroad_order_hook()
 {
-    int localVariable78 = FLD_ORDER;
-    int localVariable79 = 335;
+    int localVariable78 = 327;
+    int localVariable79 = SCHOOLROAD_SEL_HOOK;
     int localVariable81 = 0;
-    FUNCTION_0007( 14, 2 );
-    int localVariable80 = FUNCTION_0025( localVariable78, localVariable79, localVariable81 );
-    
-    if ( localVariable80 == 0 )
+
+    // Decide if hangout should not be displayed
+    generate_selection_mask();
+    if (numSelectionsRemoved == 16)
     {
-        FUNCTION_0016( 1, 5 );
-        FUNCTION_0017();
-        FUNCTION_003B( 4 );
+        localVariable81 = localVariable81 + 2;
+    }
+
+    SET_SEL_CHOICE_KEYBIND(14, 2);
+    int localVariable80 = ADV_SEL(localVariable78, localVariable79, localVariable81);
+
+    if (localVariable80 == 0)
+    {
+        FADE(1, 5);
+        FADE_SYNC();
+        TOWN_MAP(4);
         return;
     }
-	// My custom option was chosen
-	else if (localVariable80 == 1)
-	{
-		generate_hangout_menu();
-		return;
-	}
+    // My custom option was chosen
+    else if (localVariable80 == 1)
+    {
+        generate_hangout_menu();
+        return;
+    }
 }
-

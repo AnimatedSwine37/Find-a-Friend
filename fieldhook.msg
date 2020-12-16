@@ -87,6 +87,7 @@
 [f 0 5 -258][f 2 1]Sayoko[e]
 [f 0 5 -258][f 2 1]Shu[e]
 [f 0 5 -258][f 2 1]Sports (Kou/Daisuke)[e]
-[f 0 5 -258][f 2 1]Yoskue[e]
+[f 0 5 -258][f 2 1]Yosuke[e]
 [f 0 5 -258][f 2 1]Yukiko[e]
+[f 0 5 -258][f 2 1]Others...[e]
 [f 0 5 -258][f 2 1]Cancel[e]
