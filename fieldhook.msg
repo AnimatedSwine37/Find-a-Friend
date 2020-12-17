@@ -91,3 +91,6 @@
 [f 0 5 -258][f 2 1]Yukiko [f 2 4 15][e]
 [f 0 5 -258][f 2 1]Others...[e]
 [f 0 5 -258][f 2 1]Cancel[e]
+
+[msg ALREADY_HERE]
+[f 0 5 -258][f 2 1]They're already here.[n][f 1 1][e]
