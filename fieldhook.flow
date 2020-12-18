@@ -89,7 +89,7 @@ _choiceLoop:
                 {
                     FADE(1, 5);
                     FADE_SYNC();
-                    CALL_FIELD(8, 2, 0, 0);
+                    CALL_FIELD(8, 2, 8, 0);
                 }
                 // Junes in the day
             }
@@ -121,7 +121,7 @@ _choiceLoop:
             {
                 FADE(1, 5);
                 FADE_SYNC();
-                CALL_FIELD(6, 1, 1, 0);
+                CALL_FIELD(6, 1, 5, 0);
             }
             break;
         // Chie
@@ -139,7 +139,7 @@ _choiceLoop:
                 {
                     FADE(1, 5);
                     FADE_SYNC();
-                    CALL_FIELD(8, 2, 0, 0);
+                    CALL_FIELD(8, 2, 2, 0);
                 }
                 // Roof on Weekdays
             }
@@ -155,7 +155,7 @@ _choiceLoop:
                 {
                     FADE(1, 5);
                     FADE_SYNC();
-                    CALL_FIELD(6, 14, 0, 0);
+                    CALL_FIELD(6, 14, 1, 0);
                 }
             }
             break;
@@ -186,7 +186,7 @@ _choiceLoop:
             {
                 FADE(1, 5);
                 FADE_SYNC();
-                CALL_FIELD(8, 2, 0, 0);
+                CALL_FIELD(8, 2, 6, 0);
             }
             break;
         // Hisano - Samegawa Riverbank
@@ -219,7 +219,7 @@ _choiceLoop:
                 {
                     FADE(1, 5);
                     FADE_SYNC();
-                    CALL_FIELD(8, 1, 0, 0);
+                    CALL_FIELD(8, 1, 5, 0);
                 }
                 // Practice Building 1F on Weekdays
             }
@@ -235,7 +235,7 @@ _choiceLoop:
                 {
                     FADE(1, 5);
                     FADE_SYNC();
-                    CALL_FIELD(6, 4, 0, 0);
+                    CALL_FIELD(6, 4, 5, 0);
                 }
             }
             break;
@@ -251,13 +251,13 @@ _choiceLoop:
             {
                 FADE(1, 5);
                 FADE_SYNC();
-                CALL_FIELD(8, 2, 0, 0);
+                CALL_FIELD(8, 2, 4, 0);
             }
             break;
         // Naoki
         case 8:
-            // North Shopping District on Sundays
-            if (isHoliday == 1)
+            // North Shopping District on Sundays and whenever the s link level is not 0
+            if (isHoliday == 1 || GET_SL_LEVEL(18) > 0)
             {
                 if (fieldMajor == 8 && fieldMinor == 1)
                 {
@@ -269,7 +269,7 @@ _choiceLoop:
                 {
                     FADE(1, 5);
                     FADE_SYNC();
-                    CALL_FIELD(8, 1, 0, 0);
+                    CALL_FIELD(8, 1, 5, 0);
                 }
                 // Learning Building 1F on Weekdays
             }
@@ -285,7 +285,7 @@ _choiceLoop:
                 {
                     FADE(1, 5);
                     FADE_SYNC();
-                    CALL_FIELD(6, 1, 1, 0);
+                    CALL_FIELD(6, 1, 6, 0);
                 }
             }
             break;
@@ -304,7 +304,7 @@ _choiceLoop:
                 {
                     FADE(1, 5);
                     FADE_SYNC();
-                    CALL_FIELD(10, 1, 0, 0);
+                    CALL_FIELD(10, 1, 2, 0);
                 }
                 // Learning Building 1F on Weekdays
             }
@@ -320,7 +320,7 @@ _choiceLoop:
                 {
                     FADE(1, 5);
                     FADE_SYNC();
-                    CALL_FIELD(6, 1, 1, 0);
+                    CALL_FIELD(6, 1, 4, 0);
                 }
             }
             break;
@@ -339,7 +339,7 @@ _choiceLoop:
                 {
                     FADE(1, 5);
                     FADE_SYNC();
-                    CALL_FIELD(8, 2, 0, 0);
+                    CALL_FIELD(8, 2, 2, 0);
                 }
                 // Learning Building 1F on Weekdays
             }
@@ -371,7 +371,7 @@ _choiceLoop:
             {
                 FADE(1, 5);
                 FADE_SYNC();
-                CALL_FIELD(8, 2, 0, 0);
+                CALL_FIELD(8, 2, 6, 0);
             }
             break;
         // Shu - South Shopping District
@@ -386,7 +386,7 @@ _choiceLoop:
             {
                 FADE(1, 5);
                 FADE_SYNC();
-                CALL_FIELD(8, 2, 0, 0);
+                CALL_FIELD(8, 2, 6, 0);
             }
             break;
         // Kou/Daisuke - Learning Building 2F
@@ -401,7 +401,7 @@ _choiceLoop:
             {
                 FADE(1, 5);
                 FADE_SYNC();
-                CALL_FIELD(6, 2, 0, 0);
+                CALL_FIELD(6, 2, 4, 0);
             }
             break;
         // Yoskue
@@ -454,7 +454,7 @@ _choiceLoop:
                 {
                     FADE(1, 5);
                     FADE_SYNC();
-                    CALL_FIELD(8, 2, 0, 0);
+                    CALL_FIELD(8, 2, 7, 0);
                 }
                 // Learning Building 1F on Weekdays
             }
@@ -470,7 +470,7 @@ _choiceLoop:
                 {
                     FADE(1, 5);
                     FADE_SYNC();
-                    CALL_FIELD(6, 1, 1, 0);
+                    CALL_FIELD(6, 1, 7, 0);
                 }
             }
             break;
