@@ -870,7 +870,7 @@ void school_order_hook()
 
     // Decide if hangout should not be displayed
     generate_selection_mask();
-    if (numSelectionsRemoved == 16)
+    if (numSelectionsRemoved == 16 || BIT_CHK( 0 + 0x0400 + 0x0800 + 2 ) || BIT_CHK( 0 + 0x0400 + 1726 ))
     {
         localVariable57 = localVariable57 + 32;
     }
@@ -968,12 +968,7 @@ void myhouse_order_hook()
 
     // Decide if hangout should not be displayed
     generate_selection_mask();
-    if (numSelectionsRemoved == 16)
-    {
-        localVariable61 = localVariable61 + 256;
-    }
-    // At night check if it is a cutscene night (using logic from getout_myhome)
-    else if (GET_TIME_OF_DAY() == 5 && (CHECK_TIME_SPAN(4, 11, 4, 16) == 1 || (DATE_CHK(4, 17) == 1 && BIT_CHK(0 + 0x0400 + 0x0800 + 327) == 1) || BIT_CHK(0 + 0x0400 + 1726) == 1 || BIT_CHK(0 + 0x0400 + 0x0800 + 2) == 1))
+    if (numSelectionsRemoved == 16 || BIT_CHK( 0 + 0x0400 + 0x0800 + 2 ) || BIT_CHK( 0 + 0x0400 + 1726 ))
     {
         localVariable61 = localVariable61 + 256;
     }
@@ -1060,7 +1055,7 @@ void street_order_hook()
 
         // Decide if hangout should not be displayed
         generate_selection_mask();
-        if (numSelectionsRemoved == 16)
+        if (numSelectionsRemoved == 16 || BIT_CHK( 0 + 0x0400 + 0x0800 + 2 ) || BIT_CHK( 0 + 0x0400 + 1726 ))
         {
             localVariable65 = localVariable65 + 64;
         }
@@ -1133,7 +1128,7 @@ void street_order_hook()
 
         // Decide if hangout should not be displayed
         generate_selection_mask();
-        if (numSelectionsRemoved == 16)
+        if (numSelectionsRemoved == 16 || BIT_CHK( 0 + 0x0400 + 0x0800 + 2 ) || BIT_CHK( 0 + 0x0400 + 1726 ))
         {
             localVariable65 = localVariable65 + 16;
         }
@@ -1263,7 +1258,7 @@ void gms_order_hook()
 
     // Decide if hangout should not be displayed
     generate_selection_mask();
-    if (numSelectionsRemoved == 16)
+    if (numSelectionsRemoved == 16 || BIT_CHK( 0 + 0x0400 + 0x0800 + 2 ) || BIT_CHK( 0 + 0x0400 + 1726 ))
     {
         localVariable69 = localVariable69 + 4;
     }
@@ -1311,7 +1306,7 @@ void embank_order_hook()
 
         // Decide if hangout should not be displayed
         generate_selection_mask();
-        if (numSelectionsRemoved == 16)
+        if (numSelectionsRemoved == 16 || BIT_CHK( 0 + 0x0400 + 0x0800 + 2 ) || BIT_CHK( 0 + 0x0400 + 1726 ))
         {
             localVariable73 = localVariable73 + 8;
         }
@@ -1355,7 +1350,7 @@ void embank_order_hook()
 
         // Decide if hangout should not be displayed
         generate_selection_mask();
-        if (numSelectionsRemoved == 16)
+        if (numSelectionsRemoved == 16 || BIT_CHK( 0 + 0x0400 + 0x0800 + 2 ) || BIT_CHK( 0 + 0x0400 + 1726 ))
         {
             localVariable73 = localVariable73 + 8;
         }
@@ -1414,7 +1409,7 @@ void station_order_hook()
     {
         // Decide if hangout should not be displayed
         generate_selection_mask();
-        if (numSelectionsRemoved == 16)
+        if (numSelectionsRemoved == 16 || BIT_CHK( 0 + 0x0400 + 0x0800 + 2 ) || BIT_CHK( 0 + 0x0400 + 1726 ))
         {
             localVariable77 = localVariable77 + 2;
         }
@@ -1471,7 +1466,7 @@ void schoolroad_order_hook()
 
     // Decide if hangout should not be displayed
     generate_selection_mask();
-    if (numSelectionsRemoved == 16)
+    if (numSelectionsRemoved == 16 || BIT_CHK( 0 + 0x0400 + 0x0800 + 2 ) || BIT_CHK( 0 + 0x0400 + 1726 ))
     {
         localVariable81 = localVariable81 + 2;
     }
