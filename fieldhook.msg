@@ -92,5 +92,44 @@
 [f 0 5 -258][f 2 1]Others...[e]
 [f 0 5 -258][f 2 1]Cancel[e]
 
-[msg ALREADY_HERE]
-[f 0 5 -258][f 2 1]They're already here.[n][f 1 1][e]
+[msg ADACHI_ALREADY_HERE]
+[f 0 5 -258][f 2 1]Adachi is already nearby.[n][f 1 1][e]
+
+[msg AI_ALREADY_HERE]
+[f 0 5 -258][f 2 1]Ai is already nearby.[n][f 1 1][e]
+
+[msg CHIE_ALREADY_HERE]
+[f 0 5 -258][f 2 1]Chie is already nearby.[n][f 1 1][e]
+
+[msg CULTURAL_ALREADY_HERE]
+[f 0 5 -258][f 2 1]Ayane/Yumi is already nearby.[n][f 1 1][e]
+
+[msg BUS_ALREADY_HERE]
+[f 0 5 -258][f 2 1]The bus stop is already nearby.[n][f 1 1][e]
+
+[msg HISANO_ALREADY_HERE]
+[f 0 5 -258][f 2 1]Hisano is already nearby.[n][f 1 1][e]
+
+[msg KANJI_ALREADY_HERE]
+[f 0 5 -258][f 2 1]Kanji is already nearby.[n][f 1 1][e]
+
+[msg MARIE_ALREADY_HERE]
+[f 0 5 -258][f 2 1]Marie is already nearby.[n][f 1 1][e]
+
+[msg NAOKI_ALREADY_HERE]
+[f 0 5 -258][f 2 1]Naoki is already nearby.[n][f 1 1][e]
+
+[msg NAOTO_ALREADY_HERE]
+[f 0 5 -258][f 2 1]Naoto is already nearby.[n][f 1 1][e]
+
+[msg RISE_ALREADY_HERE]
+[f 0 5 -258][f 2 1]Rise is already nearby.[n][f 1 1][e]
+
+[msg SPORT_ALREADY_HERE]
+[f 0 5 -258][f 2 1]Kou/Daisuke is already nearby.[n][f 1 1][e]
+
+[msg YOSUKE_ALREADY_HERE]
+[f 0 5 -258][f 2 1]Yosuke is already nearby.[n][f 1 1][e]
+
+[msg YUKIKO_ALREADY_HERE]
+[f 0 5 -258][f 2 1]Yukiko is already nearby.[n][f 1 1][e]
