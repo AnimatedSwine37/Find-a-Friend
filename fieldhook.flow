@@ -43,6 +43,7 @@ void generate_hangout_menu()
 
     // Set all of the message variables based on whether the link is ready to level up
     SET_MSG_VAR(0, 621 + CHECK_IF_SL_LVLUP(31), 6);
+
     SET_MSG_VAR(1, 621 + (CHECK_IF_SL_LVLUP(21) || CHECK_IF_SL_LVLUP(22)), 6);
     SET_MSG_VAR(2, 621 + (CHECK_IF_SL_LVLUP(11) || CHECK_IF_SL_LVLUP(12)), 6);
     SET_MSG_VAR(3, 621 + (CHECK_IF_SL_LVLUP(27) || CHECK_IF_SL_LVLUP(28)), 6);
@@ -58,6 +59,80 @@ void generate_hangout_menu()
     SET_MSG_VAR(13, 621 + CHECK_IF_SL_LVLUP(16), 6);
     SET_MSG_VAR(14, 621 + CHECK_IF_SL_LVLUP(7), 6);
     SET_MSG_VAR(15, 621 + (CHECK_IF_SL_LVLUP(5) || CHECK_IF_SL_LVLUP(6)), 6);
+
+    // Set message variables for the level of each s link
+    SET_MSG_VAR(16, GET_SL_LEVEL(31), 0);
+    // Use whichever level is bigger for those that have two possible
+    if (GET_SL_LEVEL(21) >= GET_SL_LEVEL(22))
+    {
+        SET_MSG_VAR(17, GET_SL_LEVEL(21), 0);
+    }
+    else
+    {
+        SET_MSG_VAR(17, GET_SL_LEVEL(22), 0);
+    }
+
+    if (GET_SL_LEVEL(11) >= GET_SL_LEVEL(12))
+    {
+        SET_MSG_VAR(18, GET_SL_LEVEL(11), 0);
+    }
+    else
+    {
+        SET_MSG_VAR(18, GET_SL_LEVEL(12), 0);
+    }
+
+    if (GET_SL_LEVEL(27) >= GET_SL_LEVEL(28))
+    {
+        SET_MSG_VAR(19, GET_SL_LEVEL(27), 0);
+    }
+    else
+    {
+        SET_MSG_VAR(19, GET_SL_LEVEL(28), 0);
+    }
+    SET_MSG_VAR(20, GET_SL_LEVEL(29), 0);
+    SET_MSG_VAR(21, GET_SL_LEVEL(19), 0);
+    SET_MSG_VAR(22, GET_SL_LEVEL(10), 0);
+
+    if (GET_SL_LEVEL(33) >= GET_SL_LEVEL(34))
+    {
+        SET_MSG_VAR(23, GET_SL_LEVEL(33), 0);
+    }
+    else
+    {
+        SET_MSG_VAR(23, GET_SL_LEVEL(34), 0);
+    }
+    SET_MSG_VAR(24, GET_SL_LEVEL(18), 0);
+
+    if (GET_SL_LEVEL(14) >= GET_SL_LEVEL(15))
+    {
+        SET_MSG_VAR(25, GET_SL_LEVEL(14), 0);
+    }
+    else
+    {
+        SET_MSG_VAR(25, GET_SL_LEVEL(15), 0);
+    }
+
+    if (GET_SL_LEVEL(3) >= GET_SL_LEVEL(4))
+    {
+        SET_MSG_VAR(26, GET_SL_LEVEL(3), 0);
+    }
+    else
+    {
+        SET_MSG_VAR(26, GET_SL_LEVEL(4), 0);
+    }
+    SET_MSG_VAR(27, GET_SL_LEVEL(9), 0);
+    SET_MSG_VAR(28, GET_SL_LEVEL(23), 0);
+    SET_MSG_VAR(29, GET_SL_LEVEL(16), 0);
+    SET_MSG_VAR(30, GET_SL_LEVEL(7), 0);
+
+    if (GET_SL_LEVEL(5) >= GET_SL_LEVEL(6))
+    {
+        SET_MSG_VAR(31, GET_SL_LEVEL(5), 0);
+    }
+    else
+    {
+        SET_MSG_VAR(31, GET_SL_LEVEL(6), 0);
+    }
 
     SET_SEL_CHOICE_KEYBIND(14, 17);
     int localVariable56 = ADV_SEL(localVariable54, localVariable55, pageOneMask);
