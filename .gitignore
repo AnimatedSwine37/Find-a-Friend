@@ -1,3 +1,4 @@
 .vscode
 *.bf
 AtlusScriptCompiler.log
+*.code-workspace
