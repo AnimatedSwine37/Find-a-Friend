@@ -26,8 +26,8 @@ int isHoliday;
 void generate_hangout_menu()
 {
     // Variables that store the location of the messages and whatnot
-    int localVariable54 = HANGOUT_MSG;
-    int localVariable55 = HANGOUT_SEL;
+    int localVariable54 = HANG_OUT_MSG;
+    int localVariable55 = HANG_OUT_SEL;
 
     // Get the day from 0-6, Sunday-Saturday
     int dayOfWeek;
