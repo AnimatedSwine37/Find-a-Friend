@@ -45,16 +45,18 @@ void generate_hangout_menu()
     SET_MSG_VAR(0, 621 + CHECK_IF_SL_LVLUP(31), 6);
     SET_MSG_VAR(1, 621 + (CHECK_IF_SL_LVLUP(21) || CHECK_IF_SL_LVLUP(22)), 6);
     SET_MSG_VAR(2, 621 + (CHECK_IF_SL_LVLUP(11) || CHECK_IF_SL_LVLUP(12)), 6);
-   
+
     // If you try to check if Ayane will level up when Yumi is the S.link for the save the game crashes
-    if (GET_SL_LEVEL(27) > 0 || GET_SL_LEVEL(28) > 0 || (GET_SL_LEVEL(25) == 0 && GET_SL_LEVEL(26) == 0 && GET_SL_LEVEL(27) == 0 && GET_SL_LEVEL(28) == 0)) {
+    if (GET_SL_LEVEL(27) > 0 || GET_SL_LEVEL(28) > 0 || (GET_SL_LEVEL(25) == 0 && GET_SL_LEVEL(26) == 0 && GET_SL_LEVEL(27) == 0 && GET_SL_LEVEL(28) == 0))
+    {
         SET_MSG_VAR(3, 621 + (CHECK_IF_SL_LVLUP(27) || CHECK_IF_SL_LVLUP(28)), 6);
     }
 
     SET_MSG_VAR(4, 621 + CHECK_IF_SL_LVLUP(29), 6);
     SET_MSG_VAR(5, 621 + CHECK_IF_SL_LVLUP(19), 6);
     // Nanako reuses Hisano's message vars as she's never available at night and the var limit is 32 :(
-    if(GET_TIME_OF_DAY() == 5){
+    if (GET_TIME_OF_DAY() == 5)
+    {
         SET_MSG_VAR(5, 621 + CHECK_IF_SL_LVLUP(2), 6);
     }
 
@@ -66,13 +68,17 @@ void generate_hangout_menu()
     SET_MSG_VAR(11, 621 + CHECK_IF_SL_LVLUP(9), 6);
     SET_MSG_VAR(12, 621 + CHECK_IF_SL_LVLUP(23), 6);
     // Kou is 16, Daisuke 17
-    if(GET_SL_LEVEL(16) > 0 ){
-            SET_MSG_VAR(13, 621 + CHECK_IF_SL_LVLUP(16), 6);
-    } else {
-            SET_MSG_VAR(13, 621 + CHECK_IF_SL_LVLUP(17), 6);
+    if (GET_SL_LEVEL(16) > 0)
+    {
+        SET_MSG_VAR(13, 621 + CHECK_IF_SL_LVLUP(16), 6);
+    }
+    else
+    {
+        SET_MSG_VAR(13, 621 + CHECK_IF_SL_LVLUP(17), 6);
     }
     // Dojima reuses Kou/Daisuke's message vars as they're never available at night and the var limit is 32 :(
-    if(GET_TIME_OF_DAY() == 5){
+    if (GET_TIME_OF_DAY() == 5)
+    {
         SET_MSG_VAR(13, 621 + CHECK_IF_SL_LVLUP(8), 6);
     }
 
@@ -80,10 +86,10 @@ void generate_hangout_menu()
     SET_MSG_VAR(15, 621 + (CHECK_IF_SL_LVLUP(5) || CHECK_IF_SL_LVLUP(6)), 6);
 
     // If you try to check if Yumi will level up when Ayane is the S.link for the save the game crashes
-    if (GET_SL_LEVEL(25) > 0 || GET_SL_LEVEL(26) > 0 || (GET_SL_LEVEL(25) == 0 && GET_SL_LEVEL(26) == 0 && GET_SL_LEVEL(27) == 0 && GET_SL_LEVEL(28) == 0)) {
+    if (GET_SL_LEVEL(25) > 0 || GET_SL_LEVEL(26) > 0 || (GET_SL_LEVEL(25) == 0 && GET_SL_LEVEL(26) == 0 && GET_SL_LEVEL(27) == 0 && GET_SL_LEVEL(28) == 0))
+    {
         SET_MSG_VAR(3, 621 + (CHECK_IF_SL_LVLUP(25) || CHECK_IF_SL_LVLUP(26)), 6);
     }
-
 
     // Set message variables for the level of each s link
     SET_MSG_VAR(16, GET_SL_LEVEL(31), 0);
@@ -107,22 +113,23 @@ void generate_hangout_menu()
     }
 
     if (GET_SL_LEVEL(27) > 0 || GET_SL_LEVEL(28) > 0 || (GET_SL_LEVEL(25) == 0 && GET_SL_LEVEL(26) == 0 && GET_SL_LEVEL(27) == 0 && GET_SL_LEVEL(28) == 0))
-	{
-		if (GET_SL_LEVEL(27) >= GET_SL_LEVEL(28))
-		{
-			SET_MSG_VAR(19, GET_SL_LEVEL(27), 0);
-		}
-		else
-		{
-			SET_MSG_VAR(19, GET_SL_LEVEL(28), 0);
-		}
-	}
+    {
+        if (GET_SL_LEVEL(27) >= GET_SL_LEVEL(28))
+        {
+            SET_MSG_VAR(19, GET_SL_LEVEL(27), 0);
+        }
+        else
+        {
+            SET_MSG_VAR(19, GET_SL_LEVEL(28), 0);
+        }
+    }
 
     SET_MSG_VAR(20, GET_SL_LEVEL(29), 0);
     SET_MSG_VAR(21, GET_SL_LEVEL(19), 0);
 
     // Nanako reuses Hisano's message vars as she's never available at night and the var limit is 32 :(
-    if(GET_TIME_OF_DAY() == 5){
+    if (GET_TIME_OF_DAY() == 5)
+    {
         SET_MSG_VAR(21, GET_SL_LEVEL(2), 0);
     }
 
@@ -157,15 +164,19 @@ void generate_hangout_menu()
     }
     SET_MSG_VAR(27, GET_SL_LEVEL(9), 0);
     SET_MSG_VAR(28, GET_SL_LEVEL(23), 0);
-    
-    if(GET_SL_LEVEL(16) > 0) {
+
+    if (GET_SL_LEVEL(16) > 0)
+    {
         SET_MSG_VAR(29, GET_SL_LEVEL(16), 0);
-    } else {
+    }
+    else
+    {
         SET_MSG_VAR(29, GET_SL_LEVEL(17), 0);
     }
 
     // Dojima reuses Kou/Daisuke's message vars as they're never available at night and the var limit is 32 :(
-    if(GET_TIME_OF_DAY() == 5){
+    if (GET_TIME_OF_DAY() == 5)
+    {
         SET_MSG_VAR(29, GET_SL_LEVEL(8), 0);
     }
 
@@ -180,17 +191,17 @@ void generate_hangout_menu()
         SET_MSG_VAR(31, GET_SL_LEVEL(6), 0);
     }
 
-   if (GET_SL_LEVEL(25) > 0 || GET_SL_LEVEL(26) > 0 || (GET_SL_LEVEL(25) == 0 && GET_SL_LEVEL(26) == 0 && GET_SL_LEVEL(27) == 0 && GET_SL_LEVEL(28) == 0))
-	{
-		if (GET_SL_LEVEL(25) >= GET_SL_LEVEL(26))
-		{
-			SET_MSG_VAR(19, GET_SL_LEVEL(25), 0);
-		}
-		else
-		{
-			SET_MSG_VAR(19, GET_SL_LEVEL(26), 0);
-		}
-	}
+    if (GET_SL_LEVEL(25) > 0 || GET_SL_LEVEL(26) > 0 || (GET_SL_LEVEL(25) == 0 && GET_SL_LEVEL(26) == 0 && GET_SL_LEVEL(27) == 0 && GET_SL_LEVEL(28) == 0))
+    {
+        if (GET_SL_LEVEL(25) >= GET_SL_LEVEL(26))
+        {
+            SET_MSG_VAR(19, GET_SL_LEVEL(25), 0);
+        }
+        else
+        {
+            SET_MSG_VAR(19, GET_SL_LEVEL(26), 0);
+        }
+    }
 
     SET_SEL_CHOICE_KEYBIND(14, 21);
     int localVariable56 = ADV_SEL(localVariable54, localVariable55, pageOneMask);
@@ -207,14 +218,16 @@ _choiceLoop:
         int cancelSel = 0;
 
         // Show confirmation for leaving home for the day if applicable
-        if(timeOfDay != 5 && fieldMajor == 7 && (fieldMinor == 2 || fieldMinor == 3)) {
+        if (timeOfDay != 5 && fieldMajor == 7 && (fieldMinor == 2 || fieldMinor == 3))
+        {
             OPEN_MSG_WIN();
             MSG(EXIT_MYHOME_OK);
             SET_SEL_CHOICE_KEYBIND(14, 1);
             cancelSel = SEL(YESNO_SEL);
         }
 
-        if(cancelSel == 0) {
+        if (cancelSel == 0)
+        {
             // Teleport the player to the desired location depending on who they chose
             switch (localVariable56)
             {
@@ -790,7 +803,7 @@ void generate_selection_mask()
 
     // Choose which people to exclude based on the day
     // Check Adachi
-    if (BIT_CHK(0 + 0x0400 + 692) == 0 || BIT_CHK( 0 + 0x0400 + 702 ) == 1  || BIT_CHK( 0 + 0x0400 + 1569 ) == 1|| GET_SL_LEVEL(31) >= 6 || (CHECK_IF_SL_LVLUP(31) == 0 && timeOfDay == 5) || (CHECK_IF_SL_LVLUP(31) == 1 && ((timeOfDay == 5 && (GET_SL_LEVEL(31) == 1 || GET_SL_LEVEL(31) == 5)) || (timeOfDay != 5 && GET_SL_LEVEL(31) >= 2 && GET_SL_LEVEL(31) <= 4))))
+    if (BIT_CHK(0 + 0x0400 + 692) == 0 || BIT_CHK(0 + 0x0400 + 702) == 1 || BIT_CHK(0 + 0x0400 + 1569) == 1 || GET_SL_LEVEL(31) >= 6 || (CHECK_IF_SL_LVLUP(31) == 0 && timeOfDay == 5) || (CHECK_IF_SL_LVLUP(31) == 1 && ((timeOfDay == 5 && (GET_SL_LEVEL(31) == 1 || GET_SL_LEVEL(31) == 5)) || (timeOfDay != 5 && GET_SL_LEVEL(31) >= 2 && GET_SL_LEVEL(31) <= 4))))
     {
         pageOneMask = pageOneMask + 1;
         numSelectionsRemoved = numSelectionsRemoved + 1;
@@ -946,7 +959,7 @@ void generate_selection_mask()
             numSelectionsRemoved = numSelectionsRemoved + 1;
         }
         // Yukiko
-        if (numSelectionsRemoved < 12) 
+        if (numSelectionsRemoved < 12)
         {
             if (yukikoState == 1)
             {
@@ -1095,7 +1108,7 @@ void school_order_hook()
 
     // Decide if hangout should not be displayed
     generate_selection_mask();
-    if (numSelectionsRemoved == 20 || (BIT_CHK( 0 + 0x0400 + 0x0800 + 2 ) || BIT_CHK( 0 + 0x0400 + 1726 ) && GET_TIME_OF_DAY() == 5))
+    if (numSelectionsRemoved == 20 || (BIT_CHK(0 + 0x0400 + 0x0800 + 2) || BIT_CHK(0 + 0x0400 + 1726) && GET_TIME_OF_DAY() == 5))
     {
         localVariable57 = localVariable57 + 32;
     }
@@ -1193,7 +1206,7 @@ void myhouse_order_hook()
 
     // Decide if hangout should not be displayed
     generate_selection_mask();
-    if (numSelectionsRemoved == 20 || (BIT_CHK( 0 + 0x0400 + 0x0800 + 2 ) || BIT_CHK( 0 + 0x0400 + 1726 ) && GET_TIME_OF_DAY() == 5))
+    if (numSelectionsRemoved == 20 || (BIT_CHK(0 + 0x0400 + 0x0800 + 2) || BIT_CHK(0 + 0x0400 + 1726) && GET_TIME_OF_DAY() == 5))
     {
         localVariable61 = localVariable61 + 256;
     }
@@ -1280,7 +1293,7 @@ void street_order_hook()
 
         // Decide if hangout should not be displayed
         generate_selection_mask();
-        if (numSelectionsRemoved == 20 || (BIT_CHK( 0 + 0x0400 + 0x0800 + 2 ) || BIT_CHK( 0 + 0x0400 + 1726 ) && GET_TIME_OF_DAY() == 5))
+        if (numSelectionsRemoved == 20 || (BIT_CHK(0 + 0x0400 + 0x0800 + 2) || BIT_CHK(0 + 0x0400 + 1726) && GET_TIME_OF_DAY() == 5))
         {
             localVariable65 = localVariable65 + 64;
         }
@@ -1353,7 +1366,7 @@ void street_order_hook()
 
         // Decide if hangout should not be displayed
         generate_selection_mask();
-        if (numSelectionsRemoved == 20 || (BIT_CHK( 0 + 0x0400 + 0x0800 + 2 ) || BIT_CHK( 0 + 0x0400 + 1726 ) && GET_TIME_OF_DAY() == 5))
+        if (numSelectionsRemoved == 20 || (BIT_CHK(0 + 0x0400 + 0x0800 + 2) || BIT_CHK(0 + 0x0400 + 1726) && GET_TIME_OF_DAY() == 5))
         {
             localVariable65 = localVariable65 + 16;
         }
@@ -1483,7 +1496,7 @@ void gms_order_hook()
 
     // Decide if hangout should not be displayed
     generate_selection_mask();
-    if (numSelectionsRemoved == 20 || (BIT_CHK( 0 + 0x0400 + 0x0800 + 2 ) || BIT_CHK( 0 + 0x0400 + 1726 ) && GET_TIME_OF_DAY() == 5))
+    if (numSelectionsRemoved == 20 || (BIT_CHK(0 + 0x0400 + 0x0800 + 2) || BIT_CHK(0 + 0x0400 + 1726) && GET_TIME_OF_DAY() == 5))
     {
         localVariable69 = localVariable69 + 4;
     }
@@ -1531,7 +1544,7 @@ void embank_order_hook()
 
         // Decide if hangout should not be displayed
         generate_selection_mask();
-        if (numSelectionsRemoved == 20 || (BIT_CHK( 0 + 0x0400 + 0x0800 + 2 ) || BIT_CHK( 0 + 0x0400 + 1726 ) && GET_TIME_OF_DAY() == 5))
+        if (numSelectionsRemoved == 20 || (BIT_CHK(0 + 0x0400 + 0x0800 + 2) || BIT_CHK(0 + 0x0400 + 1726) && GET_TIME_OF_DAY() == 5))
         {
             localVariable73 = localVariable73 + 8;
         }
@@ -1575,7 +1588,7 @@ void embank_order_hook()
 
         // Decide if hangout should not be displayed
         generate_selection_mask();
-        if (numSelectionsRemoved == 20 || (BIT_CHK( 0 + 0x0400 + 0x0800 + 2 ) || BIT_CHK( 0 + 0x0400 + 1726 ) && GET_TIME_OF_DAY() == 5))
+        if (numSelectionsRemoved == 20 || (BIT_CHK(0 + 0x0400 + 0x0800 + 2) || BIT_CHK(0 + 0x0400 + 1726) && GET_TIME_OF_DAY() == 5))
         {
             localVariable73 = localVariable73 + 8;
         }
@@ -1634,7 +1647,7 @@ void station_order_hook()
     {
         // Decide if hangout should not be displayed
         generate_selection_mask();
-        if (numSelectionsRemoved == 20 || (BIT_CHK( 0 + 0x0400 + 0x0800 + 2 ) || BIT_CHK( 0 + 0x0400 + 1726 ) && GET_TIME_OF_DAY() == 5))
+        if (numSelectionsRemoved == 20 || (BIT_CHK(0 + 0x0400 + 0x0800 + 2) || BIT_CHK(0 + 0x0400 + 1726) && GET_TIME_OF_DAY() == 5))
         {
             localVariable77 = localVariable77 + 2;
         }
@@ -1691,7 +1704,7 @@ void schoolroad_order_hook()
 
     // Decide if hangout should not be displayed
     generate_selection_mask();
-    if (numSelectionsRemoved == 20 || (BIT_CHK( 0 + 0x0400 + 0x0800 + 2 ) || BIT_CHK( 0 + 0x0400 + 1726 ) && GET_TIME_OF_DAY() == 5))
+    if (numSelectionsRemoved == 20 || (BIT_CHK(0 + 0x0400 + 0x0800 + 2) || BIT_CHK(0 + 0x0400 + 1726) && GET_TIME_OF_DAY() == 5))
     {
         localVariable81 = localVariable81 + 2;
     }
