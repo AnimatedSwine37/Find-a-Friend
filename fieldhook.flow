@@ -790,7 +790,7 @@ void generate_selection_mask()
 
     // Choose which people to exclude based on the day
     // Check Adachi
-    if (BIT_CHK(0 + 0x0400 + 692) == 0 || GET_SL_LEVEL(31) >= 6)
+    if (BIT_CHK(0 + 0x0400 + 692) == 0 || BIT_CHK( 0 + 0x0400 + 702 ) == 1  || BIT_CHK( 0 + 0x0400 + 1569 ) == 1|| GET_SL_LEVEL(31) >= 6 || (CHECK_IF_SL_LVLUP(31) == 0 && timeOfDay == 5) || (CHECK_IF_SL_LVLUP(31) == 1 && ((timeOfDay == 5 && (GET_SL_LEVEL(31) == 1 || GET_SL_LEVEL(31) == 5)) || (timeOfDay != 5 && GET_SL_LEVEL(31) >= 2 && GET_SL_LEVEL(31) <= 4))))
     {
         pageOneMask = pageOneMask + 1;
         numSelectionsRemoved = numSelectionsRemoved + 1;
