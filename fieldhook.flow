@@ -53,6 +53,11 @@ void generate_hangout_menu()
 
     SET_MSG_VAR(4, 621 + CHECK_IF_SL_LVLUP(29), 6);
     SET_MSG_VAR(5, 621 + CHECK_IF_SL_LVLUP(19), 6);
+    // Nanako reuses Hisano's message vars as she's never available at night and the var limit is 32 :(
+    if(GET_TIME_OF_DAY() == 5){
+        SET_MSG_VAR(5, 621 + CHECK_IF_SL_LVLUP(2), 6);
+    }
+
     SET_MSG_VAR(6, 621 + CHECK_IF_SL_LVLUP(10), 6);
     SET_MSG_VAR(7, 621 + (CHECK_IF_SL_LVLUP(33) || CHECK_IF_SL_LVLUP(34)), 6);
     SET_MSG_VAR(8, 621 + CHECK_IF_SL_LVLUP(18), 6);
@@ -66,6 +71,11 @@ void generate_hangout_menu()
     } else {
             SET_MSG_VAR(13, 621 + CHECK_IF_SL_LVLUP(17), 6);
     }
+    // Dojima reuses Kou/Daisuke's message vars as they're never available at night and the var limit is 32 :(
+    if(GET_TIME_OF_DAY() == 5){
+        SET_MSG_VAR(13, 621 + CHECK_IF_SL_LVLUP(8), 6);
+    }
+
     SET_MSG_VAR(14, 621 + CHECK_IF_SL_LVLUP(7), 6);
     SET_MSG_VAR(15, 621 + (CHECK_IF_SL_LVLUP(5) || CHECK_IF_SL_LVLUP(6)), 6);
 
@@ -110,6 +120,12 @@ void generate_hangout_menu()
 
     SET_MSG_VAR(20, GET_SL_LEVEL(29), 0);
     SET_MSG_VAR(21, GET_SL_LEVEL(19), 0);
+
+    // Nanako reuses Hisano's message vars as she's never available at night and the var limit is 32 :(
+    if(GET_TIME_OF_DAY() == 5){
+        SET_MSG_VAR(21, GET_SL_LEVEL(2), 0);
+    }
+
     SET_MSG_VAR(22, GET_SL_LEVEL(10), 0);
 
     if (GET_SL_LEVEL(33) >= GET_SL_LEVEL(34))
@@ -148,6 +164,11 @@ void generate_hangout_menu()
         SET_MSG_VAR(29, GET_SL_LEVEL(17), 0);
     }
 
+    // Dojima reuses Kou/Daisuke's message vars as they're never available at night and the var limit is 32 :(
+    if(GET_TIME_OF_DAY() == 5){
+        SET_MSG_VAR(29, GET_SL_LEVEL(8), 0);
+    }
+
     SET_MSG_VAR(30, GET_SL_LEVEL(7), 0);
 
     if (GET_SL_LEVEL(5) >= GET_SL_LEVEL(6))
@@ -171,7 +192,7 @@ void generate_hangout_menu()
 		}
 	}
 
-    SET_SEL_CHOICE_KEYBIND(14, 19);
+    SET_SEL_CHOICE_KEYBIND(14, 21);
     int localVariable56 = ADV_SEL(localVariable54, localVariable55, pageOneMask);
 
     // Field major and minor to make sure you can't tp to the current location
@@ -337,9 +358,23 @@ _choiceLoop:
                     CALL_FIELD(6, 1, 2, 0);
                 }
                 break;
-
-            // Eri - South Shopping District
+            // Dojima - Home
             case 5:
+                if (fieldMajor == 7 && fieldMinor == 2)
+                {
+                    OPEN_MSG_WIN();
+                    MSG(DOJIMA_ALREADY_HERE);
+                    CLOSE_MSG_WIN();
+                }
+                else
+                {
+                    FADE(1, 5);
+                    FADE_SYNC();
+                    CALL_FIELD(7, 2, 0, 0);
+                }
+                break;
+            // Eri - South Shopping District
+            case 6:
                 if (fieldMajor == 8 && fieldMinor == 2)
                 {
                     OPEN_MSG_WIN();
@@ -354,7 +389,7 @@ _choiceLoop:
                 }
                 break;
             // Hisano - Samegawa Riverbank
-            case 6:
+            case 7:
                 if (fieldMajor == 10 && fieldMinor == 2)
                 {
                     OPEN_MSG_WIN();
@@ -369,7 +404,7 @@ _choiceLoop:
                 }
                 break;
             // Kanji
-            case 7:
+            case 8:
                 // North Shopping District on Sundays
                 if (isHoliday == 1)
                 {
@@ -404,7 +439,7 @@ _choiceLoop:
                 }
                 break;
             // Kou - Learning Building 2F
-            case 8:
+            case 9:
                 if (fieldMajor == 6 && fieldMinor == 2 && GET_SL_LEVEL(16) > 0)
                 {
                     OPEN_MSG_WIN();
@@ -432,7 +467,7 @@ _choiceLoop:
                 break;
 
             // Marie - South Shopping District
-            case 9:
+            case 10:
                 if (fieldMajor == 8 && fieldMinor == 2)
                 {
                     OPEN_MSG_WIN();
@@ -446,8 +481,23 @@ _choiceLoop:
                     CALL_FIELD(8, 2, 4, 0);
                 }
                 break;
+            // Nanako - Home
+            case 11:
+                if (fieldMajor == 7 && fieldMinor == 2)
+                {
+                    OPEN_MSG_WIN();
+                    MSG(NANAKO_ALREADY_HERE);
+                    CLOSE_MSG_WIN();
+                }
+                else
+                {
+                    FADE(1, 5);
+                    FADE_SYNC();
+                    CALL_FIELD(7, 2, 0, 0);
+                }
+                break;
             // Naoki
-            case 10:
+            case 12:
                 // North Shopping District on Sundays and whenever the s link level is not 0
                 if (isHoliday == 1 || GET_SL_LEVEL(18) > 0)
                 {
@@ -482,7 +532,7 @@ _choiceLoop:
                 }
                 break;
             // Naoto
-            case 11:
+            case 13:
                 // Samegawa Flood Plain on Sundays
                 if (isHoliday == 1)
                 {
@@ -517,7 +567,7 @@ _choiceLoop:
                 }
                 break;
             // Rise
-            case 12:
+            case 14:
                 // South Shopping District on Sundays
                 if (isHoliday == 1)
                 {
@@ -552,7 +602,7 @@ _choiceLoop:
                 }
                 break;
             // Sayoko - South Shopping District
-            case 13:
+            case 15:
                 if (fieldMajor == 8 && fieldMinor == 2)
                 {
                     OPEN_MSG_WIN();
@@ -567,7 +617,7 @@ _choiceLoop:
                 }
                 break;
             // Shu - South Shopping District
-            case 14:
+            case 16:
                 if (fieldMajor == 8 && fieldMinor == 2)
                 {
                     OPEN_MSG_WIN();
@@ -582,7 +632,7 @@ _choiceLoop:
                 }
                 break;
             // Yoskue
-            case 15:
+            case 17:
                 // Junes on Sundays
                 if (isHoliday == 1)
                 {
@@ -617,7 +667,7 @@ _choiceLoop:
                 }
                 break;
             // Yukiko
-            case 16:
+            case 18:
                 // South Shopping District on Sundays
                 if (isHoliday == 1)
                 {
@@ -652,7 +702,7 @@ _choiceLoop:
                 }
                 break;
             // Yumi - Learning Building 2F
-            case 17:
+            case 19:
                 if (fieldMajor == 6 && fieldMinor == 2 && (GET_SL_LEVEL(25) > 0 || GET_SL_LEVEL(26) > 0))
                 {
                     OPEN_MSG_WIN();
@@ -706,7 +756,7 @@ void generate_selection_mask()
 {
     pageOneMask = 0; // First list
     // All characters removed (subtracting from this adds them back to the second list)
-    pageTwoMask = 131071; // Second list
+    pageTwoMask = 1048575; // Second list
 
     // Count how many people were removed from the list so I can decide whether to make a second page
     numSelectionsRemoved = 0;
@@ -718,10 +768,12 @@ void generate_selection_mask()
     int chieState = 1;
     int ayaneState = 1;
     int daisukeState = 1;
+    int dojimaState = 1;
     int eriState = 1;
     int hisanoState = 1;
     int kanjiState = 1;
     int marieState = 1;
+    int nanakoState = 1;
     int naokiState = 1;
     int naotoState = 1;
     int riseState = 1;
@@ -773,116 +825,156 @@ void generate_selection_mask()
         numSelectionsRemoved = numSelectionsRemoved + 1;
         daisukeState = 0;
     }
+    // Dojima
+    if (BIT_CHK(0 + 0x0400 + 455) == 0 || GET_SL_LEVEL(8) >= 10 || timeOfDay != 5)
+    {
+        pageOneMask = pageOneMask + 32;
+        numSelectionsRemoved = numSelectionsRemoved + 1;
+        dojimaState = 0;
+    }
     // Eri isn't available Tuesday, Wednesday, Thursday, Sunday and Holidays
     if (BIT_CHK(0 + 0x0400 + 1641) == 0 || BIT_CHK(0 + 0x0400 + 476) == 0 || GET_SL_LEVEL(29) >= 10 || timeOfDay == 5)
     {
-        pageOneMask = pageOneMask + 32;
+        pageOneMask = pageOneMask + 64;
         numSelectionsRemoved = numSelectionsRemoved + 1;
         eriState = 0;
     }
     // Hisano is only available on Sundays and Holidays
     if (BIT_CHK(0 + 0x0400 + 466) == 0 || GET_SL_LEVEL(19) >= 10 || timeOfDay == 5)
     {
-        pageOneMask = pageOneMask + 64;
+        pageOneMask = pageOneMask + 128;
         numSelectionsRemoved = numSelectionsRemoved + 1;
         hisanoState = 0;
     }
     // Kanji isn't available Monday, Tuesday and Friday
     if (BIT_CHK(0 + 0x0400 + 457) == 0 || GET_SL_LEVEL(10) >= 10 || timeOfDay == 5)
     {
-        pageOneMask = pageOneMask + 128;
+        pageOneMask = pageOneMask + 256;
         numSelectionsRemoved = numSelectionsRemoved + 1;
         kanjiState = 0;
     }
     // Kou isn't available Monday, Wednesday, Friday, Sunday and Holidays
     if (BIT_CHK(0 + 0x0400 + 463) == 0 || GET_SL_LEVEL(0x10) >= 10 || GET_SL_LEVEL(17) > 0 || timeOfDay == 5)
     {
-        pageOneMask = pageOneMask + 256;
+        pageOneMask = pageOneMask + 512;
         numSelectionsRemoved = numSelectionsRemoved + 1;
         kouState = 0;
     }
     // Marie isn't available Monday, Tuesday, Thursday and Friday
     if (BIT_CHK(0 + 0x0400 + 712) == 0 || GET_SL_LEVEL(33) >= 10 || GET_SL_LEVEL(34) >= 10 || timeOfDay == 5)
     {
-        pageOneMask = pageOneMask + 512;
+        pageOneMask = pageOneMask + 1024;
         numSelectionsRemoved = numSelectionsRemoved + 1;
         marieState = 0;
+    }
+    // Nanako
+    if (BIT_CHK(0 + 0x0400 + 449) == 0 || GET_SL_LEVEL(2) >= 10 || timeOfDay != 5)
+    {
+        pageOneMask = pageOneMask + 2048;
+        numSelectionsRemoved = numSelectionsRemoved + 1;
+        nanakoState = 0;
     }
     // Naoki isn't available Friday, Saturday and Sunday
     if (BIT_CHK(0 + 0x0400 + 465) == 0 || GET_SL_LEVEL(18) >= 10 || timeOfDay == 5)
     {
-        pageOneMask = pageOneMask + 1024;
+        pageOneMask = pageOneMask + 4096;
         numSelectionsRemoved = numSelectionsRemoved + 1;
         naokiState = 0;
     }
     // Naoto isn't available Thursday and Friday
     if (BIT_CHK(0 + 0x0400 + 462) == 0 || GET_SL_LEVEL(14) >= 10 || GET_SL_LEVEL(15) >= 10 || timeOfDay == 5)
     {
-        pageOneMask = pageOneMask + 2048;
+        pageOneMask = pageOneMask + 8192;
         numSelectionsRemoved = numSelectionsRemoved + 1;
         naotoState = 0;
     }
     // Rise isn't available Monday, Tuesday, Wednesday and Thursday
     if (BIT_CHK(0 + 0x0400 + 450) == 0 || GET_SL_LEVEL(3) >= 10 || GET_SL_LEVEL(4) >= 10 || timeOfDay == 5)
     {
-        pageOneMask = pageOneMask + 4096;
+        pageOneMask = pageOneMask + 16384;
         numSelectionsRemoved = numSelectionsRemoved + 1;
         riseState = 0;
     }
     // Sayoko isn't available Monday, Tuesday, Saturday, Sunday, Holidays, and in the day
     if (BIT_CHK(0 + 0x0400 + 456) == 0 || BIT_CHK(0 + 0x0400 + 1640) == 0 || timeOfDay != 5 || GET_SL_LEVEL(9) >= 10)
     {
-        pageOneMask = pageOneMask + 8192;
+        pageOneMask = pageOneMask + 32768;
         numSelectionsRemoved = numSelectionsRemoved + 1;
         sayokoState = 0;
     }
     // Shu isn't available Monday, Wednesday, Friday, Sunday, Holidays and in the day
     if (BIT_CHK(0 + 0x0400 + 470) == 0 || BIT_CHK(0 + 0x0400 + 1638) == 0 || GET_SL_LEVEL(23) >= 10 || timeOfDay != 5)
     {
-        pageOneMask = pageOneMask + 16384;
+        pageOneMask = pageOneMask + 65536;
         numSelectionsRemoved = numSelectionsRemoved + 1;
         shuState = 0;
     }
     // Yoskue isn't available Tuesday and Wednesday
     if (BIT_CHK(0 + 0x0400 + 454) == 0 || GET_SL_LEVEL(7) >= 10 || timeOfDay == 5)
     {
-        pageOneMask = pageOneMask + 32768;
+        pageOneMask = pageOneMask + 131072;
         numSelectionsRemoved = numSelectionsRemoved + 1;
         yosukeState = 0;
     }
     // Yukiko isn't available Friday, Saturday and Sunday
     if (BIT_CHK(0 + 0x0400 + 452) == 0 || GET_SL_LEVEL(5) >= 10 || GET_SL_LEVEL(6) >= 10 || timeOfDay == 5)
     {
-        pageOneMask = pageOneMask + 65536;
+        pageOneMask = pageOneMask + 262144;
         numSelectionsRemoved = numSelectionsRemoved + 1;
         yukikoState = 0;
     }
     // Yumi isn't available Wednesday, Friday, Saturday, Sunday and Holiday
     if (BIT_CHK(0 + 0x0400 + 475) == 0 || GET_SL_LEVEL(25) >= 10 || GET_SL_LEVEL(26) >= 10 || GET_SL_LEVEL(28) > 0 || GET_SL_LEVEL(27) > 0 || timeOfDay == 5)
     {
-        pageOneMask = pageOneMask + 131072;
+        pageOneMask = pageOneMask + 524288;
         numSelectionsRemoved = numSelectionsRemoved + 1;
         yumiState = 0;
     }
 
     // Decide whether a second page is needed THIS WOULD BE SO MUCH EASIER WITH AN ARRAY AND A LOOP AHHHHH
-    if (numSelectionsRemoved < 10)
+    if (numSelectionsRemoved < 12)
     {
         // local58 is all characters removed (subtracting from this adds them back to the second list)
         // Yumi
         if (yumiState == 1)
         {
             // Remove from list 1
-            pageOneMask = pageOneMask + 131072;
+            pageOneMask = pageOneMask + 524288;
             // Add to list 2
-            pageTwoMask = pageTwoMask - 131072;
+            pageTwoMask = pageTwoMask - 524288;
             // Increment the count
             numSelectionsRemoved = numSelectionsRemoved + 1;
         }
         // Yukiko
-        if (numSelectionsRemoved < 10) 
+        if (numSelectionsRemoved < 12) 
         {
             if (yukikoState == 1)
+            {
+                // Remove from list 1
+                pageOneMask = pageOneMask + 262144;
+                // Add to list 2
+                pageTwoMask = pageTwoMask - 262144;
+                // Increment the count
+                numSelectionsRemoved = numSelectionsRemoved + 1;
+            }
+        }
+        // Yosuke
+        if (numSelectionsRemoved < 12)
+        {
+            if (yosukeState == 1)
+            {
+                // Remove from list 1
+                pageOneMask = pageOneMask + 131072;
+                // Add to list 2
+                pageTwoMask = pageTwoMask - 131072;
+                // Increment the count
+                numSelectionsRemoved = numSelectionsRemoved + 1;
+            }
+        }
+        // Shu
+        if (numSelectionsRemoved < 12)
+        {
+            if (shuState == 1)
             {
                 // Remove from list 1
                 pageOneMask = pageOneMask + 65536;
@@ -892,10 +984,10 @@ void generate_selection_mask()
                 numSelectionsRemoved = numSelectionsRemoved + 1;
             }
         }
-        // Yosuke
-        if (numSelectionsRemoved < 10)
+        // Sayoko
+        if (numSelectionsRemoved < 12)
         {
-            if (yosukeState == 1)
+            if (sayokoState == 1)
             {
                 // Remove from list 1
                 pageOneMask = pageOneMask + 32768;
@@ -905,10 +997,10 @@ void generate_selection_mask()
                 numSelectionsRemoved = numSelectionsRemoved + 1;
             }
         }
-        // Shu
-        if (numSelectionsRemoved < 10)
+        // Rise
+        if (numSelectionsRemoved < 12)
         {
-            if (shuState == 1)
+            if (riseState == 1)
             {
                 // Remove from list 1
                 pageOneMask = pageOneMask + 16384;
@@ -918,10 +1010,10 @@ void generate_selection_mask()
                 numSelectionsRemoved = numSelectionsRemoved + 1;
             }
         }
-        // Sayoko
-        if (numSelectionsRemoved < 10)
+        // Naoto
+        if (numSelectionsRemoved < 12)
         {
-            if (sayokoState == 1)
+            if (naotoState == 1)
             {
                 // Remove from list 1
                 pageOneMask = pageOneMask + 8192;
@@ -931,10 +1023,10 @@ void generate_selection_mask()
                 numSelectionsRemoved = numSelectionsRemoved + 1;
             }
         }
-        // Rise
-        if (numSelectionsRemoved < 10)
+        // Naoki
+        if (numSelectionsRemoved < 12)
         {
-            if (riseState == 1)
+            if (naokiState == 1)
             {
                 // Remove from list 1
                 pageOneMask = pageOneMask + 4096;
@@ -944,10 +1036,10 @@ void generate_selection_mask()
                 numSelectionsRemoved = numSelectionsRemoved + 1;
             }
         }
-        // Naoto
-        if (numSelectionsRemoved < 10)
+        // Nanako
+        if (numSelectionsRemoved < 12)
         {
-            if (naotoState == 1)
+            if (nanakoState == 1)
             {
                 // Remove from list 1
                 pageOneMask = pageOneMask + 2048;
@@ -957,10 +1049,10 @@ void generate_selection_mask()
                 numSelectionsRemoved = numSelectionsRemoved + 1;
             }
         }
-        // Naoki
-        if (numSelectionsRemoved < 10)
+        // Marie
+        if (numSelectionsRemoved < 12)
         {
-            if (naokiState == 1)
+            if (marieState == 1)
             {
                 // Remove from list 1
                 pageOneMask = pageOneMask + 1024;
@@ -970,24 +1062,11 @@ void generate_selection_mask()
                 numSelectionsRemoved = numSelectionsRemoved + 1;
             }
         }
-        // Marie
-        if (numSelectionsRemoved < 10)
-        {
-            if (marieState == 1)
-            {
-                // Remove from list 1
-                pageOneMask = pageOneMask + 512;
-                // Add to list 2
-                pageTwoMask = pageTwoMask - 512;
-                // Increment the count
-                numSelectionsRemoved = numSelectionsRemoved + 1;
-            }
-        }
         // We don't need the see more option
     }
     else
     {
-        pageOneMask = pageOneMask + 262144;
+        pageOneMask = pageOneMask + 1048576;
     }
 }
 
@@ -1016,7 +1095,7 @@ void school_order_hook()
 
     // Decide if hangout should not be displayed
     generate_selection_mask();
-    if (numSelectionsRemoved == 18 || (BIT_CHK( 0 + 0x0400 + 0x0800 + 2 ) || BIT_CHK( 0 + 0x0400 + 1726 ) && GET_TIME_OF_DAY() == 5))
+    if (numSelectionsRemoved == 20 || (BIT_CHK( 0 + 0x0400 + 0x0800 + 2 ) || BIT_CHK( 0 + 0x0400 + 1726 ) && GET_TIME_OF_DAY() == 5))
     {
         localVariable57 = localVariable57 + 32;
     }
@@ -1114,7 +1193,7 @@ void myhouse_order_hook()
 
     // Decide if hangout should not be displayed
     generate_selection_mask();
-    if (numSelectionsRemoved == 18 || (BIT_CHK( 0 + 0x0400 + 0x0800 + 2 ) || BIT_CHK( 0 + 0x0400 + 1726 ) && GET_TIME_OF_DAY() == 5))
+    if (numSelectionsRemoved == 20 || (BIT_CHK( 0 + 0x0400 + 0x0800 + 2 ) || BIT_CHK( 0 + 0x0400 + 1726 ) && GET_TIME_OF_DAY() == 5))
     {
         localVariable61 = localVariable61 + 256;
     }
@@ -1201,7 +1280,7 @@ void street_order_hook()
 
         // Decide if hangout should not be displayed
         generate_selection_mask();
-        if (numSelectionsRemoved == 18 || (BIT_CHK( 0 + 0x0400 + 0x0800 + 2 ) || BIT_CHK( 0 + 0x0400 + 1726 ) && GET_TIME_OF_DAY() == 5))
+        if (numSelectionsRemoved == 20 || (BIT_CHK( 0 + 0x0400 + 0x0800 + 2 ) || BIT_CHK( 0 + 0x0400 + 1726 ) && GET_TIME_OF_DAY() == 5))
         {
             localVariable65 = localVariable65 + 64;
         }
@@ -1274,7 +1353,7 @@ void street_order_hook()
 
         // Decide if hangout should not be displayed
         generate_selection_mask();
-        if (numSelectionsRemoved == 18 || (BIT_CHK( 0 + 0x0400 + 0x0800 + 2 ) || BIT_CHK( 0 + 0x0400 + 1726 ) && GET_TIME_OF_DAY() == 5))
+        if (numSelectionsRemoved == 20 || (BIT_CHK( 0 + 0x0400 + 0x0800 + 2 ) || BIT_CHK( 0 + 0x0400 + 1726 ) && GET_TIME_OF_DAY() == 5))
         {
             localVariable65 = localVariable65 + 16;
         }
@@ -1404,7 +1483,7 @@ void gms_order_hook()
 
     // Decide if hangout should not be displayed
     generate_selection_mask();
-    if (numSelectionsRemoved == 18 || (BIT_CHK( 0 + 0x0400 + 0x0800 + 2 ) || BIT_CHK( 0 + 0x0400 + 1726 ) && GET_TIME_OF_DAY() == 5))
+    if (numSelectionsRemoved == 20 || (BIT_CHK( 0 + 0x0400 + 0x0800 + 2 ) || BIT_CHK( 0 + 0x0400 + 1726 ) && GET_TIME_OF_DAY() == 5))
     {
         localVariable69 = localVariable69 + 4;
     }
@@ -1452,7 +1531,7 @@ void embank_order_hook()
 
         // Decide if hangout should not be displayed
         generate_selection_mask();
-        if (numSelectionsRemoved == 18 || (BIT_CHK( 0 + 0x0400 + 0x0800 + 2 ) || BIT_CHK( 0 + 0x0400 + 1726 ) && GET_TIME_OF_DAY() == 5))
+        if (numSelectionsRemoved == 20 || (BIT_CHK( 0 + 0x0400 + 0x0800 + 2 ) || BIT_CHK( 0 + 0x0400 + 1726 ) && GET_TIME_OF_DAY() == 5))
         {
             localVariable73 = localVariable73 + 8;
         }
@@ -1496,7 +1575,7 @@ void embank_order_hook()
 
         // Decide if hangout should not be displayed
         generate_selection_mask();
-        if (numSelectionsRemoved == 18 || (BIT_CHK( 0 + 0x0400 + 0x0800 + 2 ) || BIT_CHK( 0 + 0x0400 + 1726 ) && GET_TIME_OF_DAY() == 5))
+        if (numSelectionsRemoved == 20 || (BIT_CHK( 0 + 0x0400 + 0x0800 + 2 ) || BIT_CHK( 0 + 0x0400 + 1726 ) && GET_TIME_OF_DAY() == 5))
         {
             localVariable73 = localVariable73 + 8;
         }
@@ -1555,7 +1634,7 @@ void station_order_hook()
     {
         // Decide if hangout should not be displayed
         generate_selection_mask();
-        if (numSelectionsRemoved == 18 || (BIT_CHK( 0 + 0x0400 + 0x0800 + 2 ) || BIT_CHK( 0 + 0x0400 + 1726 ) && GET_TIME_OF_DAY() == 5))
+        if (numSelectionsRemoved == 20 || (BIT_CHK( 0 + 0x0400 + 0x0800 + 2 ) || BIT_CHK( 0 + 0x0400 + 1726 ) && GET_TIME_OF_DAY() == 5))
         {
             localVariable77 = localVariable77 + 2;
         }
@@ -1612,7 +1691,7 @@ void schoolroad_order_hook()
 
     // Decide if hangout should not be displayed
     generate_selection_mask();
-    if (numSelectionsRemoved == 18 || (BIT_CHK( 0 + 0x0400 + 0x0800 + 2 ) || BIT_CHK( 0 + 0x0400 + 1726 ) && GET_TIME_OF_DAY() == 5))
+    if (numSelectionsRemoved == 20 || (BIT_CHK( 0 + 0x0400 + 0x0800 + 2 ) || BIT_CHK( 0 + 0x0400 + 1726 ) && GET_TIME_OF_DAY() == 5))
     {
         localVariable81 = localVariable81 + 2;
     }
