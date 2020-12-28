@@ -203,7 +203,14 @@ void generate_hangout_menu()
         }
     }
 
+    // Set B button to nobody
     SET_SEL_CHOICE_KEYBIND(14, 21);
+    // Set bumpers to someone else if it's available
+    if (numSelectionsRemoved <= 14) {
+        SET_SEL_CHOICE_KEYBIND(10, 20);
+        SET_SEL_CHOICE_KEYBIND(11, 20);
+    }
+
     int localVariable56 = ADV_SEL(localVariable54, localVariable55, pageOneMask);
 
     // Field major and minor to make sure you can't tp to the current location
@@ -212,7 +219,7 @@ void generate_hangout_menu()
 
 _choiceLoop:
     // Cancel or see more wasn't chosen
-    if (localVariable56 < 18)
+    if (localVariable56 < 20)
     {
         // Checks whether the selection should be canceled (for when leaving home for the day)
         int cancelSel = 0;
@@ -745,10 +752,13 @@ _choiceLoop:
         }
         // See more was chosen
     }
-    else if (localVariable56 == 18)
+    else if (localVariable56 == 20)
     {
         // Generate another menu
-        SET_SEL_CHOICE_KEYBIND(14, 19);
+        SET_SEL_CHOICE_KEYBIND(14, 21);
+        // Set bumpers to someone else
+        SET_SEL_CHOICE_KEYBIND(10, 20);
+         SET_SEL_CHOICE_KEYBIND(11, 20);
         // If you're on page one go to two and vice versa
         if (localVariable120 == 0)
         {
@@ -943,11 +953,11 @@ void generate_selection_mask()
         numSelectionsRemoved = numSelectionsRemoved + 1;
         yumiState = 0;
     }
-
-    // Decide whether a second page is needed THIS WOULD BE SO MUCH EASIER WITH AN ARRAY AND A LOOP AHHHHH
-    if (numSelectionsRemoved < 12)
+    
+    // Decide whether a second page is needed
+    if (numSelectionsRemoved <= 14)
     {
-        // local58 is all characters removed (subtracting from this adds them back to the second list)
+        // pageTwoMask is all characters removed (subtracting from this adds them back to the second list)
         // Yumi
         if (yumiState == 1)
         {
@@ -959,7 +969,7 @@ void generate_selection_mask()
             numSelectionsRemoved = numSelectionsRemoved + 1;
         }
         // Yukiko
-        if (numSelectionsRemoved < 12)
+        if (numSelectionsRemoved <= 15)
         {
             if (yukikoState == 1)
             {
@@ -972,7 +982,7 @@ void generate_selection_mask()
             }
         }
         // Yosuke
-        if (numSelectionsRemoved < 12)
+        if (numSelectionsRemoved <= 15)
         {
             if (yosukeState == 1)
             {
@@ -985,7 +995,7 @@ void generate_selection_mask()
             }
         }
         // Shu
-        if (numSelectionsRemoved < 12)
+        if (numSelectionsRemoved <= 15)
         {
             if (shuState == 1)
             {
@@ -998,7 +1008,7 @@ void generate_selection_mask()
             }
         }
         // Sayoko
-        if (numSelectionsRemoved < 12)
+        if (numSelectionsRemoved <= 15)
         {
             if (sayokoState == 1)
             {
@@ -1011,7 +1021,7 @@ void generate_selection_mask()
             }
         }
         // Rise
-        if (numSelectionsRemoved < 12)
+        if (numSelectionsRemoved <= 15)
         {
             if (riseState == 1)
             {
@@ -1024,7 +1034,7 @@ void generate_selection_mask()
             }
         }
         // Naoto
-        if (numSelectionsRemoved < 12)
+        if (numSelectionsRemoved <= 15)
         {
             if (naotoState == 1)
             {
@@ -1037,7 +1047,7 @@ void generate_selection_mask()
             }
         }
         // Naoki
-        if (numSelectionsRemoved < 12)
+        if (numSelectionsRemoved <= 15)
         {
             if (naokiState == 1)
             {
@@ -1050,7 +1060,7 @@ void generate_selection_mask()
             }
         }
         // Nanako
-        if (numSelectionsRemoved < 12)
+        if (numSelectionsRemoved <= 15)
         {
             if (nanakoState == 1)
             {
@@ -1063,7 +1073,7 @@ void generate_selection_mask()
             }
         }
         // Marie
-        if (numSelectionsRemoved < 12)
+        if (numSelectionsRemoved <= 15)
         {
             if (marieState == 1)
             {
