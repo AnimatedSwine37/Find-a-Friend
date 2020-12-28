@@ -266,7 +266,7 @@ void generate_hangout_menu()
 
     // Set B button to nobody
     SET_SEL_CHOICE_KEYBIND(14, 21);
-    // Set X to opening options
+    // Set command menu button to opening options
     SET_SEL_CHOICE_KEYBIND(12, 30);
     // Set bumpers to someone else if it's available
     if (pageTwoMask != 1048575)
@@ -820,7 +820,7 @@ _choiceLoop:
     {
         // Generate another menu
         SET_SEL_CHOICE_KEYBIND(14, 21);
-        // Set X to opening options
+        // Set command menu to opening options
         SET_SEL_CHOICE_KEYBIND(12, 30);
         // Set bumpers to someone else
         SET_SEL_CHOICE_KEYBIND(10, 20);
