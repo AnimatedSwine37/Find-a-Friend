@@ -206,7 +206,7 @@ void generate_hangout_menu()
     // Set B button to nobody
     SET_SEL_CHOICE_KEYBIND(14, 21);
     // Set bumpers to someone else if it's available
-    if (numSelectionsRemoved <= 14) {
+    if (pageTwoMask != 1048575) {
         SET_SEL_CHOICE_KEYBIND(10, 20);
         SET_SEL_CHOICE_KEYBIND(11, 20);
     }
@@ -1081,6 +1081,84 @@ void generate_selection_mask()
                 pageOneMask = pageOneMask + 1024;
                 // Add to list 2
                 pageTwoMask = pageTwoMask - 1024;
+                // Increment the count
+                numSelectionsRemoved = numSelectionsRemoved + 1;
+            }
+        }
+        // Kou
+        if (numSelectionsRemoved <= 15)
+        {
+            if (kouState == 1)
+            {
+                // Remove from list 1
+                pageOneMask = pageOneMask + 512;
+                // Add to list 2
+                pageTwoMask = pageTwoMask - 512;
+                // Increment the count
+                numSelectionsRemoved = numSelectionsRemoved + 1;
+            }
+        }
+        // Kanji
+        if (numSelectionsRemoved <= 15)
+        {
+            if (kanjiState == 1)
+            {
+                // Remove from list 1
+                pageOneMask = pageOneMask + 256;
+                // Add to list 2
+                pageTwoMask = pageTwoMask - 256;
+                // Increment the count
+                numSelectionsRemoved = numSelectionsRemoved + 1;
+            }
+        }
+        // Hisano
+        if (numSelectionsRemoved <= 15)
+        {
+            if (hisanoState == 1)
+            {
+                // Remove from list 1
+                pageOneMask = pageOneMask + 128;
+                // Add to list 2
+                pageTwoMask = pageTwoMask - 128;
+                // Increment the count
+                numSelectionsRemoved = numSelectionsRemoved + 1;
+            }
+        }
+        // Eri
+        if (numSelectionsRemoved <= 15)
+        {
+            if (eriState == 1)
+            {
+                // Remove from list 1
+                pageOneMask = pageOneMask + 64;
+                // Add to list 2
+                pageTwoMask = pageTwoMask - 64;
+                // Increment the count
+                numSelectionsRemoved = numSelectionsRemoved + 1;
+            }
+        }
+        // Dojima
+        if (numSelectionsRemoved <= 15)
+        {
+            if (dojimaState == 1)
+            {
+                // Remove from list 1
+                pageOneMask = pageOneMask + 32;
+                // Add to list 2
+                pageTwoMask = pageTwoMask - 32;
+                // Increment the count
+                numSelectionsRemoved = numSelectionsRemoved + 1;
+            }
+        }
+        // Daisuke
+        if (numSelectionsRemoved <= 15)
+        {
+            if (daisukeState == 1)
+            {
+                // Remove from list 1
+                pageOneMask = pageOneMask + 16;
+                // Add to list 2
+                pageTwoMask = pageTwoMask - 16;
                 // Increment the count
                 numSelectionsRemoved = numSelectionsRemoved + 1;
             }
