@@ -703,7 +703,7 @@ _choiceLoop:
                     {
                         FADE(1, 5);
                         FADE_SYNC();
-                        CALL_FIELD(6, 1, 1, 0);
+                        CALL_FIELD(6, 1, 3, 0);
                     }
                 }
                 break;
