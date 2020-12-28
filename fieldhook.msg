@@ -93,8 +93,8 @@
 [f 0 5 -258][f 2 1]Yosuke (Rank [f 2 4 30][f 2 4 14])[e]
 [f 0 5 -258][f 2 1]Yukiko (Rank [f 2 4 31][f 2 4 15])[e]
 [f 0 5 -258][f 2 1]Yumi (Rank [f 2 4 19][f 2 4 3])[e]
-[f 0 5 -258][f 2 1]Others...[e]
-[f 0 5 -258][f 2 1]Cancel[e]
+[f 0 5 -258][f 2 1]Someone else[e]
+[f 0 5 -258][f 2 1]Nobody[e]
 
 [msg ADACHI_ALREADY_HERE]
 [f 0 5 -258][f 2 1]Adachi is nearby.[n][f 1 1][e]
