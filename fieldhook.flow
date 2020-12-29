@@ -913,7 +913,7 @@ void check_if_fox_ready()
     || (BIT_CHK(0 + 339) == 1 && BIT_CHK(0 + 0x0400 + 1698) == 0) || (BIT_CHK(0 + 345) == 1 && BIT_CHK(0 + 0x0400 + 1699) == 0) 
     || (BIT_CHK(0 + 349) == 1 && BIT_CHK(0 + 0x0400 + 1700) == 0) || (BIT_CHK(0 + 355) == 1 && BIT_CHK(0 + 0x0400 + 1701) == 0) 
     || (BIT_CHK(0 + 360) == 1 && BIT_CHK(0 + 0x0400 + 1702) == 0) || (BIT_CHK(0 + 361) == 1 && BIT_CHK(0 + 0x0400 + 1703) == 0) 
-    || (BIT_CHK(0 + 367) == 1 && BIT_CHK(0 + 0x0400 + 1704) == 0))
+    || (BIT_CHK(0 + 367) == 1 && BIT_CHK(0 + 0x0400 + 1704) == 0));
 }
 
 void generate_selection_mask()
