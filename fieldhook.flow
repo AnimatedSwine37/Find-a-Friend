@@ -980,7 +980,7 @@ void generate_selection_mask()
         ayaneState = 0;
     }
     // Chie isn't available Friday and Sunday
-    if (BIT_CHK(0 + 0x0400 + 459) == 0 || GET_SL_LEVEL(11) >= 10 || GET_SL_LEVEL(12) >= 10 || timeOfDay == 5 || (GET_SL_LEVEL(11) <= 0 && GET_SL_LEVEL(12) <= 0 && spoilerFree))
+    if (BIT_CHK(0 + 0x0400 + 459) == 0 || GET_SL_LEVEL(11) >= 10 || GET_SL_LEVEL(12) >= 10 || timeOfDay == 5 || (GET_SL_LEVEL(11) <= 0 && GET_SL_LEVEL(12) <= 0 && spoilerFree) || BIT_CHK( 0 + 0x0400 + 1569 ) == 1)
     {
         pageOneMask = pageOneMask + 8;
         numSelectionsRemoved = numSelectionsRemoved + 1;
@@ -1028,7 +1028,7 @@ void generate_selection_mask()
         hisanoState = 0;
     }
     // Kanji isn't available Monday, Tuesday and Friday
-    if (BIT_CHK(0 + 0x0400 + 457) == 0 || GET_SL_LEVEL(10) >= 10 || timeOfDay == 5 || (GET_SL_LEVEL(10) <= 0 && spoilerFree))
+    if (BIT_CHK(0 + 0x0400 + 457) == 0 || GET_SL_LEVEL(10) >= 10 || timeOfDay == 5 || (GET_SL_LEVEL(10) <= 0 && spoilerFree) || BIT_CHK( 0 + 0x0400 + 1569 ) == 1)
     {
         pageOneMask = pageOneMask + 512;
         numSelectionsRemoved = numSelectionsRemoved + 1;
@@ -1042,7 +1042,7 @@ void generate_selection_mask()
         kouState = 0;
     }
     // Marie isn't available Monday, Tuesday, Thursday and Friday
-    if (BIT_CHK(0 + 0x0400 + 712) == 0 || GET_SL_LEVEL(33) >= 10 || GET_SL_LEVEL(34) >= 10 || timeOfDay == 5 || (GET_SL_LEVEL(33) <= 0 && GET_SL_LEVEL(34) <= 0 && spoilerFree))
+    if (BIT_CHK(0 + 0x0400 + 712) == 0 || GET_SL_LEVEL(33) >= 10 || GET_SL_LEVEL(34) >= 10 || timeOfDay == 5 || (GET_SL_LEVEL(33) <= 0 && GET_SL_LEVEL(34) <= 0 && spoilerFree) || BIT_CHK( 0 + 0x0400 + 1569 ) == 1)
     {
         pageOneMask = pageOneMask + 2048;
         numSelectionsRemoved = numSelectionsRemoved + 1;
@@ -1063,14 +1063,14 @@ void generate_selection_mask()
         naokiState = 0;
     }
     // Naoto isn't available Thursday and Friday
-    if (BIT_CHK(0 + 0x0400 + 462) == 0 || GET_SL_LEVEL(14) >= 10 || GET_SL_LEVEL(15) >= 10 || timeOfDay == 5 || (GET_SL_LEVEL(14) <= 0 && GET_SL_LEVEL(15) <= 0 && spoilerFree))
+    if (BIT_CHK(0 + 0x0400 + 462) == 0 || GET_SL_LEVEL(14) >= 10 || GET_SL_LEVEL(15) >= 10 || timeOfDay == 5 || (GET_SL_LEVEL(14) <= 0 && GET_SL_LEVEL(15) <= 0 && spoilerFree) || BIT_CHK( 0 + 0x0400 + 1569 ) == 1)
     {
         pageOneMask = pageOneMask + 16384;
         numSelectionsRemoved = numSelectionsRemoved + 1;
         naotoState = 0;
     }
     // Rise isn't available Monday, Tuesday, Wednesday and Thursday
-    if (BIT_CHK(0 + 0x0400 + 450) == 0 || GET_SL_LEVEL(3) >= 10 || GET_SL_LEVEL(4) >= 10 || timeOfDay == 5 || (GET_SL_LEVEL(3) <= 0 && GET_SL_LEVEL(4) <= 0 && spoilerFree))
+    if (BIT_CHK(0 + 0x0400 + 450) == 0 || GET_SL_LEVEL(3) >= 10 || GET_SL_LEVEL(4) >= 10 || timeOfDay == 5 || (GET_SL_LEVEL(3) <= 0 && GET_SL_LEVEL(4) <= 0 && spoilerFree) || BIT_CHK( 0 + 0x0400 + 1569 ) == 1)
     {
         pageOneMask = pageOneMask + 32768;
         numSelectionsRemoved = numSelectionsRemoved + 1;
@@ -1091,14 +1091,14 @@ void generate_selection_mask()
         shuState = 0;
     }
     // Yoskue isn't available Tuesday and Wednesday
-    if (BIT_CHK(0 + 0x0400 + 454) == 0 || GET_SL_LEVEL(7) >= 10 || timeOfDay == 5 || (GET_SL_LEVEL(7) <= 0 && spoilerFree))
+    if (BIT_CHK(0 + 0x0400 + 454) == 0 || GET_SL_LEVEL(7) >= 10 || timeOfDay == 5 || (GET_SL_LEVEL(7) <= 0 && spoilerFree) || BIT_CHK( 0 + 0x0400 + 1569 ) == 1)
     {
         pageOneMask = pageOneMask + 262144;
         numSelectionsRemoved = numSelectionsRemoved + 1;
         yosukeState = 0;
     }
     // Yukiko isn't available Friday, Saturday and Sunday
-    if (BIT_CHK(0 + 0x0400 + 452) == 0 || GET_SL_LEVEL(5) >= 10 || GET_SL_LEVEL(6) >= 10 || timeOfDay == 5 || (GET_SL_LEVEL(5) <= 0 && GET_SL_LEVEL(6) <= 0 && spoilerFree))
+    if (BIT_CHK(0 + 0x0400 + 452) == 0 || GET_SL_LEVEL(5) >= 10 || GET_SL_LEVEL(6) >= 10 || timeOfDay == 5 || (GET_SL_LEVEL(5) <= 0 && GET_SL_LEVEL(6) <= 0 && spoilerFree) || BIT_CHK( 0 + 0x0400 + 1569 ) == 1)
     {
         pageOneMask = pageOneMask + 524288;
         numSelectionsRemoved = numSelectionsRemoved + 1;
