@@ -1,18 +1,37 @@
 Ai = BIT_ON( 0 + 0x0400 + 468 ); // 1492
+Ai Night = BIT_ON( 0 + 0x0400 + 1163 ); // 2187
 Ayane = BIT_ON( 0 + 0x0400 + 475 ); // 1499
+Ayane Night = BIT_ON( 0 + 0x0400 + 1161 ); // 2185
+Yumi Night = BIT_ON( 0 + 0x0400 + 1160 ); // 2184
 Kou = BIT_ON( 0 + 0x0400 + 463 ); // 1487
+Kou Night = BIT_ON( 0 + 0x0400 + 1158 ); // 2182
+Daisuke Night = BIT_ON( 0 + 0x0400 + 1159 ); // 2183
 Marie = BIT_ON( 0 + 0x0400 + 712 ); // 1736
 Kanji = BIT_ON( 0 + 0x0400 + 457 ); // 1481
+Kanji Scooter = BIT_ON( 0 + 0x0400 + 627 ); // 1651
+Kanji Night = BIT_ON( 0 + 0x0400 + 1155 ); // 2179
 Rise = BIT_ON( 0 + 0x0400 + 450 ); // 1460
+Rise Scooter = BIT_ON( 0 + 0x0400 + 624 ); // 1648
+Rise Night =   BIT_ON( 0 + 0x0400 + 1156 ); //2180
 Hisano = BIT_ON( 0 + 0x0400 + 466 ); // 1490
 Yukiko = BIT_ON( 0 + 0x0400 + 452 ); // 1476
+Yukiko Scooter = BIT_ON( 0 + 0x0400 + 625 ); // 1649
+Yukiko Night = BIT_ON( 0 + 0x0400 + 1154 ); // 2178
 Naoki = BIT_ON( 0 + 0x0400 + 465 ); // 1489
+Naoki Night = BIT_ON( 0 + 0x0400 + 1162 ); // 2186
 Adachi = BIT_ON( 0 + 0x0400 + 692 ); // 1716
 Shu = BIT_CHK( 0 + 0x0400 + 470 ) == 1 && BIT_CHK( 0 + 0x0400 + 1638 ) == 1 && GET_SL_LEVEL( 23 ) < 10 && GET_TIME_OF_DAY == 5
 Sayoko = BIT_CHK( 0 + 0x0400 + 456 ) == 1 && BIT_CHK( 0 + 0x0400 + 1640 ) == 1 && GET_SL_LEVEL(??) < 10 && GET_TIME_OF_DAY == 5
 Eri = BIT_CHK( 0 + 0x0400 + 1641 ) == 1 && BIT_CHK( 0 + 0x0400 + 476 ) == 1
 Chie = BIT_ON( 0 + 0x0400 + 459 ); // 1483
+Chie Scooter = BIT_ON( 0 + 0x0400 + 628 ); // 1652
+Chie Night = BIT_ON( 0 + 0x0400 + 1153 ); // 2177
 Yosuke = BIT_ON( 0 + 0x0400 + 454 ); // 1478
+Yosuke Night = BIT_ON( 0 + 0x0400 + 1152 ); // 2176
+Yosuke Scooter = BIT_ON( 0 + 0x0400 + 626 ); // 1650
 Naoto = BIT_ON( 0 + 0x0400 + 462 ); // 1486
+Naoto Night = BIT_ON( 0 + 0x0400 + 1157 ); // 2181
+Naoto Scooter = BIT_ON( 0 + 0x0400 + 629 ); // 1653
 Nanako = BIT_ON( 0 + 0x0400 + 449 ); // 1473
 Dojima = BIT_ON( 0 + 0x0400 + 455 ); // 1479
+Teddie = BIT_ON( 0 + 0x0400 + 630 ); // 1654
