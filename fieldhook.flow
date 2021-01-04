@@ -115,6 +115,11 @@ void generate_hangout_menu()
     }
 
     SET_MSG_VAR(4, 621 + CHECK_IF_SL_LVLUP(29), 6);
+    // Dojima reuses Eri's message vars as they're never available at night and the var limit is 32 :(
+    if (GET_TIME_OF_DAY() == 5)
+    {
+        SET_MSG_VAR(4, 621 + CHECK_IF_SL_LVLUP(8), 6);
+    }
     SET_MSG_VAR(5, 621 + CHECK_IF_SL_LVLUP(19), 6);
     // Nanako reuses Hisano's message vars as she's never available at night and the var limit is 32 :(
     if (GET_TIME_OF_DAY() == 5)
@@ -145,11 +150,6 @@ void generate_hangout_menu()
     else
     {
         SET_MSG_VAR(13, 621 + CHECK_IF_SL_LVLUP(17), 6);
-    }
-    // Dojima reuses Kou/Daisuke's message vars as they're never available at night and the var limit is 32 :(
-    if (GET_TIME_OF_DAY() == 5)
-    {
-        SET_MSG_VAR(13, 621 + CHECK_IF_SL_LVLUP(8), 6);
     }
 
     SET_MSG_VAR(14, 621 + CHECK_IF_SL_LVLUP(7), 6);
@@ -195,6 +195,11 @@ void generate_hangout_menu()
     }
 
     SET_MSG_VAR(20, GET_SL_LEVEL(29), 0);
+    // Dojima reuses Eri's message vars as they're never available at night and the var limit is 32 :(
+    if (GET_TIME_OF_DAY() == 5)
+    {
+        SET_MSG_VAR(20, 621 + CHECK_IF_SL_LVLUP(8), 6);
+    }
     SET_MSG_VAR(21, GET_SL_LEVEL(19), 0);
 
     // Nanako reuses Hisano's message vars as she's never available at night and the var limit is 32 :(
@@ -376,32 +381,42 @@ _choiceLoop:
                 break;
             // Ai - Learning Building 1F
             case 1:
-                if (fieldMajor == 6 && fieldMinor == 1)
+                if ((fieldMajor == 6 && fieldMinor == 1) || (fieldMajor == 8 && fieldMinor == 2 && timeOfDay == 5))
                 {
                     OPEN_MSG_WIN();
                     MSG(AI_ALREADY_HERE);
                     CLOSE_MSG_WIN();
                 }
-                else
+                else if(timeOfDay != 5)
                 {
                     FADE(1, 5);
                     FADE_SYNC();
                     CALL_FIELD(6, 1, 5, 0);
+                } else {
+                    FADE(1, 5);
+                    FADE_SYNC();
+                    CALL_FIELD(8, 2, 3, 0);
                 }
                 break;
             // Ayane - Learning Building 2F
             case 2:
-                if (fieldMajor == 6 && fieldMinor == 2 && (GET_SL_LEVEL(27) > 0 || GET_SL_LEVEL(28) > 0))
+                if ((fieldMajor == 6 && fieldMinor == 2 && (GET_SL_LEVEL(27) > 0 || GET_SL_LEVEL(28) > 0)) || (fieldMajor == 8 && fieldMinor == 2 && timeOfDay == 5))
                 {
                     OPEN_MSG_WIN();
                     MSG(AYANE_ALREADY_HERE);
                     CLOSE_MSG_WIN();
                 }
-                else if (GET_SL_LEVEL(27) > 0 || GET_SL_LEVEL(28) > 0)
+                else if ((GET_SL_LEVEL(27) > 0 || GET_SL_LEVEL(28) > 0) && timeOfDay != 5)
                 {
                     FADE(1, 5);
                     FADE_SYNC();
                     CALL_FIELD(6, 2, 0, 0);
+                }
+                else if(timeOfDay == 5)
+                {
+                    FADE(1, 5);
+                    FADE_SYNC();
+                    CALL_FIELD(8, 2, 0, 0);
                 }
                 else if (fieldMajor == 6 && fieldMinor == 4 && (GET_SL_LEVEL(27) == 0 && GET_SL_LEVEL(28) == 0))
                 {
@@ -438,29 +453,35 @@ _choiceLoop:
                 }
                 else
                 {
-                    if (fieldMajor == 6 && fieldMinor == 14)
+                    if ((fieldMajor == 6 && fieldMinor == 14) || (fieldMajor == 8 && fieldMinor == 1 && timeOfDay == 5))
                     {
                         OPEN_MSG_WIN();
                         MSG(CHIE_ALREADY_HERE);
                         CLOSE_MSG_WIN();
                     }
-                    else
+                    else if(timeOfDay != 5)
                     {
                         FADE(1, 5);
                         FADE_SYNC();
                         CALL_FIELD(6, 14, 1, 0);
+                    } 
+                    else 
+                    {
+                        FADE(1, 5);
+                        FADE_SYNC();
+                        CALL_FIELD(8, 1, 4, 0);
                     }
                 }
                 break;
             // Daisuke - Learning Building 2F
             case 4:
-                if (fieldMajor == 6 && fieldMinor == 2 && GET_SL_LEVEL(17) > 0)
+                if ((fieldMajor == 6 && fieldMinor == 2 && GET_SL_LEVEL(17) > 0) || (fieldMajor == 8 && fieldMinor == 1 && timeOfDay == 5))
                 {
                     OPEN_MSG_WIN();
                     MSG(DAISUKE_ALREADY_HERE);
                     CLOSE_MSG_WIN();
                 }
-                else if (GET_SL_LEVEL(17) > 0)
+                else if (GET_SL_LEVEL(17) > 0 && timeOfDay != 5)
                 {
                     FADE(1, 5);
                     FADE_SYNC();
@@ -472,12 +493,19 @@ _choiceLoop:
                     MSG(DAISUKE_ALREADY_HERE);
                     CLOSE_MSG_WIN();
                 }
-                else
+                else if(timeOfDay != 5)
                 {
                     FADE(1, 5);
                     FADE_SYNC();
                     CALL_FIELD(6, 1, 2, 0);
                 }
+                else
+                {
+                    FADE(1, 5);
+                    FADE_SYNC();
+                    CALL_FIELD(8, 1, 8, 0);
+                }
+                
                 break;
             // Dojima - Home
             case 5:
@@ -560,29 +588,36 @@ _choiceLoop:
                 }
                 else
                 {
-                    if (fieldMajor == 6 && fieldMinor == 4)
+                    if ((fieldMajor == 6 && fieldMinor == 4) || (fieldMajor == 8 && fieldMinor == 1 && timeOfDay == 5))
                     {
                         OPEN_MSG_WIN();
                         MSG(KANJI_ALREADY_HERE);
                         CLOSE_MSG_WIN();
                     }
-                    else
+                    else if(timeOfDay != 5)
                     {
                         FADE(1, 5);
                         FADE_SYNC();
                         CALL_FIELD(6, 4, 5, 0);
                     }
+                    else
+                    {
+                        FADE(1, 5);
+                        FADE_SYNC();
+                        CALL_FIELD(8, 1, 5, 0);
+                    }
+                    
                 }
                 break;
             // Kou - Learning Building 2F
             case 10:
-                if (fieldMajor == 6 && fieldMinor == 2 && GET_SL_LEVEL(16) > 0)
+                if ((fieldMajor == 6 && fieldMinor == 2 && GET_SL_LEVEL(16) > 0) || (fieldMajor == 8 && fieldMinor == 1 && timeOfDay == 5))
                 {
                     OPEN_MSG_WIN();
                     MSG(KOU_ALREADY_HERE);
                     CLOSE_MSG_WIN();
                 }
-                else if (GET_SL_LEVEL(16) > 0)
+                else if (GET_SL_LEVEL(16) > 0 && timeOfDay != 5)
                 {
                     FADE(1, 5);
                     FADE_SYNC();
@@ -594,12 +629,19 @@ _choiceLoop:
                     MSG(KOU_ALREADY_HERE);
                     CLOSE_MSG_WIN();
                 }
-                else
+                else if (timeOfDay != 5)
                 {
                     FADE(1, 5);
                     FADE_SYNC();
                     CALL_FIELD(6, 1, 2, 0);
+                } 
+                else
+                {
+                    FADE(1, 5);
+                    FADE_SYNC();
+                    CALL_FIELD(8, 1, 8, 0);
                 }
+                
                 break;
 
             // Marie - South Shopping District
@@ -643,12 +685,19 @@ _choiceLoop:
                         MSG(NAOKI_ALREADY_HERE);
                         CLOSE_MSG_WIN();
                     }
-                    else
+                    else if (timeOfDay != 5)
                     {
                         FADE(1, 5);
                         FADE_SYNC();
                         CALL_FIELD(8, 1, 5, 0);
                     }
+                    else
+                    {
+                        FADE(1, 5);
+                        FADE_SYNC();
+                        CALL_FIELD(8, 1, 2, 0);
+                    }
+                    
                     // Learning Building 1F on Weekdays
                 }
                 else
@@ -688,18 +737,25 @@ _choiceLoop:
                 }
                 else
                 {
-                    if (fieldMajor == 6 && fieldMinor == 1)
+                    if ((fieldMajor == 6 && fieldMinor == 1) || (fieldMajor == 8 && fieldMinor == 2 && timeOfDay == 5))
                     {
                         OPEN_MSG_WIN();
                         MSG(NAOTO_ALREADY_HERE);
                         CLOSE_MSG_WIN();
                     }
-                    else
+                    else if(timeOfDay != 5)
                     {
                         FADE(1, 5);
                         FADE_SYNC();
                         CALL_FIELD(6, 1, 4, 0);
                     }
+                    else
+                    {
+                        FADE(1, 5);
+                        FADE_SYNC();
+                        CALL_FIELD(8, 2, 7, 0);
+                    }
+                    
                 }
                 break;
             // Rise
@@ -723,18 +779,25 @@ _choiceLoop:
                 }
                 else
                 {
-                    if (fieldMajor == 6 && fieldMinor == 1)
+                    if ((fieldMajor == 6 && fieldMinor == 1) || (fieldMajor == 8 && fieldMinor == 2 && timeOfDay == 5))
                     {
                         OPEN_MSG_WIN();
                         MSG(RISE_ALREADY_HERE);
                         CLOSE_MSG_WIN();
                     }
-                    else
+                    else if(timeOfDay != 5)
                     {
                         FADE(1, 5);
                         FADE_SYNC();
                         CALL_FIELD(6, 1, 3, 0);
                     }
+                    else
+                    {
+                        FADE(1, 5);
+                        FADE_SYNC();
+                        CALL_FIELD(8, 2, 2, 0);
+                    }
+                    
                 }
                 break;
             // Sayoko - South Shopping District
@@ -788,18 +851,25 @@ _choiceLoop:
                 }
                 else
                 {
-                    if (fieldMajor == 6 && fieldMinor == 2)
+                    if ((fieldMajor == 6 && fieldMinor == 2) || (fieldMajor == 8 && fieldMinor == 1 && timeOfDay == 5))
                     {
                         OPEN_MSG_WIN();
                         MSG(YOSUKE_ALREADY_HERE);
                         CLOSE_MSG_WIN();
                     }
-                    else
+                    else if(timeOfDay != 5)
                     {
                         FADE(1, 5);
                         FADE_SYNC();
                         CALL_FIELD(6, 2, 0, 0);
                     }
+                    else
+                    {
+                        FADE(1, 5);
+                        FADE_SYNC();
+                        CALL_FIELD(8, 1, 5, 0);
+                    }
+                    
                 }
                 break;
             // Yukiko
@@ -823,34 +893,48 @@ _choiceLoop:
                 }
                 else
                 {
-                    if (fieldMajor == 6 && fieldMinor == 1)
+                    if ((fieldMajor == 6 && fieldMinor == 1) || (fieldMajor == 8 && fieldMinor == 2 && timeOfDay == 5))
                     {
                         OPEN_MSG_WIN();
                         MSG(YUKIKO_ALREADY_HERE);
                         CLOSE_MSG_WIN();
                     }
-                    else
+                    else if(timeOfDay != 5)
                     {
                         FADE(1, 5);
                         FADE_SYNC();
                         CALL_FIELD(6, 1, 0, 0);
                     }
+                    else
+                    {
+                        FADE(1, 5);
+                        FADE_SYNC();
+                        CALL_FIELD(8, 2, 2, 0);
+                    }
+                    
                 }
                 break;
             // Yumi - Learning Building 2F
             case 20:
-                if (fieldMajor == 6 && fieldMinor == 2 && (GET_SL_LEVEL(25) > 0 || GET_SL_LEVEL(26) > 0))
+                if ((fieldMajor == 6 && fieldMinor == 2 && (GET_SL_LEVEL(25) > 0 || GET_SL_LEVEL(26) > 0)) || (fieldMajor == 8 && fieldMinor == 2 && timeOfDay == 5))
                 {
                     OPEN_MSG_WIN();
                     MSG(YUMI_ALREADY_HERE);
                     CLOSE_MSG_WIN();
                 }
-                else if (GET_SL_LEVEL(25) > 0 || GET_SL_LEVEL(26) > 0)
+                else if ((GET_SL_LEVEL(25) > 0 || GET_SL_LEVEL(26) > 0) && timeOfDay != 5)
                 {
                     FADE(1, 5);
                     FADE_SYNC();
                     CALL_FIELD(6, 2, 0, 0);
                 }
+                else if (timeOfDay == 5)
+                {
+                    FADE(1, 5);
+                    FADE_SYNC();
+                    CALL_FIELD(8, 2, 0, 0);
+                }
+                
                 else if (fieldMajor == 6 && fieldMinor == 4 && (GET_SL_LEVEL(25) == 0 && GET_SL_LEVEL(26) == 0))
                 {
                     OPEN_MSG_WIN();
@@ -966,28 +1050,28 @@ void generate_selection_mask()
     }
 
     // Ai isn't available Monday, Tuesday, Saturday, Sunday and Holidays
-    if (BIT_CHK(0 + 0x0400 + 468) == 0 || GET_SL_LEVEL(21) >= 10 || GET_SL_LEVEL(22) >= 10 || timeOfDay == 5 || (GET_SL_LEVEL(22) <= 0 && GET_SL_LEVEL(21) <= 0 && spoilerFree))
+    if ((BIT_CHK(0 + 0x0400 + 468) == 0 && timeOfDay != 5) || GET_SL_LEVEL(21) >= 10 || GET_SL_LEVEL(22) >= 10 || (timeOfDay == 5 && (BIT_CHK( 0 + 0x0400 + 1163 ) == 0 || CHECK_IF_SL_LVLUP(21) == 1 || CHECK_IF_SL_LVLUP(22) == 1)) || (GET_SL_LEVEL(22) <= 0 && GET_SL_LEVEL(21) <= 0 && spoilerFree))
     {
         pageOneMask = pageOneMask + 2;
         numSelectionsRemoved = numSelectionsRemoved + 1;
         aiState = 0;
     }
     // Ayane isn't available Wednesday, Friday, Saturday, Sunday and Holiday
-    if (BIT_CHK(0 + 0x0400 + 475) == 0 || GET_SL_LEVEL(27) >= 10 || GET_SL_LEVEL(28) >= 10 || GET_SL_LEVEL(25) > 0 || GET_SL_LEVEL(26) > 0 || timeOfDay == 5 || (GET_SL_LEVEL(27) <= 0 && GET_SL_LEVEL(28) <= 0 && spoilerFree))
+    if ((BIT_CHK(0 + 0x0400 + 475) == 0 && timeOfDay != 5) || GET_SL_LEVEL(27) >= 10 || GET_SL_LEVEL(28) >= 10 || GET_SL_LEVEL(25) > 0 || GET_SL_LEVEL(26) > 0 || (timeOfDay == 5 && (BIT_CHK( 0 + 0x0400 + 1161 ) == 0 || CHECK_IF_SL_LVLUP(27) || CHECK_IF_SL_LVLUP(28))) || (GET_SL_LEVEL(27) <= 0 && GET_SL_LEVEL(28) <= 0 && spoilerFree))
     {
         pageOneMask = pageOneMask + 4;
         numSelectionsRemoved = numSelectionsRemoved + 1;
         ayaneState = 0;
     }
     // Chie isn't available Friday and Sunday
-    if (BIT_CHK(0 + 0x0400 + 459) == 0 || GET_SL_LEVEL(11) >= 10 || GET_SL_LEVEL(12) >= 10 || timeOfDay == 5 || (GET_SL_LEVEL(11) <= 0 && GET_SL_LEVEL(12) <= 0 && spoilerFree) || BIT_CHK( 0 + 0x0400 + 1569 ) == 1)
+    if ((BIT_CHK(0 + 0x0400 + 459) == 0 && timeOfDay != 5) || GET_SL_LEVEL(11) >= 10 || GET_SL_LEVEL(12) >= 10 || (timeOfDay == 5 && (BIT_CHK( 0 + 0x0400 + 1153 ) == 0 || CHECK_IF_SL_LVLUP(11) || CHECK_IF_SL_LVLUP(12))) || (GET_SL_LEVEL(11) <= 0 && GET_SL_LEVEL(12) <= 0 && spoilerFree) || (BIT_CHK( 0 + 0x0400 + 1569 ) == 1 && timeOfDay != 5))
     {
         pageOneMask = pageOneMask + 8;
         numSelectionsRemoved = numSelectionsRemoved + 1;
         chieState = 0;
     }
     // Daisuke isn't available Monday, Wednesday, Friday, Sunday and Holidays
-    if (BIT_CHK(0 + 0x0400 + 463) == 0 || GET_SL_LEVEL(17) >= 10 || GET_SL_LEVEL(16) > 0 || timeOfDay == 5 || (GET_SL_LEVEL(17) <= 0 && spoilerFree))
+    if ((BIT_CHK(0 + 0x0400 + 463) == 0 && timeOfDay != 5) || GET_SL_LEVEL(17) >= 10 || GET_SL_LEVEL(16) > 0 || (timeOfDay == 5 && (BIT_CHK( 0 + 0x0400 + 1159 ) == 0 || CHECK_IF_SL_LVLUP(17))) || (GET_SL_LEVEL(17) <= 0 && spoilerFree))
     {
         pageOneMask = pageOneMask + 16;
         numSelectionsRemoved = numSelectionsRemoved + 1;
@@ -1028,21 +1112,21 @@ void generate_selection_mask()
         hisanoState = 0;
     }
     // Kanji isn't available Monday, Tuesday and Friday
-    if (BIT_CHK(0 + 0x0400 + 457) == 0 || GET_SL_LEVEL(10) >= 10 || timeOfDay == 5 || (GET_SL_LEVEL(10) <= 0 && spoilerFree) || BIT_CHK( 0 + 0x0400 + 1569 ) == 1)
+    if ((BIT_CHK(0 + 0x0400 + 457) == 0 && timeOfDay != 5) || GET_SL_LEVEL(10) >= 10 || (timeOfDay == 5 && (BIT_CHK( 0 + 0x0400 + 1155 ) == 0 || CHECK_IF_SL_LVLUP(10))) || (GET_SL_LEVEL(10) <= 0 && spoilerFree) || (BIT_CHK( 0 + 0x0400 + 1569 ) == 1 && timeOfDay != 5))
     {
         pageOneMask = pageOneMask + 512;
         numSelectionsRemoved = numSelectionsRemoved + 1;
         kanjiState = 0;
     }
     // Kou isn't available Monday, Wednesday, Friday, Sunday and Holidays
-    if (BIT_CHK(0 + 0x0400 + 463) == 0 || GET_SL_LEVEL(0x10) >= 10 || GET_SL_LEVEL(17) > 0 || timeOfDay == 5 || (GET_SL_LEVEL(16) <= 0 && spoilerFree))
+    if ((BIT_CHK(0 + 0x0400 + 463) == 0 && timeOfDay != 5) || GET_SL_LEVEL(0x10) >= 10 || GET_SL_LEVEL(17) > 0 || (timeOfDay == 5 && (BIT_CHK( 0 + 0x0400 + 1158 ) == 0 || CHECK_IF_SL_LVLUP(16))) || (GET_SL_LEVEL(16) <= 0 && spoilerFree))
     {
         pageOneMask = pageOneMask + 1024;
         numSelectionsRemoved = numSelectionsRemoved + 1;
         kouState = 0;
     }
     // Marie isn't available Monday, Tuesday, Thursday and Friday
-    if (BIT_CHK(0 + 0x0400 + 712) == 0 || GET_SL_LEVEL(33) >= 10 || GET_SL_LEVEL(34) >= 10 || timeOfDay == 5 || (GET_SL_LEVEL(33) <= 0 && GET_SL_LEVEL(34) <= 0 && spoilerFree) || BIT_CHK( 0 + 0x0400 + 1569 ) == 1)
+    if (BIT_CHK(0 + 0x0400 + 712) == 0 || GET_SL_LEVEL(33) >= 10 || GET_SL_LEVEL(34) >= 10 || timeOfDay == 5 || (GET_SL_LEVEL(33) <= 0 && GET_SL_LEVEL(34) <= 0 && spoilerFree) || (BIT_CHK( 0 + 0x0400 + 1569 ) == 1 && timeOfDay != 5))
     {
         pageOneMask = pageOneMask + 2048;
         numSelectionsRemoved = numSelectionsRemoved + 1;
@@ -1056,21 +1140,21 @@ void generate_selection_mask()
         nanakoState = 0;
     }
     // Naoki isn't available Friday, Saturday and Sunday
-    if (BIT_CHK(0 + 0x0400 + 465) == 0 || GET_SL_LEVEL(18) >= 10 || timeOfDay == 5 || (GET_SL_LEVEL(18) <= 0 && spoilerFree))
+    if ((BIT_CHK(0 + 0x0400 + 465) == 0 && timeOfDay != 5) || GET_SL_LEVEL(18) >= 10 || (timeOfDay == 5 && (BIT_CHK( 0 + 0x0400 + 1162 ) == 0 || CHECK_IF_SL_LVLUP(18))) || (GET_SL_LEVEL(18) <= 0 && spoilerFree))
     {
         pageOneMask = pageOneMask + 8192;
         numSelectionsRemoved = numSelectionsRemoved + 1;
         naokiState = 0;
     }
     // Naoto isn't available Thursday and Friday
-    if (BIT_CHK(0 + 0x0400 + 462) == 0 || GET_SL_LEVEL(14) >= 10 || GET_SL_LEVEL(15) >= 10 || timeOfDay == 5 || (GET_SL_LEVEL(14) <= 0 && GET_SL_LEVEL(15) <= 0 && spoilerFree) || BIT_CHK( 0 + 0x0400 + 1569 ) == 1)
+    if ((BIT_CHK(0 + 0x0400 + 462) == 0 && timeOfDay != 5) || GET_SL_LEVEL(14) >= 10 || GET_SL_LEVEL(15) >= 10 || (timeOfDay == 5 && (BIT_CHK( 0 + 0x0400 + 1157 ) == 0 || CHECK_IF_SL_LVLUP(14) || CHECK_IF_SL_LVLUP(15))) || (GET_SL_LEVEL(14) <= 0 && GET_SL_LEVEL(15) <= 0 && spoilerFree) || (BIT_CHK( 0 + 0x0400 + 1569 ) == 1 && timeOfDay != 5))
     {
         pageOneMask = pageOneMask + 16384;
         numSelectionsRemoved = numSelectionsRemoved + 1;
         naotoState = 0;
     }
     // Rise isn't available Monday, Tuesday, Wednesday and Thursday
-    if (BIT_CHK(0 + 0x0400 + 450) == 0 || GET_SL_LEVEL(3) >= 10 || GET_SL_LEVEL(4) >= 10 || timeOfDay == 5 || (GET_SL_LEVEL(3) <= 0 && GET_SL_LEVEL(4) <= 0 && spoilerFree) || BIT_CHK( 0 + 0x0400 + 1569 ) == 1)
+    if ((BIT_CHK(0 + 0x0400 + 450) == 0 && timeOfDay != 5) || GET_SL_LEVEL(3) >= 10 || GET_SL_LEVEL(4) >= 10 || (timeOfDay == 5 && (BIT_CHK( 0 + 0x0400 + 1156 ) == 0 || CHECK_IF_SL_LVLUP(3) || CHECK_IF_SL_LVLUP(4))) || (GET_SL_LEVEL(3) <= 0 && GET_SL_LEVEL(4) <= 0 && spoilerFree) || (BIT_CHK( 0 + 0x0400 + 1569 ) == 1 && timeOfDay != 5))
     {
         pageOneMask = pageOneMask + 32768;
         numSelectionsRemoved = numSelectionsRemoved + 1;
@@ -1091,21 +1175,21 @@ void generate_selection_mask()
         shuState = 0;
     }
     // Yoskue isn't available Tuesday and Wednesday
-    if (BIT_CHK(0 + 0x0400 + 454) == 0 || GET_SL_LEVEL(7) >= 10 || timeOfDay == 5 || (GET_SL_LEVEL(7) <= 0 && spoilerFree) || BIT_CHK( 0 + 0x0400 + 1569 ) == 1)
+    if ((BIT_CHK(0 + 0x0400 + 454) == 0 && timeOfDay != 5) || GET_SL_LEVEL(7) >= 10 || (timeOfDay == 5 && (BIT_CHK( 0 + 0x0400 + 1152 ) == 0 || CHECK_IF_SL_LVLUP(7))) || (GET_SL_LEVEL(7) <= 0 && spoilerFree) || (BIT_CHK( 0 + 0x0400 + 1569 ) == 1 && timeOfDay != 5))
     {
         pageOneMask = pageOneMask + 262144;
         numSelectionsRemoved = numSelectionsRemoved + 1;
         yosukeState = 0;
     }
     // Yukiko isn't available Friday, Saturday and Sunday
-    if (BIT_CHK(0 + 0x0400 + 452) == 0 || GET_SL_LEVEL(5) >= 10 || GET_SL_LEVEL(6) >= 10 || timeOfDay == 5 || (GET_SL_LEVEL(5) <= 0 && GET_SL_LEVEL(6) <= 0 && spoilerFree) || BIT_CHK( 0 + 0x0400 + 1569 ) == 1)
+    if ((BIT_CHK(0 + 0x0400 + 452) == 0 && timeOfDay != 5) || GET_SL_LEVEL(5) >= 10 || GET_SL_LEVEL(6) >= 10 || (timeOfDay == 5 && (BIT_CHK( 0 + 0x0400 + 1154 ) == 0 || CHECK_IF_SL_LVLUP(5) || CHECK_IF_SL_LVLUP(6))) || (GET_SL_LEVEL(5) <= 0 && GET_SL_LEVEL(6) <= 0 && spoilerFree) || (BIT_CHK( 0 + 0x0400 + 1569 ) == 1 && timeOfDay != 5))
     {
         pageOneMask = pageOneMask + 524288;
         numSelectionsRemoved = numSelectionsRemoved + 1;
         yukikoState = 0;
     }
     // Yumi isn't available Wednesday, Friday, Saturday, Sunday and Holiday
-    if (BIT_CHK(0 + 0x0400 + 475) == 0 || GET_SL_LEVEL(25) >= 10 || GET_SL_LEVEL(26) >= 10 || GET_SL_LEVEL(28) > 0 || GET_SL_LEVEL(27) > 0 || timeOfDay == 5 || (GET_SL_LEVEL(25) <= 0 && GET_SL_LEVEL(26) <= 0 && spoilerFree))
+    if ((BIT_CHK(0 + 0x0400 + 475) == 0 && timeOfDay != 5) || GET_SL_LEVEL(25) >= 10 || GET_SL_LEVEL(26) >= 10 || GET_SL_LEVEL(28) > 0 || GET_SL_LEVEL(27) > 0 || (timeOfDay == 5 && (BIT_CHK( 0 + 0x0400 + 1160 ) == 0 || CHECK_IF_SL_LVLUP(25) || CHECK_IF_SL_LVLUP(26))) || (GET_SL_LEVEL(25) <= 0 && GET_SL_LEVEL(26) <= 0 && spoilerFree))
     {
         pageOneMask = pageOneMask + 1048576;
         numSelectionsRemoved = numSelectionsRemoved + 1;
