@@ -111,6 +111,7 @@
 [f 0 5 -258][f 2 1]Rise (Rank [f 2 4 26][f 2 4 10])[e]
 [f 0 5 -258][f 2 1]Sayoko (Rank [f 2 4 27][f 2 4 11])[e]
 [f 0 5 -258][f 2 1]Shu (Rank [f 2 4 28][f 2 4 12])[e]
+[f 0 5 -258][f 2 1]Teddie (Rank [f 2 4 28][f 2 4 12])[e]
 [f 0 5 -258][f 2 1]Yosuke (Rank [f 2 4 30][f 2 4 14])[e]
 [f 0 5 -258][f 2 1]Yukiko (Rank [f 2 4 31][f 2 4 15])[e]
 [f 0 5 -258][f 2 1]Yumi (Rank [f 2 4 19][f 2 4 3])[e]
@@ -173,3 +174,6 @@
 
 [msg SHRINE_ALREADY_HERE]
 [f 0 5 -258][f 2 1]The shrine is nearby.[n][f 1 1][e]
+
+[msg TEDDIE_ALREADY_HERE]
+[f 0 5 -258][f 2 1]Teddie is nearby.[n][f 1 1][e]
