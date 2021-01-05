@@ -1351,7 +1351,7 @@ void generate_selection_mask()
         naokiState = 0;
     }
     // Naoto isn't available Thursday and Friday
-    if ((BIT_CHK(0 + 0x0400 + 461) == 0 && timeOfDay != 5) || (BIT_CHK( 0 + 0x0400 + 1569 ) && CHECK_TIME_SPAN(6, 11, 6, 20)) || GET_SL_LEVEL(14) >= 10 || GET_SL_LEVEL(15) >= 10 || (timeOfDay == 5 && (BIT_CHK( 0 + 0x0400 + 1157 ) == 0 || (GET_SL_LEVEL(14) <= 0 && GET_SL_LEVEL(15) <= 0))) || (GET_SL_LEVEL(14) <= 0 && GET_SL_LEVEL(15) <= 0 && spoilerFree) || (BIT_CHK( 0 + 87 )) && timeOfDay != 5)
+    if ((BIT_CHK(0 + 0x0400 + 461) == 0 && timeOfDay != 5) || (BIT_CHK( 0 + 0x0400 + 1569 ) && CHECK_TIME_SPAN(11, 6, 11, 20)) || GET_SL_LEVEL(14) >= 10 || GET_SL_LEVEL(15) >= 10 || (timeOfDay == 5 && (BIT_CHK( 0 + 0x0400 + 1157 ) == 0 || (GET_SL_LEVEL(14) <= 0 && GET_SL_LEVEL(15) <= 0))) || (GET_SL_LEVEL(14) <= 0 && GET_SL_LEVEL(15) <= 0 && spoilerFree) || (BIT_CHK( 0 + 87 )) && timeOfDay != 5)
     {
         pageOneMask = pageOneMask + 65536;
         numSelectionsRemoved = numSelectionsRemoved + 1;
