@@ -1261,7 +1261,7 @@ void generate_selection_mask()
         chieState = 0;
     }
     // Chie scooter
-    if(!(BIT_CHK( 0 + 0x0400 + 628 ) == 1 && timeOfDay != 5) || BIT_CHK( 0 + 87 )) 
+    if(!(BIT_CHK( 0 + 0x0400 + 628 ) == 1 && timeOfDay != 5) || BIT_CHK( 0 + 87 ) || BIT_CHK( 0 + 0x0400 + 1569 )) 
     {
         pageOneMask = pageOneMask + 16;
         numSelectionsRemoved = numSelectionsRemoved + 1;
@@ -1316,7 +1316,7 @@ void generate_selection_mask()
         kanjiState = 0;
     }
     // Kanji Scooter
-    if(!(BIT_CHK( 0 + 0x0400 + 627 ) == 1 && timeOfDay != 5) || BIT_CHK( 0 + 87 )) 
+    if(!(BIT_CHK( 0 + 0x0400 + 627 ) == 1 && timeOfDay != 5) || BIT_CHK( 0 + 87 ) || BIT_CHK( 0 + 0x0400 + 1569 )) 
     {
         pageOneMask = pageOneMask + 2048;
         numSelectionsRemoved = numSelectionsRemoved + 1;
@@ -1358,7 +1358,7 @@ void generate_selection_mask()
         naotoState = 0;
     }
     // Naoto Scooter
-    if(!(BIT_CHK( 0 + 0x0400 + 629 ) == 1 && timeOfDay != 5) || BIT_CHK( 0 + 87 )) 
+    if(!(BIT_CHK( 0 + 0x0400 + 629 ) == 1 && timeOfDay != 5) || BIT_CHK( 0 + 87 ) || BIT_CHK( 0 + 0x0400 + 1569 )) 
     {
         pageOneMask = pageOneMask + 131072;
         numSelectionsRemoved = numSelectionsRemoved + 1;
@@ -1372,7 +1372,7 @@ void generate_selection_mask()
         riseState = 0;
     }
     // Rise Scooter
-    if(!(BIT_CHK( 0 + 0x0400 + 624 ) == 1 && timeOfDay != 5) || BIT_CHK( 0 + 87 )) 
+    if(!(BIT_CHK( 0 + 0x0400 + 624 ) == 1 && timeOfDay != 5) || BIT_CHK( 0 + 87 ) || BIT_CHK( 0 + 0x0400 + 1569 )) 
     {
         pageOneMask = pageOneMask + 524288;
         numSelectionsRemoved = numSelectionsRemoved + 1;
@@ -1407,7 +1407,7 @@ void generate_selection_mask()
         yosukeState = 0;
     }
     // Yosuke Scooter
-    if(!(BIT_CHK( 0 + 0x0400 + 626 ) == 1 && timeOfDay != 5) || BIT_CHK( 0 + 87 )) 
+    if(!(BIT_CHK( 0 + 0x0400 + 626 ) == 1 && timeOfDay != 5) || BIT_CHK( 0 + 87 ) || BIT_CHK( 0 + 0x0400 + 1569 )) 
     {
         pageOneMask = pageOneMask + 16777216;
         numSelectionsRemoved = numSelectionsRemoved + 1;
@@ -1421,7 +1421,7 @@ void generate_selection_mask()
         yukikoState = 0;
     }
     // Yukiko Scooter
-    if(!(BIT_CHK( 0 + 0x0400 + 625 ) == 1 && timeOfDay != 5) || BIT_CHK( 0 + 87 )) 
+    if(!(BIT_CHK( 0 + 0x0400 + 625 ) == 1 && timeOfDay != 5) || BIT_CHK( 0 + 87 ) || BIT_CHK( 0 + 0x0400 + 1569 )) 
     {
         pageOneMask = pageOneMask + 67108864;
         numSelectionsRemoved = numSelectionsRemoved + 1;
