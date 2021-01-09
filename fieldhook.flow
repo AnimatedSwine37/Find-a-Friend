@@ -1211,7 +1211,7 @@ void generate_selection_mask()
     int naotoState = 1;
     int naotoScooterState = 1;
     int riseState = 1;
-    int rieseScooterState = 1;
+    int riseScooterState = 1;
     int sayokoState = 1;
     int shuState = 1;
     int teddieState = 1;
@@ -1378,7 +1378,7 @@ void generate_selection_mask()
     {
         pageOneMask = pageOneMask + 524288;
         numSelectionsRemoved = numSelectionsRemoved + 1;
-        rieseScooterState = 0;
+        riseScooterState = 0;
     }   
     // Sayoko isn't available Monday, Tuesday, Saturday, Sunday, Holidays, and in the day
     if (BIT_CHK(0 + 0x0400 + 456) == 0 || BIT_CHK(0 + 0x0400 + 1640) == 0 || timeOfDay != 5 || GET_SL_LEVEL(9) >= 10 || (GET_SL_LEVEL(9) <= 0 && spoilerFree))
