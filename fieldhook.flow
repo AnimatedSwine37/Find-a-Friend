@@ -87,6 +87,7 @@ void generate_hangout_menu()
             return;
         }
     }
+
     // Variables that store the location of the messages and whatnot
     int localVariable54 = HANG_OUT_MSG;
     int localVariable55 = HANG_OUT_SEL;
@@ -97,8 +98,6 @@ void generate_hangout_menu()
     // Get the time of day from 0-5, early morning to evening
     int timeOfDay;
     timeOfDay = GET_TIME_OF_DAY();
-    //Check if it is a holiday
-    check_if_holiday();
 
     // Variable to keep track of the page we're on
     int localVariable120 = 0;
@@ -1224,6 +1223,9 @@ void generate_selection_mask()
     int yumiState = 1;
     int localVariable116 = 1;
 
+    //Check if it is a holiday
+    check_if_holiday();
+
     int timeOfDay;
     timeOfDay = GET_TIME_OF_DAY();
 
@@ -1436,7 +1438,7 @@ void generate_selection_mask()
     }
 
     // Decide whether a second page is needed
-    if (numSelectionsRemoved <= 15)
+    if (numSelectionsRemoved <= 21)
     {
         // pageTwoMask is all characters removed (subtracting from this adds them back to the second list)
         // Yumi
@@ -1450,7 +1452,7 @@ void generate_selection_mask()
             numSelectionsRemoved = numSelectionsRemoved + 1;
         }
         // Yukiko Scooter
-        if (numSelectionsRemoved <= 16)
+        if (numSelectionsRemoved <= 22)
         {
             if (yukikoScooterState == 1)
             {
@@ -1463,7 +1465,7 @@ void generate_selection_mask()
             }
         }
         // Yukiko
-        if (numSelectionsRemoved <= 16)
+        if (numSelectionsRemoved <= 22)
         {
             if (yukikoState == 1)
             {
@@ -1476,7 +1478,7 @@ void generate_selection_mask()
             }
         }
         // Yosuke Scooter
-        if (numSelectionsRemoved <= 16)
+        if (numSelectionsRemoved <= 22)
         {
             if (yosukeScooterState == 1)
             {
@@ -1489,7 +1491,7 @@ void generate_selection_mask()
             }
         }
         // Yosuke
-        if (numSelectionsRemoved <= 16)
+        if (numSelectionsRemoved <= 22)
         {
             if (yosukeState == 1)
             {
@@ -1502,7 +1504,7 @@ void generate_selection_mask()
             }
         }
         // Teddie
-        if (numSelectionsRemoved <= 16)
+        if (numSelectionsRemoved <= 22)
         {
             if (teddieState == 1)
             {
@@ -1515,7 +1517,7 @@ void generate_selection_mask()
             }
         }
         // Shu
-        if (numSelectionsRemoved <= 16)
+        if (numSelectionsRemoved <= 22)
         {
             if (shuState == 1)
             {
@@ -1528,7 +1530,7 @@ void generate_selection_mask()
             }
         }
         // Sayoko
-        if (numSelectionsRemoved <= 16)
+        if (numSelectionsRemoved <= 22)
         {
             if (sayokoState == 1)
             {
@@ -1541,9 +1543,9 @@ void generate_selection_mask()
             }
         }
         // Rise Scooter
-        if (numSelectionsRemoved <= 16)
+        if (numSelectionsRemoved <= 22)
         {
-            if (rieseScooterState == 1)
+            if (riseScooterState == 1)
             {
                 // Remove from list 1
                 pageOneMask = pageOneMask + 524288;
@@ -1554,7 +1556,7 @@ void generate_selection_mask()
             }
         }
         // Rise
-        if (numSelectionsRemoved <= 16)
+        if (numSelectionsRemoved <= 22)
         {
             if (riseState == 1)
             {
@@ -1567,7 +1569,7 @@ void generate_selection_mask()
             }
         }
         // Naoto Scooter
-        if (numSelectionsRemoved <= 16)
+        if (numSelectionsRemoved <= 22)
         {
             if (naotoScooterState == 1)
             {
@@ -1580,7 +1582,7 @@ void generate_selection_mask()
             }
         }
         // Naoto
-        if (numSelectionsRemoved <= 16)
+        if (numSelectionsRemoved <= 22)
         {
             if (naotoState == 1)
             {
@@ -1593,7 +1595,7 @@ void generate_selection_mask()
             }
         }
         // Naoki
-        if (numSelectionsRemoved <= 16)
+        if (numSelectionsRemoved <= 22)
         {
             if (naokiState == 1)
             {
@@ -1606,7 +1608,7 @@ void generate_selection_mask()
             }
         }
         // Nanako
-        if (numSelectionsRemoved <= 16)
+        if (numSelectionsRemoved <= 22)
         {
             if (nanakoState == 1)
             {
@@ -1619,7 +1621,7 @@ void generate_selection_mask()
             }
         }
         // Marie
-        if (numSelectionsRemoved <= 16)
+        if (numSelectionsRemoved <= 22)
         {
             if (marieState == 1)
             {
@@ -1632,7 +1634,7 @@ void generate_selection_mask()
             }
         }
         // Kou
-        if (numSelectionsRemoved <= 16)
+        if (numSelectionsRemoved <= 22)
         {
             if (kouState == 1)
             {
@@ -1645,7 +1647,7 @@ void generate_selection_mask()
             }
         }
         // Kanji
-        if (numSelectionsRemoved <= 16)
+        if (numSelectionsRemoved <= 22)
         {
             if (kanjiScooterState == 1)
             {
@@ -1658,7 +1660,7 @@ void generate_selection_mask()
             }
         }
         // Kanji
-        if (numSelectionsRemoved <= 16)
+        if (numSelectionsRemoved <= 22)
         {
             if (kanjiState == 1)
             {
@@ -1671,7 +1673,7 @@ void generate_selection_mask()
             }
         }
         // Hisano
-        if (numSelectionsRemoved <= 16)
+        if (numSelectionsRemoved <= 22)
         {
             if (hisanoState == 1)
             {
@@ -1684,7 +1686,7 @@ void generate_selection_mask()
             }
         }
         // Fox
-        if (numSelectionsRemoved <= 16)
+        if (numSelectionsRemoved <= 22)
         {
             if (foxState == 1)
             {
@@ -1697,7 +1699,7 @@ void generate_selection_mask()
             }
         }
         // Eri
-        if (numSelectionsRemoved <= 16)
+        if (numSelectionsRemoved <= 22)
         {
             if (eriState == 1)
             {
@@ -1710,7 +1712,7 @@ void generate_selection_mask()
             }
         }
         // Dojima
-        if (numSelectionsRemoved <= 16)
+        if (numSelectionsRemoved <= 22)
         {
             if (dojimaState == 1)
             {
@@ -1723,7 +1725,7 @@ void generate_selection_mask()
             }
         }
         // Daisuke
-        if (numSelectionsRemoved <= 16)
+        if (numSelectionsRemoved <= 22)
         {
             if (daisukeState == 1)
             {
@@ -1736,7 +1738,7 @@ void generate_selection_mask()
             }
         }
         // Chie Scooter
-        if (numSelectionsRemoved <= 16)
+        if (numSelectionsRemoved <= 22)
         {
             if (chieScooterState == 1)
             {
