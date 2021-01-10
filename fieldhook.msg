@@ -74,7 +74,7 @@
 [f 0 1 0]Thanks for using Find A Friend!
 [n]Please choose which version you would like to use.
 [n]You can always change this later by pressing the
-[n]command menu button in the hang out menu.[f 1 1][e]
+[n]command menu button in the Find A Friend menu.[f 1 1][e]
 
 [msg SPOILER_CHECK]
 [f 0 5 -258][f 2 1]Would you like to enable spoiler-free mode?
