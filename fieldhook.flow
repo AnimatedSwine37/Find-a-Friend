@@ -1275,7 +1275,7 @@ void generate_selection_mask()
         daisukeState = 0;
     }
     // Dojima
-    if (BIT_CHK(0 + 0x0400 + 455) == 0 || GET_SL_LEVEL(8) >= 10 || timeOfDay != 5 || (GET_SL_LEVEL(8) <= 0 && spoilerFree))
+    if (BIT_CHK(0 + 0x0400 + 455) == 0 || BIT_CHK( 0 + 0x0400 + 1569 ) || GET_SL_LEVEL(8) >= 10 || timeOfDay != 5 || (GET_SL_LEVEL(8) <= 0 && spoilerFree))
     {
         pageOneMask = pageOneMask + 64;
         numSelectionsRemoved = numSelectionsRemoved + 1;
