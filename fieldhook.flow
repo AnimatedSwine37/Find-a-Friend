@@ -367,6 +367,12 @@ _choiceLoop:
                 }
             }
 
+            // Plays the sound effect if you are leaving home
+            else if (fieldMajor == 7 && fieldMinor != 1 && localVariable56 != 6 && localVariable56 != 14 )
+            {
+                PLAY_SOUNDEFFECT( 7 );
+            }
+
             // Teleport the player to the desired location depending on who they chose
             switch (localVariable56)
             {
@@ -558,9 +564,24 @@ _choiceLoop:
                 }
                 else
                 {
-                    FADE(1, 5);
-                    FADE_SYNC();
-                    CALL_FIELD(7, 2, 0, 0);
+                   // Play the open door sound effect if coming down from your room
+                    if(fieldMajor == 7 && fieldMinor == 3){
+                        PLAY_SOUNDEFFECT( 702 );
+                        //FLD_FUNCTION_0008( 10241, 1, 0, 0, 1 );
+                        FADE( 1, 5 );
+                        FADE_SYNC();
+                        PLAY_SOUNDEFFECT( 173 );
+                        //NS_WAIT( 5 );
+                        CALL_FIELD( 7, 2, 0, 0 );
+                    }
+                    // Play the sliding door sound effect if coming into the house
+                    else
+                    {
+                        PLAY_SOUNDEFFECT( 7 );
+                        FADE(1, 5);
+                        FADE_SYNC();
+                        CALL_FIELD(7, 2, 0, 0);
+                    }
                 }
                 break;
             // Eri - South Shopping District
@@ -724,9 +745,24 @@ _choiceLoop:
                 }
                 else
                 {
-                    FADE(1, 5);
-                    FADE_SYNC();
-                    CALL_FIELD(7, 2, 0, 0);
+                   // Play the open door sound effect if coming down from your room
+                    if(fieldMajor == 7 && fieldMinor == 3){
+                        PLAY_SOUNDEFFECT( 702 );
+                        //FLD_FUNCTION_0008( 10241, 1, 0, 0, 1 );
+                        FADE( 1, 5 );
+                        FADE_SYNC();
+                        PLAY_SOUNDEFFECT( 173 );
+                        //NS_WAIT( 5 );
+                        CALL_FIELD( 7, 2, 0, 0 );
+                    }
+                    // Play the sliding door sound effect if coming into the house
+                    else
+                    {
+                        PLAY_SOUNDEFFECT( 7 );
+                        FADE(1, 5);
+                        FADE_SYNC();
+                        CALL_FIELD(7, 2, 0, 0);
+                    }
                 }
                 break;
             // Naoki
@@ -1899,9 +1935,11 @@ void myhouse_order_hook()
 
     if (localVariable60 == 0)
     {
-        PLAY_SOUNDEFFECT(173);
         FADE(1, 5);
         FADE_SYNC();
+        PLAY_SOUNDEFFECT( 702 );
+        NS_WAIT( 10 );
+        PLAY_SOUNDEFFECT( 173 );
         CALL_FIELD(7, 2, 1, 0);
         return;
     }
