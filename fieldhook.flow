@@ -2447,3 +2447,206 @@ void schoolroad_order_hook()
         return;
     }
 }
+
+void getout_myhome_hook()
+{
+    int var135 = 0;
+
+    if (GET_TIME_OF_DAY() == 5)
+    {
+
+        if (DATE_CHK(4, 11) == 1)
+        {
+            OPEN_MSG_WIN();
+            MSG(STOP_OUTDOOR_0411);
+            CLOSE_MSG_WIN();
+        }
+        else if (DATE_CHK(4, 12) == 1)
+        {
+            OPEN_MSG_WIN();
+            MSG(STOP_OUTDOOR_0412);
+            CLOSE_MSG_WIN();
+        }
+        else if (DATE_CHK(4, 13) == 1)
+        {
+            OPEN_MSG_WIN();
+            MSG(STOP_OUTDOOR_0413);
+            CLOSE_MSG_WIN();
+        }
+        else if (DATE_CHK(4, 14) == 1)
+        {
+            OPEN_MSG_WIN();
+            MSG(STOP_OUTDOOR_0414);
+            CLOSE_MSG_WIN();
+        }
+        else if (CHECK_TIME_SPAN(4, 15, 4, 0x10) == 1)
+        {
+            OPEN_MSG_WIN();
+            MSG(STOP_OUTDOOR_0415_16);
+            CLOSE_MSG_WIN();
+        }
+        else if (DATE_CHK(4, 17) == 1 && BIT_CHK(0 + 0x0400 + 0x0800 + 327) == 1)
+        {
+            OPEN_MSG_WIN();
+            MSG(STOP_OUTDOOR_DOUJIMA_AFT);
+            CLOSE_MSG_WIN();
+        }
+        else if (BIT_CHK(0 + 0x0400 + 663) == 0 && DATE_CHK(4, 17) == 1 && BIT_CHK(0 + 0x0400 + 0x0800 + 328) == 0 || DATE_CHK(4, 17) != 1 && BIT_CHK(0 + 0x0400 + 671) == 1)
+        {
+
+            if (GET_FIELD_MINOR() == 3)
+            {
+                BIT_ON(0 + 0x0400 + 0x0800 + 447);
+                FADE(1, 5);
+                FADE_SYNC();
+                PLAY_SOUNDEFFECT(173);
+                CALL_FIELD(7, 2, 7, 0);
+            }
+            else
+            {
+                getout_doujima_warning();
+            }
+        }
+        else if (BIT_CHK(0 + 0x0400 + 1726) == 1)
+        {
+            OPEN_MSG_WIN();
+
+            if (DATE_CHK(5, 0x10) == 1)
+            {
+                MSG(STOP_OUTDOOR_0516);
+            }
+            else if (DATE_CHK(6, 18) == 1)
+            {
+                MSG(STOP_OUTDOOR_0618);
+            }
+            else if (DATE_CHK(7, 23) == 1)
+            {
+                MSG(STOP_OUTDOOR_0723);
+            }
+            else if (DATE_CHK(8, 19) == 1)
+            {
+                MSG(STOP_OUTDOOR_0819);
+            }
+            else if (DATE_CHK(9, 7) == 1)
+            {
+                MSG(STOP_OUTDOOR_0907);
+            }
+            else if (DATE_CHK(10, 28) == 1)
+            {
+                MSG(STOP_OUTDOOR_1028);
+            }
+            else if (DATE_CHK(10, 29) == 1)
+            {
+                MSG(STOP_OUTDOOR_1029);
+            }
+            else if (DATE_CHK(12, 3) == 1)
+            {
+                MSG(STOP_OUTDOOR_1203);
+            }
+            else if (DATE_CHK(12, 4) == 1)
+            {
+                MSG(STOP_OUTDOOR_1204);
+            }
+            else if (DATE_CHK(12, 5) == 1)
+            {
+                MSG(STOP_OUTDOOR_1205);
+            }
+            else if (DATE_CHK(12, 6) == 1)
+            {
+                MSG(STOP_OUTDOOR_1206);
+            }
+            else if (DATE_CHK(12, 7) == 1)
+            {
+                MSG(STOP_OUTDOOR_1207);
+            }
+            else if (DATE_CHK(12, 24) == 1)
+            {
+                MSG(STOP_OUTDOOR_1224);
+            }
+            else if (DATE_CHK(1, 1) == 1)
+            {
+                MSG(STOP_OUTDOOR_0101);
+            }
+            else if (DATE_CHK(1, 2) == 1)
+            {
+                MSG(STOP_OUTDOOR_0102);
+            }
+            else if (DATE_CHK(1, 3) == 1)
+            {
+                MSG(STOP_OUTDOOR_0103);
+            }
+            else if (DATE_CHK(1, 6) == 1)
+            {
+                MSG(STOP_OUTDOOR_0106);
+            }
+            else if (DATE_CHK(2, 10) == 1)
+            {
+                MSG(STOP_OUTDOOR_0210);
+            }
+            else if (DATE_CHK(2, 13) == 1)
+            {
+
+                if (BIT_CHK(0 + 0x0400 + 0x0800 + 179) == 1)
+                {
+                    MSG(STOP_OUTDOOR_0213_MARIE_);
+                }
+                else
+                {
+                    MSG(STOP_OUTDOOR_0213);
+                }
+            }
+            else if (DATE_CHK(4, 29) == 1 || DATE_CHK(5, 14) == 1 || DATE_CHK(5, 15) == 1 || DATE_CHK(5, 17) == 1 || DATE_CHK(6, 4) == 1 || DATE_CHK(6, 21) == 1 || DATE_CHK(6, 23) == 1 || DATE_CHK(7, 9) == 1 || DATE_CHK(7, 26) == 1 || DATE_CHK(8, 12) == 1 || DATE_CHK(9, 14) == 1 || DATE_CHK(9, 15) == 1 || DATE_CHK(10, 5) == 1 || DATE_CHK(11, 20) == 1 || DATE_CHK(12, 26) == 1)
+            {
+                MSG(STOP_OUTDOOR_MAYONAKA_TV);
+            }
+            else
+            {
+                MSG(STOP_OUTDOOR_SITEIBI);
+            }
+
+            CLOSE_MSG_WIN();
+        }
+        else if (BIT_CHK(0 + 0x0400 + 0x0800 + 2) == 1)
+        {
+            OPEN_MSG_WIN();
+            MSG(STOP_OUTDOOR_DUNGEON_SUM);
+            CLOSE_MSG_WIN();
+        }
+        else
+        {
+            FADE(1, 5);
+            FADE_SYNC();
+            PLAY_SOUNDEFFECT(7);
+            CALL_FIELD(7, 1, 1, 0);
+            return;
+        }
+    }
+    else if (BIT_CHK(0 + 0x0400 + 0x0800 + 11) == 0)
+    {
+        HELP_MSG(337);
+    }
+
+    OPEN_MSG_WIN();
+    MSG(EXIT_MYHOME_OK);
+    SET_SEL_CHOICE_KEYBIND(14, 1);
+    var135 = SEL(YESNO_SEL);
+
+    if (var135 == 0)
+    {
+
+        if (BIT_CHK(0 + 0x0400 + 0x0800 + 11) == 0)
+        {
+            BIT_ON(0 + 0x0400 + 0x0800 + 11);
+        }
+
+        CLOSE_MSG_WIN();
+        FADE(1, 5);
+        FADE_SYNC();
+        CALL_FIELD(7, 1, 1, 0);
+        return;
+    }
+    else
+    {
+        CLOSE_MSG_WIN();
+    }
+}
