@@ -33,5 +33,13 @@ Naoto = BIT_ON( 0 + 0x0400 + 462 ); // 1486
 Naoto Night = BIT_ON( 0 + 0x0400 + 1157 ); // 2181
 Naoto Scooter = BIT_ON( 0 + 0x0400 + 629 ); // 1653
 Nanako = BIT_ON( 0 + 0x0400 + 449 ); // 1473
-Dojima = BIT_ON( 0 + 0x0400 + 455 ); // 1479
+Dojima = BIT_ON( 0 + 0x0400 + 455 ) || BIT_ON( 0 + 0x0400 + 439 ); // 1479 or 1463
 Teddie = BIT_ON( 0 + 0x0400 + 630 ); // 1654
+
+Marie party member disabling bits (if turned on makes it so a party member isn't available at night if they were in an event with Marie, may also apply to other events)
+Yosuke = BIT_ON( 0 + 0x0400 + 1216 ); // 2240
+Chie = BIT_ON( 0 + 0x0400 + 1217 ); // 2241
+Yukiko = BIT_ON( 0 + 0x0400 + 1218 ); // 2242
+Kanji = BIT_ON( 0 + 0x0400 + 1219 ); // 2243
+Rise = BIT_ON( 0 + 0x0400 + 1220 ); // 2244
+Naoto = BIT_ON( 0 + 0x0400 + 1221 ); // 2245
