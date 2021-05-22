@@ -51,7 +51,7 @@ void options_setup()
     else
     {
         MSG(SPOILER_TOGGLE);
-        SET_SEL_CHOICE_KEYBIND(14, 2);
+        SEL_CHK_PAD(14, 2);
         spoilers = SEL(ToggleMenu);
     }
 
@@ -301,16 +301,16 @@ void generate_hangout_menu()
     }
 
     // Set B button to nobody
-    SET_SEL_CHOICE_KEYBIND(14, 29);
+    SEL_CHK_PAD(14, 29);
     // Set command menu button to opening options
-    SET_SEL_CHOICE_KEYBIND(12, 30);
+    SEL_CHK_PAD(12, 30);
     // Set bumpers to someone else if it's available
     if (pageTwoMask != 268435455)
     {
-        SET_SEL_CHOICE_KEYBIND(10, 28);
-        SET_SEL_CHOICE_KEYBIND(11, 28);
-        SET_SEL_CHOICE_KEYBIND(5, 28);
-        SET_SEL_CHOICE_KEYBIND(7, 28);
+        SEL_CHK_PAD(10, 28);
+        SEL_CHK_PAD(11, 28);
+        SEL_CHK_PAD(5, 28);
+        SEL_CHK_PAD(7, 28);
     }
 
     int localVariable56 = ADV_SEL(localVariable54, localVariable55, pageOneMask);
@@ -331,7 +331,7 @@ _choiceLoop:
         {
             OPEN_MSG_WIN();
             MSG(EXIT_MYHOME_OK);
-            SET_SEL_CHOICE_KEYBIND(14, 1);
+            SEL_CHK_PAD(14, 1);
             cancelSel = SEL(YESNO_SEL);
         }
 
@@ -1183,14 +1183,14 @@ _choiceLoop:
     else if (localVariable56 == 28)
     {
         // Generate another menu
-        SET_SEL_CHOICE_KEYBIND(14, 29);
+        SEL_CHK_PAD(14, 29);
         // Set command menu to opening options
-        SET_SEL_CHOICE_KEYBIND(12, 30);
+        SEL_CHK_PAD(12, 30);
         // Set bumpers to someone else
-        SET_SEL_CHOICE_KEYBIND(10, 28);
-        SET_SEL_CHOICE_KEYBIND(11, 28);
-        SET_SEL_CHOICE_KEYBIND(5, 28);
-        SET_SEL_CHOICE_KEYBIND(7, 28);
+        SEL_CHK_PAD(10, 28);
+        SEL_CHK_PAD(11, 28);
+        SEL_CHK_PAD(5, 28);
+        SEL_CHK_PAD(7, 28);
         // If you're on page one go to two and vice versa
         if (localVariable120 == 0)
         {
@@ -1841,7 +1841,7 @@ void school_order_hook()
         localVariable57 = localVariable57 + 128;
     }
 
-    SET_SEL_CHOICE_KEYBIND(14, 6);
+    SEL_CHK_PAD(14, 6);
     int localVariable56 = ADV_SEL(localVariable54, localVariable55, localVariable57);
 
     //Check if my custom menu was chosen
@@ -1934,7 +1934,7 @@ void myhouse_order_hook()
         localVariable61 = localVariable61 + 256;
     }
 
-    SET_SEL_CHOICE_KEYBIND(14, 9);
+    SEL_CHK_PAD(14, 9);
     int localVariable60 = ADV_SEL(localVariable58, localVariable59, localVariable61);
 
     if (localVariable60 == 0)
@@ -2027,7 +2027,7 @@ void street_order_hook()
             localVariable65 = localVariable65 + 64;
         }
 
-        SET_SEL_CHOICE_KEYBIND(14, 7);
+        SEL_CHK_PAD(14, 7);
         localVariable64 = ADV_SEL(localVariable62, localVariable63, localVariable65);
 
         if (localVariable64 == 0)
@@ -2100,7 +2100,7 @@ void street_order_hook()
             localVariable65 = localVariable65 + 16;
         }
 
-        SET_SEL_CHOICE_KEYBIND(14, 5);
+        SEL_CHK_PAD(14, 5);
         localVariable64 = ADV_SEL(localVariable62, localVariable63, localVariable65);
 
         if (localVariable64 != 5)
@@ -2143,7 +2143,7 @@ void street_order_hook()
                 {
                     OPEN_MSG_WIN();
                     MSG(341);
-                    SET_SEL_CHOICE_KEYBIND(14, 1);
+                    SEL_CHK_PAD(14, 1);
                     localVariable64 = SEL(1);
                     CLOSE_MSG_WIN();
 
@@ -2230,7 +2230,7 @@ void gms_order_hook()
         localVariable69 = localVariable69 + 4;
     }
 
-    SET_SEL_CHOICE_KEYBIND(14, 3);
+    SEL_CHK_PAD(14, 3);
     int localVariable68 = ADV_SEL(localVariable66, localVariable67, localVariable69);
 
     if (localVariable68 != 3)
@@ -2278,7 +2278,7 @@ void embank_order_hook()
             localVariable73 = localVariable73 + 8;
         }
 
-        SET_SEL_CHOICE_KEYBIND(14, 4);
+        SEL_CHK_PAD(14, 4);
         localVariable72 = ADV_SEL(localVariable70, localVariable71, localVariable73);
 
         if (localVariable72 == 0)
@@ -2322,7 +2322,7 @@ void embank_order_hook()
             localVariable73 = localVariable73 + 8;
         }
 
-        SET_SEL_CHOICE_KEYBIND(14, 4);
+        SEL_CHK_PAD(14, 4);
         localVariable72 = ADV_SEL(localVariable70, localVariable71, localVariable73);
 
         if (localVariable72 != 4)
@@ -2381,7 +2381,7 @@ void station_order_hook()
             localVariable77 = localVariable77 + 2;
         }
 
-        SET_SEL_CHOICE_KEYBIND(14, 2);
+        SEL_CHK_PAD(14, 2);
         localVariable76 = ADV_SEL(localVariable74, localVariable75, localVariable77);
 
         if (localVariable76 == 0)
@@ -2438,7 +2438,7 @@ void schoolroad_order_hook()
         localVariable81 = localVariable81 + 2;
     }
 
-    SET_SEL_CHOICE_KEYBIND(14, 2);
+    SEL_CHK_PAD(14, 2);
     int localVariable80 = ADV_SEL(localVariable78, localVariable79, localVariable81);
 
     if (localVariable80 == 0)
@@ -2465,7 +2465,7 @@ void getout_day() {
 
     OPEN_MSG_WIN();
     MSG(EXIT_MYHOME_OK);
-    SET_SEL_CHOICE_KEYBIND(14, 1);
+    SEL_CHK_PAD(14, 1);
     var135 = SEL(YESNO_SEL);
 
     if (var135 == 0)

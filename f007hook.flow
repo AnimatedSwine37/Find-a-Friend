@@ -22,7 +22,7 @@ void getout_day()
 
     OPEN_MSG_WIN();
     MSG(EXIT_MYHOME_OK);
-    SET_SEL_CHOICE_KEYBIND(14, 1);
+    SEL_CHK_PAD(14, 1);
     var135 = SEL(YESNO_SEL);
 
     if (var135 == 0)
