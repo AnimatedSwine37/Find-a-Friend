@@ -17,7 +17,7 @@ void getout_day()
     int var135 = 0;
     if (BIT_CHK(0 + 0x0400 + 0x0800 + 11) == 0)
     {
-        HELP_MSG(337);
+        HELP_MSG(HELP_EXIT_MYHOUSE);
     }
 
     OPEN_MSG_WIN();

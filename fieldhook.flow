@@ -573,7 +573,7 @@ _choiceLoop:
                         FADE( 1, 5 );
                         FADE_SYNC();
                         PLAY_SOUNDEFFECT( 173 );
-                        //NS_WAIT( 5 );
+                        //WAIT( 5 );
                         CALL_FIELD( 7, 2, 0, 0 );
                     }
                     // Play the sliding door sound effect if coming into the house
@@ -754,7 +754,7 @@ _choiceLoop:
                         FADE( 1, 5 );
                         FADE_SYNC();
                         PLAY_SOUNDEFFECT( 173 );
-                        //NS_WAIT( 5 );
+                        //WAIT( 5 );
                         CALL_FIELD( 7, 2, 0, 0 );
                     }
                     // Play the sliding door sound effect if coming into the house
@@ -1942,7 +1942,7 @@ void myhouse_order_hook()
         FADE(1, 5);
         FADE_SYNC();
         PLAY_SOUNDEFFECT( 702 );
-        NS_WAIT( 10 );
+        WAIT( 10 );
         PLAY_SOUNDEFFECT( 173 );
         CALL_FIELD(7, 2, 1, 0);
         return;
@@ -2460,7 +2460,7 @@ void getout_day() {
     int var135 = 0;
     if (BIT_CHK(0 + 0x0400 + 0x0800 + 11) == 0)
     {
-        HELP_MSG(337);
+        HELP_MSG(HELP_EXIT_MYHOUSE);
     }
 
     OPEN_MSG_WIN();
