@@ -2,3 +2,8 @@
 *.bf
 AtlusScriptCompiler.log
 *.code-workspace
+f007.*
+*.arc
+field.*
+*.bat
+p4g_flags.txt
